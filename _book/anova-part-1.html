@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Workshop 8 ANOVA Part 1 | Advanced Data Skills, Open Science and Reproducibility 2024/25</title>
+  <meta name="description" content="Workshop 8 ANOVA Part 1 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Workshop 8 ANOVA Part 1 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workshop 8 ANOVA Part 1 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regression-part-2.html"/>
+<link rel="next" href="anova-part-2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PCHN63101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="open-science.html"><a href="open-science.html"><i class="fa fa-check"></i><b>1</b> Open Science</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="open-science.html"><a href="open-science.html#open-research-and-reproducibility"><i class="fa fa-check"></i><b>1.1</b> Open Research and Reproducibility</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="open-science.html"><a href="open-science.html#how-to-do-reproducible-research"><i class="fa fa-check"></i><b>1.1.1</b> How to do Reproducible Research</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="open-science.html"><a href="open-science.html#experimental-power"><i class="fa fa-check"></i><b>1.2</b> Experimental Power</a></li>
+<li class="chapter" data-level="1.3" data-path="open-science.html"><a href="open-science.html#open-source-software"><i class="fa fa-check"></i><b>1.3</b> Open Source Software</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="open-science.html"><a href="open-science.html#statistical-and-scientific-computing"><i class="fa fa-check"></i><b>1.3.1</b> Statistical and Scientific Computing</a></li>
+<li class="chapter" data-level="1.3.2" data-path="open-science.html"><a href="open-science.html#document-creation"><i class="fa fa-check"></i><b>1.3.2</b> Document Creation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="open-science.html"><a href="open-science.html#building-experiments"><i class="fa fa-check"></i><b>1.3.3</b> Building Experiments</a></li>
+<li class="chapter" data-level="1.3.4" data-path="open-science.html"><a href="open-science.html#linux"><i class="fa fa-check"></i><b>1.3.4</b> Linux</a></li>
+<li class="chapter" data-level="1.3.5" data-path="open-science.html"><a href="open-science.html#more-reading"><i class="fa fa-check"></i><b>1.3.5</b> More Reading</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
+<li class="chapter" data-level="2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting Started</a></li>
+<li class="chapter" data-level="2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#keeping-things-organised"><i class="fa fa-check"></i><b>2.3</b> Keeping Things Organised</a></li>
+<li class="chapter" data-level="2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-coding-style"><i class="fa fa-check"></i><b>2.4</b> Good Coding Style</a></li>
+<li class="chapter" data-level="2.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#your-first-r-script"><i class="fa fa-check"></i><b>2.5</b> Your First R Script</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html"><i class="fa fa-check"></i><b>3</b> Data Wrangling and Data Summarising</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#wrangling-your-data"><i class="fa fa-check"></i><b>3.1</b> Wrangling your data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#loading-the-tidyverse"><i class="fa fa-check"></i><b>3.1.1</b> Loading the Tidyverse</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-head-and-str"><i class="fa fa-check"></i><b>3.1.2</b> Using <code>head()</code> and <code>str()</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-select-to-select-columns"><i class="fa fa-check"></i><b>3.1.3</b> Use <code>select()</code> to select columns</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-filter-to-select-rows"><i class="fa fa-check"></i><b>3.1.4</b> Use <code>filter()</code> to select rows</a></li>
+<li class="chapter" data-level="3.1.5" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#the-pipe"><i class="fa fa-check"></i><b>3.1.5</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.1.6" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#tidying-up-a-dataset"><i class="fa fa-check"></i><b>3.1.6</b> Tidying up a dataset</a></li>
+<li class="chapter" data-level="3.1.7" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#joining-two-datasets"><i class="fa fa-check"></i><b>3.1.7</b> Joining Two Datasets</a></li>
+<li class="chapter" data-level="3.1.8" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-complete-this-before-the-in-person-session"><i class="fa fa-check"></i><b>3.1.8</b> Your challenge (complete this before the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#summarising-your-data"><i class="fa fa-check"></i><b>3.2</b> Summarising your data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-group_by-and-summarise"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#adding-columns-using-mutate"><i class="fa fa-check"></i><b>3.2.2</b> Adding columns using <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-do-this-during-the-in-person-session"><i class="fa fa-check"></i><b>3.2.3</b> Your challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>4.1</b> The Basics of ggplot2</a></li>
+<li class="chapter" data-level="4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#your-first-visualisation"><i class="fa fa-check"></i><b>4.2</b> Your First Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#improving-the-plot"><i class="fa fa-check"></i><b>4.2.1</b> Improving the Plot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-summary-statistics"><i class="fa fa-check"></i><b>4.2.2</b> Adding Summary Statistics</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#the-finished-plot"><i class="fa fa-check"></i><b>4.2.3</b> The Finished(?) Plot</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#using-facet_wrap"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>4.3</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.4" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-histograms"><i class="fa fa-check"></i><b>4.4</b> Plotting Histograms</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-ggridges-package"><i class="fa fa-check"></i><b>4.4.1</b> The <code>ggridges</code> Package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-visualisation.html"><a href="data-visualisation.html#the-nhanes-dataset"><i class="fa fa-check"></i><b>4.5</b> The NHANES Dataset</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-visualisation.html"><a href="data-visualisation.html#tidying-the-data"><i class="fa fa-check"></i><b>4.5.1</b> Tidying the Data</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-a-histogram"><i class="fa fa-check"></i><b>4.5.2</b> Plotting a Histogram</a></li>
+<li class="chapter" data-level="4.5.3" data-path="data-visualisation.html"><a href="data-visualisation.html#summary-statistics"><i class="fa fa-check"></i><b>4.5.3</b> Summary Statistics</a></li>
+<li class="chapter" data-level="4.5.4" data-path="data-visualisation.html"><a href="data-visualisation.html#geom_violin"><i class="fa fa-check"></i><b>4.5.4</b> <code>geom_violin()</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-interaction-effects"><i class="fa fa-check"></i><b>4.5.5</b> Plotting Interaction Effects</a></li>
+<li class="chapter" data-level="4.5.6" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms-with-facet_wrap"><i class="fa fa-check"></i><b>4.5.6</b> Histograms with <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-visualisation.html"><a href="data-visualisation.html#your-challenge-do-this-during-the-in-person-session-1"><i class="fa fa-check"></i><b>4.6</b> Your Challenge (do this during the in-person session)</a></li>
+<li class="chapter" data-level="4.7" data-path="data-visualisation.html"><a href="data-visualisation.html#additional-resources"><i class="fa fa-check"></i><b>4.7</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>5</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-markdown.html"><a href="r-markdown.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="r-markdown.html"><a href="r-markdown.html#your-challenge-do-this-during-the-in-person-session-2"><i class="fa fa-check"></i><b>5.2</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-part-1.html"><a href="regression-part-1.html"><i class="fa fa-check"></i><b>6</b> Regression Part 1</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regression-part-1.html"><a href="regression-part-1.html#overview-1"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="regression-part-1.html"><a href="regression-part-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-part-1.html"><a href="regression-part-1.html#the-packages-we-need"><i class="fa fa-check"></i><b>6.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-part-1.html"><a href="regression-part-1.html#import-the-data"><i class="fa fa-check"></i><b>6.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-part-1.html"><a href="regression-part-1.html#tidy-the-data"><i class="fa fa-check"></i><b>6.2.3</b> Tidy the Data</a></li>
+<li class="chapter" data-level="6.2.4" data-path="regression-part-1.html"><a href="regression-part-1.html#plot-the-data"><i class="fa fa-check"></i><b>6.2.4</b> Plot the Data</a></li>
+<li class="chapter" data-level="6.2.5" data-path="regression-part-1.html"><a href="regression-part-1.html#pearsons-r"><i class="fa fa-check"></i><b>6.2.5</b> Pearson’s r</a></li>
+<li class="chapter" data-level="6.2.6" data-path="regression-part-1.html"><a href="regression-part-1.html#model-the-data"><i class="fa fa-check"></i><b>6.2.6</b> Model the Data</a></li>
+<li class="chapter" data-level="6.2.7" data-path="regression-part-1.html"><a href="regression-part-1.html#checking-our-assumptions"><i class="fa fa-check"></i><b>6.2.7</b> Checking Our Assumptions</a></li>
+<li class="chapter" data-level="6.2.8" data-path="regression-part-1.html"><a href="regression-part-1.html#interpreting-our-model"><i class="fa fa-check"></i><b>6.2.8</b> Interpreting Our Model</a></li>
+<li class="chapter" data-level="6.2.9" data-path="regression-part-1.html"><a href="regression-part-1.html#your-challenge-do-this-during-the-in-person-session-3"><i class="fa fa-check"></i><b>6.2.9</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-part-2.html"><a href="regression-part-2.html"><i class="fa fa-check"></i><b>7</b> Regression Part 2</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-part-2.html"><a href="regression-part-2.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="regression-part-2.html"><a href="regression-part-2.html#multiple-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-part-2.html"><a href="regression-part-2.html#the-packages-we-need-1"><i class="fa fa-check"></i><b>7.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="7.2.2" data-path="regression-part-2.html"><a href="regression-part-2.html#import-the-data-1"><i class="fa fa-check"></i><b>7.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-1"><i class="fa fa-check"></i><b>7.2.3</b> Model the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-part-2.html"><a href="regression-part-2.html#stepwise-regression"><i class="fa fa-check"></i><b>7.3</b> Stepwise regression</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-2"><i class="fa fa-check"></i><b>7.3.1</b> Model the Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-part-1.html"><a href="anova-part-1.html"><i class="fa fa-check"></i><b>8</b> ANOVA Part 1</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="anova-part-1.html"><a href="anova-part-1.html#overview-3"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-part-1.html"><a href="anova-part-1.html#between-participants-anova"><i class="fa fa-check"></i><b>8.2</b> Between Participants ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="anova-part-1.html"><a href="anova-part-1.html#loading-our-packages"><i class="fa fa-check"></i><b>8.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="8.2.2" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data"><i class="fa fa-check"></i><b>8.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data"><i class="fa fa-check"></i><b>8.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data"><i class="fa fa-check"></i><b>8.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model"><i class="fa fa-check"></i><b>8.2.5</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.2.6" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output"><i class="fa fa-check"></i><b>8.2.6</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="anova-part-1.html"><a href="anova-part-1.html#repeated-measures-anova"><i class="fa fa-check"></i><b>8.3</b> Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-1"><i class="fa fa-check"></i><b>8.3.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-1"><i class="fa fa-check"></i><b>8.3.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.3.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-1"><i class="fa fa-check"></i><b>8.3.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.3.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-1"><i class="fa fa-check"></i><b>8.3.4</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.3.5" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output-1"><i class="fa fa-check"></i><b>8.3.5</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="anova-part-1.html"><a href="anova-part-1.html#factorial-anova"><i class="fa fa-check"></i><b>8.4</b> Factorial ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-2"><i class="fa fa-check"></i><b>8.4.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-2"><i class="fa fa-check"></i><b>8.4.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.4.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-2"><i class="fa fa-check"></i><b>8.4.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.4.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-2"><i class="fa fa-check"></i><b>8.4.4</b> Building our ANOVA Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="anova-part-1.html"><a href="anova-part-1.html#your-challenge-do-this-during-the-in-person-session-4"><i class="fa fa-check"></i><b>8.5</b> Your Challenge (do this during the in-person session)</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1"><i class="fa fa-check"></i><b>8.5.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.5.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2"><i class="fa fa-check"></i><b>8.5.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.5.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3"><i class="fa fa-check"></i><b>8.5.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.5.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4"><i class="fa fa-check"></i><b>8.5.4</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="anova-part-1.html"><a href="anova-part-1.html#answers"><i class="fa fa-check"></i><b>8.6</b> Answers</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1-1"><i class="fa fa-check"></i><b>8.6.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.6.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2-1"><i class="fa fa-check"></i><b>8.6.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.6.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3-1"><i class="fa fa-check"></i><b>8.6.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.6.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4-1"><i class="fa fa-check"></i><b>8.6.4</b> Question 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="anova-part-2.html"><a href="anova-part-2.html"><i class="fa fa-check"></i><b>9</b> ANOVA Part 2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="anova-part-2.html"><a href="anova-part-2.html#overview-4"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-ancova"><i class="fa fa-check"></i><b>9.2</b> Building our ANCOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="anova-part-2.html"><a href="anova-part-2.html#loading-our-packages-1"><i class="fa fa-check"></i><b>9.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="9.2.2" data-path="anova-part-2.html"><a href="anova-part-2.html#reading-in-our-data-3"><i class="fa fa-check"></i><b>9.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="anova-part-2.html"><a href="anova-part-2.html#summarising-our-data-3"><i class="fa fa-check"></i><b>9.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="9.2.4" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-3"><i class="fa fa-check"></i><b>9.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.2.5" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-anova-model-3"><i class="fa fa-check"></i><b>9.2.5</b> Building our ANOVA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-special-case-of-regression"><i class="fa fa-check"></i><b>9.3</b> AN(C)OVA as a Special Case of Regression</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-4"><i class="fa fa-check"></i><b>9.3.1</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.3.2" data-path="anova-part-2.html"><a href="anova-part-2.html#setting-up-our-contrasts"><i class="fa fa-check"></i><b>9.3.2</b> Setting up our Contrasts</a></li>
+<li class="chapter" data-level="9.3.3" data-path="anova-part-2.html"><a href="anova-part-2.html#anova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.3</b> ANOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.4" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.4</b> ANCOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.5" data-path="anova-part-2.html"><a href="anova-part-2.html#centering-our-covariate"><i class="fa fa-check"></i><b>9.3.5</b> Centering our Covariate</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="technical-details-and-credits.html"><a href="technical-details-and-credits.html"><i class="fa fa-check"></i>Technical Details and Credits</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Data Skills, Open Science and Reproducibility 2024/25</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anova-part-1" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Workshop 8</span> ANOVA Part 1<a href="anova-part-1.html#anova-part-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this workshop we will explore Analysis of Variance (ANOVA) in the context of model building in R for between participants designs, repeated measures designs, and factorial designs. You will learn how to use the {afex} package for building models with Type III Sums of Squares, and the {emmeans} package to conduct follow up tests to explore main effects and interactions.</p>
+<div id="overview-3" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Overview<a href="anova-part-1.html#overview-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will begin by exploring why we tend to use ANOVA (rather than multiple <em>t</em>-tests), before moving on to some examples of ANOVA for between participants and repeated measures designs.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/HjwspcOlyJ4" frameborder="0" data-external="1" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+</div>
+<div id="between-participants-anova" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Between Participants ANOVA<a href="anova-part-1.html#between-participants-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this second video, I will show you how to build a between participants ANOVA model in R using the <code>{afex}</code> package.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/iqIfjl18Kbo" frameborder="0" data-external="1" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>After you’ve watched both of the videos above, it’s your turn to build your first ANOVA in R for a between participants design. This is the same data (from the same study) that I covered in the second of the two videos above. Follow the instructions below to build that model.</p>
+<div id="loading-our-packages" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Loading our Packages<a href="anova-part-1.html#loading-our-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First of all, we need to load the three packages we will be using - they are <code>{tidyverse}</code>, <code>{afex}</code>, and <code>{emmeans}</code>. The <code>{afex}</code> package is the one we use for conducting factorial ANOVA. We use the <code>{emmeans}</code> package for running follow-up tests on the ANOVA model that we will be building.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="anova-part-1.html#cb177-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb177-2"><a href="anova-part-1.html#cb177-2" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
+<span id="cb177-3"><a href="anova-part-1.html#cb177-3" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div>
+</div>
+<div id="reading-in-our-data" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Reading in our Data<a href="anova-part-1.html#reading-in-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We have 45 participants in a between participants design where we are interested in the effect of beverage consumed on ability on a motor task. Our experimental factor (beverage type) has 3 levels. These are Water vs. Single Espresso vs. Double Espresso, and Ability is our DV measured on a continuous scale. Let’s read in our data.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="anova-part-1.html#cb178-1" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/cond.csv&quot;</span>)</span>
+<span id="cb178-2"><a href="anova-part-1.html#cb178-2" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   Participant Condition Ability
+##         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1           1 Water        4.82
+## 2           2 Water        5.41
+## 3           3 Water        5.73
+## 4           4 Water        4.36
+## 5           5 Water        5.47
+## 6           6 Water        5.50</code></pre>
+<p>We see that we have three variables, but our experimental variable <code>Condition</code> is not coded as a factor. Let’s fix that…</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="anova-part-1.html#cb180-1" tabindex="-1"></a>my_data_tidied <span class="ot">&lt;-</span> my_data <span class="sc">%&gt;%</span></span>
+<span id="cb180-2"><a href="anova-part-1.html#cb180-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span>
+<span id="cb180-3"><a href="anova-part-1.html#cb180-3" tabindex="-1"></a><span class="fu">head</span>(my_data_tidied)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   Participant Condition Ability
+##         &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt;
+## 1           1 Water        4.82
+## 2           2 Water        5.41
+## 3           3 Water        5.73
+## 4           4 Water        4.36
+## 5           5 Water        5.47
+## 6           6 Water        5.50</code></pre>
+</div>
+<div id="summarising-our-data" class="section level3 hasAnchor" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Summarising our Data<a href="anova-part-1.html#summarising-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s work our some summary statistics and build a data visualisation next.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="anova-part-1.html#cb182-1" tabindex="-1"></a>my_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb182-2"><a href="anova-part-1.html#cb182-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb182-3"><a href="anova-part-1.html#cb182-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(Ability), <span class="at">sd =</span> <span class="fu">sd</span>(Ability))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   Condition        mean    sd
+##   &lt;fct&gt;           &lt;dbl&gt; &lt;dbl&gt;
+## 1 Double Espresso  8.89 0.467
+## 2 Single Espresso  6.99 0.419
+## 3 Water            5.17 0.362</code></pre>
+</div>
+<div id="visualising-our-data" class="section level3 hasAnchor" number="8.2.4">
+<h3><span class="header-section-number">8.2.4</span> Visualising our Data<a href="anova-part-1.html#visualising-our-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="anova-part-1.html#cb184-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb184-2"><a href="anova-part-1.html#cb184-2" tabindex="-1"></a>my_data_tidied <span class="sc">%&gt;%</span> </span>
+<span id="cb184-3"><a href="anova-part-1.html#cb184-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Condition, <span class="at">y =</span> Ability, <span class="at">colour =</span> Condition)) <span class="sc">+</span></span>
+<span id="cb184-4"><a href="anova-part-1.html#cb184-4" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb184-5"><a href="anova-part-1.html#cb184-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb184-6"><a href="anova-part-1.html#cb184-6" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb184-7"><a href="anova-part-1.html#cb184-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb184-8"><a href="anova-part-1.html#cb184-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb184-9"><a href="anova-part-1.html#cb184-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
+<pre><code>## Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use &quot;none&quot; instead as of ggplot2 3.3.4.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p>We have built a visualisation where we have plotted the raw data points using the <code>geom_jitter()</code> function, and the shape of the distribution for each condition using the <code>geom_violin()</code> function. We have also added some summary data in the form of the Mean and Confidence Intervals around the Mean using the <code>stat_summary()</code> function.</p>
+</div>
+<div id="building-our-anova-model" class="section level3 hasAnchor" number="8.2.5">
+<h3><span class="header-section-number">8.2.5</span> Building our ANOVA Model<a href="anova-part-1.html#building-our-anova-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s now build our model using the <code>aov_4()</code> function in the <code>{afex}</code> package. The syntax for ANOVA models in <code>aov_4()</code> is: <code>aov_4(DV ~ IV + (1 | Participant), data = my_data_tidied)</code>. The <code>~</code> symbol means predicted by, the <code>(1 | Participant)</code> term corresponds to our random effect - we obviously can’t test all the participants in the world so have taken just a random sample from this population. Finally, we need to specify what dataset we are using by making that clear in the <code>data = my_data_tidied</code> bit of the model. We are going to map the output of the <code>aov()</code> function onto a variable I’m calling <code>model</code>. This means that the ANOVA results will be stored in this variable and will allow us to access them later.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="anova-part-1.html#cb186-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(Ability <span class="sc">~</span> Condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Participant), <span class="at">data =</span> my_data_tidied)</span></code></pre></div>
+<pre><code>## Contrasts set to contr.sum for the following variables: Condition</code></pre>
+<p>To get the output of the ANOVA, we can use the <code>summary()</code> function with our newly created <code>model</code>.</p>
+</div>
+<div id="interpreting-the-model-output" class="section level3 hasAnchor" number="8.2.6">
+<h3><span class="header-section-number">8.2.6</span> Interpreting the Model Output<a href="anova-part-1.html#interpreting-the-model-output" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="anova-part-1.html#cb188-1" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## Anova Table (Type 3 tests)
+## 
+## Response: Ability
+##           num Df den Df     MSE      F     ges    Pr(&gt;F)    
+## Condition      2     42 0.17484 297.05 0.93397 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The effect size (ges) is generalised eta squared and for designs with more than one factor it can be a useful indicator of how much variance in the dependent variable can be explained by each factor (plus any interactions between factors).</p>
+<p>So, we there is an effect in our model - the F-value is pretty big and the <em>p</em>-value pretty small) but we can’t know what’s driving the difference yet. We need to run some pairwise comparisons using the <code>emmeans()</code> function to tell us what mean(s) differ(s) from what other mean(s).</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="anova-part-1.html#cb190-1" tabindex="-1"></a><span class="fu">emmeans</span>(model, pairwise <span class="sc">~</span> Condition)</span></code></pre></div>
+<pre><code>## $emmeans
+##  Condition       emmean    SE df lower.CL upper.CL
+##  Double Espresso   8.89 0.108 42     8.67     9.10
+##  Single Espresso   6.99 0.108 42     6.77     7.20
+##  Water             5.17 0.108 42     4.95     5.38
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast                          estimate    SE df t.ratio p.value
+##  Double Espresso - Single Espresso     1.90 0.153 42  12.453  &lt;.0001
+##  Double Espresso - Water               3.72 0.153 42  24.372  &lt;.0001
+##  Single Espresso - Water               1.82 0.153 42  11.920  &lt;.0001
+## 
+## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+<p>Note that the default adjustment for multiple comparisons is Tukey’s. We can change that by adding an extra parameter to our model such as <code>adjust = "bonferonni")</code>. In this case, it doesn’t make any difference to our comparisons.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="anova-part-1.html#cb192-1" tabindex="-1"></a><span class="fu">emmeans</span>(model, pairwise <span class="sc">~</span> Condition, <span class="at">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## $emmeans
+##  Condition       emmean    SE df lower.CL upper.CL
+##  Double Espresso   8.89 0.108 42     8.67     9.10
+##  Single Espresso   6.99 0.108 42     6.77     7.20
+##  Water             5.17 0.108 42     4.95     5.38
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast                          estimate    SE df t.ratio p.value
+##  Double Espresso - Single Espresso     1.90 0.153 42  12.453  &lt;.0001
+##  Double Espresso - Water               3.72 0.153 42  24.372  &lt;.0001
+##  Single Espresso - Water               1.82 0.153 42  11.920  &lt;.0001
+## 
+## P value adjustment: bonferroni method for 3 tests</code></pre>
+<p>We found a significant effect of Beverage type (F (2,42) = 297.05, <em>p</em> &lt; .001, generalised η2 = .93). Tukey comparisons revealed that the Water group performed significantly worse than the Single Espresso Group (<em>p</em> &lt; .001), that the Water group performed significantly worse than the Double Espresso Group (<em>p</em> &lt; .001), and that the Single Espresso Group performed significantly worse than the Double Espresso Group (<em>p</em> &lt; .001).</p>
+<p>In other words, drinking some coffee improves motor performance relative to drinking water, and drinking a lot of coffee improves motor performance even more.</p>
+<p>  </p>
+</div>
+</div>
+<div id="repeated-measures-anova" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Repeated Measures ANOVA<a href="anova-part-1.html#repeated-measures-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/Xc3vYaQAuS8" frameborder="0" data-external="1" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>Now it’s your chance to work with the data I examined in the video above. Let’s imagine we have an experiment where we asked 32 participants to learn how to pronounce words of differing levels of complexity - Very Easy, Easy, Hard, and Very Hard. They were presented with these words in an initial exposure phase. After a 30 minute break we tested participants by asking them to say the words out loud when they appeared on a computer screen. We recorded their times in seconds. We want to know whether there is a difference in their response times for each level of word complexity.</p>
+<div id="reading-in-our-data-1" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Reading in our Data<a href="anova-part-1.html#reading-in-our-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First we read in the data.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="anova-part-1.html#cb194-1" tabindex="-1"></a>rm_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/rm_data.csv&quot;</span>)</span>
+<span id="cb194-2"><a href="anova-part-1.html#cb194-2" tabindex="-1"></a><span class="fu">head</span>(rm_data)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   Participant Condition    RT
+##         &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1           1 Very Easy  1.25
+## 2           2 Very Easy  1.16
+## 3           3 Very Easy  1.12
+## 4           4 Very Easy  1.33
+## 5           5 Very Easy  1.16
+## 6           6 Very Easy  1.15</code></pre>
+<p>We can see from the <code>head()</code> function that Condition isn’t yet coded as a factor. Let’s fix that.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="anova-part-1.html#cb196-1" tabindex="-1"></a>rm_data_tidied <span class="ot">&lt;-</span> rm_data <span class="sc">%&gt;%</span></span>
+<span id="cb196-2"><a href="anova-part-1.html#cb196-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span>
+<span id="cb196-3"><a href="anova-part-1.html#cb196-3" tabindex="-1"></a><span class="fu">head</span>(rm_data_tidied)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   Participant Condition    RT
+##         &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;
+## 1           1 Very Easy  1.25
+## 2           2 Very Easy  1.16
+## 3           3 Very Easy  1.12
+## 4           4 Very Easy  1.33
+## 5           5 Very Easy  1.16
+## 6           6 Very Easy  1.15</code></pre>
+</div>
+<div id="summarising-our-data-1" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Summarising our Data<a href="anova-part-1.html#summarising-our-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s generate the Mean and Standard Deviation for each of our four conditions.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="anova-part-1.html#cb198-1" tabindex="-1"></a>rm_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb198-2"><a href="anova-part-1.html#cb198-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb198-3"><a href="anova-part-1.html#cb198-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(RT), <span class="at">sd =</span> <span class="fu">sd</span> (RT))</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##   Condition  mean     sd
+##   &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Easy       1.23 0.0610
+## 2 Hard       1.39 0.118 
+## 3 Very Easy  1.20 0.0511
+## 4 Very Hard  1.87 0.187</code></pre>
+</div>
+<div id="visualising-our-data-1" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Visualising our Data<a href="anova-part-1.html#visualising-our-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>And visualise the data - note here that I am using the <code>fct_reorder()</code> function to reorder the levels of our factor based on the RT. This can be useful to make our viusalisations more easily interpretable.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="anova-part-1.html#cb200-1" tabindex="-1"></a>rm_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb200-2"><a href="anova-part-1.html#cb200-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(Condition, RT), <span class="at">y =</span> RT, <span class="at">colour =</span> Condition)) <span class="sc">+</span></span>
+<span id="cb200-3"><a href="anova-part-1.html#cb200-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb200-4"><a href="anova-part-1.html#cb200-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb200-5"><a href="anova-part-1.html#cb200-5" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb200-6"><a href="anova-part-1.html#cb200-6" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb200-7"><a href="anova-part-1.html#cb200-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb200-8"><a href="anova-part-1.html#cb200-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
+<span id="cb200-9"><a href="anova-part-1.html#cb200-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Condition&quot;</span>, <span class="at">y =</span> <span class="st">&quot;RT (s)&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+</div>
+<div id="building-our-anova-model-1" class="section level3 hasAnchor" number="8.3.4">
+<h3><span class="header-section-number">8.3.4</span> Building our ANOVA Model<a href="anova-part-1.html#building-our-anova-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We build our ANOVA model in a similar way as we did previously. Except in this case our random effect we define as <code>(1 + Condition | Participant)</code>. I order to capture the fact that our <code>Condition</code> is a repeated measures factor, we add it to the random effect term like this.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="anova-part-1.html#cb201-1" tabindex="-1"></a>rm_model <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(RT <span class="sc">~</span> Condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Condition <span class="sc">|</span> Participant), <span class="at">data =</span> rm_data_tidied)</span></code></pre></div>
+</div>
+<div id="interpreting-the-model-output-1" class="section level3 hasAnchor" number="8.3.5">
+<h3><span class="header-section-number">8.3.5</span> Interpreting the Model Output<a href="anova-part-1.html#interpreting-the-model-output-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We extract the summary of our model in the same way we did for the between participants ANOVA.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="anova-part-1.html#cb202-1" tabindex="-1"></a><span class="fu">summary</span>(rm_model)</span></code></pre></div>
+<pre><code>## 
+## Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+## 
+##             Sum Sq num Df Error SS den Df  F value    Pr(&gt;F)    
+## (Intercept) 259.07      1  0.50313     31 15962.33 &lt; 2.2e-16 ***
+## Condition     9.27      3  1.20624     93   238.23 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## 
+## Mauchly Tests for Sphericity
+## 
+##           Test statistic    p-value
+## Condition        0.38404 3.0211e-05
+## 
+## 
+## Greenhouse-Geisser and Huynh-Feldt Corrections
+##  for Departure from Sphericity
+## 
+##            GG eps Pr(&gt;F[GG])    
+## Condition 0.65596  &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+##              HF eps   Pr(&gt;F[HF])
+## Condition 0.7000534 3.359493e-31</code></pre>
+<p>With this option, we didn’t get the effect size measure in our measure. We can generate that though by asking for our model to be presented in anova format using the <code>anova()</code> function.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="anova-part-1.html#cb204-1" tabindex="-1"></a><span class="fu">anova</span>(rm_model)</span></code></pre></div>
+<pre><code>## Anova Table (Type 3 tests)
+## 
+## Response: RT
+##           num Df den Df      MSE      F     ges    Pr(&gt;F)    
+## Condition 1.9679 61.004 0.019773 238.23 0.84431 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The effect size is measured by ges and is the recommended effect size measure for repeated measures designs (Bakeman, 2005). Note the dfs in this output are always corrected as if there is a violation of sphericity (violated when the variances of the differences between all possible pairs of within-subject conditions (i.e., levels of the independent variable) are <strong>not</strong> equal) - to be conservative (and to avoid Type I errors) we might be better off to always choose these corrected dfs.</p>
+<p>From this, we can see we have effect of Condition. But we don’t know where the differences lie between the different levels of our factor. So we use the <code>emmeans()</code> function to find that out. Here we will be using the Bonferroni correction for multiple comparisons.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="anova-part-1.html#cb206-1" tabindex="-1"></a><span class="fu">emmeans</span>(rm_model, pairwise <span class="sc">~</span> Condition, <span class="at">adjust =</span> <span class="st">&quot;Bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## $emmeans
+##  Condition emmean      SE df lower.CL upper.CL
+##  Easy        1.23 0.01079 31     1.21     1.25
+##  Hard        1.39 0.02085 31     1.35     1.43
+##  Very.Easy   1.20 0.00904 31     1.18     1.22
+##  Very.Hard   1.87 0.03302 31     1.80     1.94
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast              estimate     SE df t.ratio p.value
+##  Easy - Hard            -0.1633 0.0226 31  -7.225  &lt;.0001
+##  Easy - Very.Easy        0.0285 0.0143 31   1.986  0.3353
+##  Easy - Very.Hard       -0.6430 0.0338 31 -19.014  &lt;.0001
+##  Hard - Very.Easy        0.1917 0.0230 31   8.354  &lt;.0001
+##  Hard - Very.Hard       -0.4797 0.0363 31 -13.220  &lt;.0001
+##  Very.Easy - Very.Hard  -0.6715 0.0341 31 -19.710  &lt;.0001
+## 
+## P value adjustment: bonferroni method for 6 tests</code></pre>
+<p>From the above we can see that all conditions differ from all other conditions, <em>apart</em> from the Easy vs. Very Easy comparison which is not significant.</p>
+</div>
+</div>
+<div id="factorial-anova" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Factorial ANOVA<a href="anova-part-1.html#factorial-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/zpBihhUbF3g" frameborder="0" data-external="1" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<div id="reading-in-our-data-2" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Reading in our Data<a href="anova-part-1.html#reading-in-our-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="anova-part-1.html#cb208-1" tabindex="-1"></a>factorial_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/factorial_data.csv&quot;</span>)</span>
+<span id="cb208-2"><a href="anova-part-1.html#cb208-2" tabindex="-1"></a><span class="fu">head</span>(factorial_data)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   Subject  Item    RT Sentence Context 
+##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   
+## 1       1     3  1270 Positive Negative
+## 2       1     7   739 Positive Negative
+## 3       1    11   982 Positive Negative
+## 4       1    15  1291 Positive Negative
+## 5       1    19  1734 Positive Negative
+## 6       1    23  1757 Positive Negative</code></pre>
+<p>Again we see that our two experimental factors are not coded as factors so let’s fix that.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="anova-part-1.html#cb210-1" tabindex="-1"></a>factorial_data_tidied <span class="ot">&lt;-</span> factorial_data <span class="sc">%&gt;%</span></span>
+<span id="cb210-2"><a href="anova-part-1.html#cb210-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sentence =</span> <span class="fu">factor</span>(Sentence), <span class="at">Context =</span> <span class="fu">factor</span>(Context))</span>
+<span id="cb210-3"><a href="anova-part-1.html#cb210-3" tabindex="-1"></a><span class="fu">head</span>(factorial_data_tidied)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   Subject  Item    RT Sentence Context 
+##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;    &lt;fct&gt;   
+## 1       1     3  1270 Positive Negative
+## 2       1     7   739 Positive Negative
+## 3       1    11   982 Positive Negative
+## 4       1    15  1291 Positive Negative
+## 5       1    19  1734 Positive Negative
+## 6       1    23  1757 Positive Negative</code></pre>
+</div>
+<div id="summarising-our-data-2" class="section level3 hasAnchor" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Summarising our Data<a href="anova-part-1.html#summarising-our-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ler’s generate some summary statistics - note, we sepcificy our two grouping variables in the <code>group_by()</code> function call.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="anova-part-1.html#cb212-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb212-2"><a href="anova-part-1.html#cb212-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Context, Sentence) <span class="sc">%&gt;%</span></span>
+<span id="cb212-3"><a href="anova-part-1.html#cb212-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_rt =</span> <span class="fu">mean</span>(RT), <span class="at">sd_rt =</span> <span class="fu">sd</span>(RT))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;Context&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 4 × 4
+## # Groups:   Context [2]
+##   Context  Sentence mean_rt sd_rt
+##   &lt;fct&gt;    &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 Negative Negative   1474.  729.
+## 2 Negative Positive     NA    NA 
+## 3 Positive Negative     NA    NA 
+## 4 Positive Positive   1579.  841.</code></pre>
+<p>We have <code>NA</code> for two conditions suggesting we have missing data somewhere in our dataset. We’re going to use a new package now, called <code>{visdat}</code>. It allows us to visualise our dataset using the <code>vis_dat()</code> function and to visualise missing data using the <code>vis_miss()</code> function.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="anova-part-1.html#cb215-1" tabindex="-1"></a><span class="fu">library</span>(visdat)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="anova-part-1.html#cb216-1" tabindex="-1"></a><span class="fu">vis_miss</span>(factorial_data_tidied)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p>We can see in the above visualisation that we do indeed have some missing data. We need to tell R what we want it to do with that. We can use the <code>na.rm = TRUE</code> parameter to tell it we want missing data to be ignored.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="anova-part-1.html#cb217-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb217-2"><a href="anova-part-1.html#cb217-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Context, Sentence) <span class="sc">%&gt;%</span></span>
+<span id="cb217-3"><a href="anova-part-1.html#cb217-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_rt =</span> <span class="fu">mean</span>(RT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_rt =</span> <span class="fu">sd</span>(RT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;Context&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 4 × 4
+## # Groups:   Context [2]
+##   Context  Sentence mean_rt sd_rt
+##   &lt;fct&gt;    &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 Negative Negative   1474.  729.
+## 2 Negative Positive   1595.  887.
+## 3 Positive Negative   1633.  877.
+## 4 Positive Positive   1579.  841.</code></pre>
+<p>Now we have the summary statistics that we expect.</p>
+</div>
+<div id="visualising-our-data-2" class="section level3 hasAnchor" number="8.4.3">
+<h3><span class="header-section-number">8.4.3</span> Visualising our Data<a href="anova-part-1.html#visualising-our-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can use a modification of the <code>ggplot()</code> code we’ve used above to generate our visualisation. Note, I am filtering our the missing data using the <code>filter()</code> function before we start our plot. I am also specifying that we’re wanting to plot a combination of our two factors in the <code>aes()</code> definition using <code>Context:Sentence</code>. There are further things we could modify to improve the look of this graph. Can you figure out ways in which the labelling of the two factors could be clearer?</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="anova-part-1.html#cb220-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb220-2"><a href="anova-part-1.html#cb220-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(RT)) <span class="sc">%&gt;%</span></span>
+<span id="cb220-3"><a href="anova-part-1.html#cb220-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Context<span class="sc">:</span>Sentence, <span class="at">y =</span> RT, <span class="at">colour =</span> Context<span class="sc">:</span>Sentence)) <span class="sc">+</span></span>
+<span id="cb220-4"><a href="anova-part-1.html#cb220-4" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb220-5"><a href="anova-part-1.html#cb220-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb220-6"><a href="anova-part-1.html#cb220-6" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb220-7"><a href="anova-part-1.html#cb220-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb220-8"><a href="anova-part-1.html#cb220-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb220-9"><a href="anova-part-1.html#cb220-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
+<span id="cb220-10"><a href="anova-part-1.html#cb220-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Context X Sentence&quot;</span>, <span class="at">y =</span> <span class="st">&quot;RT (ms)&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+</div>
+<div id="building-our-anova-model-2" class="section level3 hasAnchor" number="8.4.4">
+<h3><span class="header-section-number">8.4.4</span> Building our ANOVA Model<a href="anova-part-1.html#building-our-anova-model-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We have our data in long format where every row is one observation. We haven’t done any data aggregation. The <code>aov_4()</code> function will do this for us as ANOVA models need to be built over means (not raw data). As the data haven’t been aggregated, we could actually build two ANOVA models with the data in the current format. We could build one ANOVA where we treat Subjects as a random effect (also known as F1 ANOVA), and another where we treat Items as a random factor (also known as F2 ANOVA). In language research, it’s commonplace to conduct both types of analysis. The by-items (F2) analysis allows us to ensure any effects we might find aren’t limited to just a subset of experimental items.</p>
+<p>First we’ll look at how to run a by-subjects ANOVA for our factorial design using <code>aov_4()</code>. The syntax is very similar to what we ran previously, although this time you’ll see we have a new term <code>Context * Sentence</code>. This term corresponds to two main effects, plus the interaction between them. It’s shorthand for <code>Context + Sentence + Context:Sentence</code>. We also specify this in the random effect By setting <code>na.rm</code> to be TRUE, we are telling the analysis to ignore individual trials where there might be missing data - effectively this calculates the condition means over the data that is present (and ignores trials where it is missing).</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="anova-part-1.html#cb221-1" tabindex="-1"></a>model_subjects <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(RT <span class="sc">~</span> Context <span class="sc">*</span> Sentence <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Context <span class="sc">*</span> Sentence <span class="sc">|</span> Subject), <span class="at">data =</span> factorial_data_tidied, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Warning: More than one observation per design cell, aggregating data using `fun_aggregate = mean`.
+## To turn off this warning, pass `fun_aggregate = mean` explicitly.</code></pre>
+<p>We can generate the output using the <code>anova()</code> function as we did earlier.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="anova-part-1.html#cb223-1" tabindex="-1"></a><span class="fu">anova</span>(model_subjects)</span></code></pre></div>
+<pre><code>## Anova Table (Type 3 tests)
+## 
+## Response: RT
+##                  num Df den Df    MSE      F       ges  Pr(&gt;F)  
+## Context               1     59  90195 3.1767 0.0060231 0.07984 .
+## Sentence              1     59 124547 0.6283 0.0016524 0.43114  
+## Context:Sentence      1     59  93889 4.5967 0.0090449 0.03616 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>If we want to generate the F2 ANOVA (by items), we simply change the random effect such that it is calculed by Items rather than by Subjects.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="anova-part-1.html#cb225-1" tabindex="-1"></a>model_items <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(RT <span class="sc">~</span> Context <span class="sc">*</span> Sentence <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Context <span class="sc">*</span> Sentence <span class="sc">|</span> Item), <span class="at">data =</span> factorial_data_tidied, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Warning: More than one observation per design cell, aggregating data using `fun_aggregate = mean`.
+## To turn off this warning, pass `fun_aggregate = mean` explicitly.</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="anova-part-1.html#cb227-1" tabindex="-1"></a><span class="fu">anova</span>(model_items)</span></code></pre></div>
+<pre><code>## Anova Table (Type 3 tests)
+## 
+## Response: RT
+##                  num Df den Df    MSE      F       ges  Pr(&gt;F)  
+## Context               1     27  39844 4.0013 0.0080150 0.05561 .
+## Sentence              1     27 203164 0.1221 0.0012553 0.72951  
+## Context:Sentence      1     27  40168 5.7687 0.0116070 0.02346 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>You can see that the F1 and F2 analysis both produce similar results.</p>
+<p>Let’s now interpret our ANOVA where we had Subjects as our random effect. We will the error correction adjustment to equal <code>none</code> as only some of the comparisons actually make theoretical sense - these are the ones where we’re comparing like with like - Sentences of the same type (Positive <em>or</em> Negative) preceded by one version of our Context factor vs. the other.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="anova-part-1.html#cb229-1" tabindex="-1"></a><span class="fu">emmeans</span>(model_subjects, pairwise <span class="sc">~</span> Context <span class="sc">*</span> Sentence, <span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<pre><code>## $emmeans
+##  Context  Sentence emmean   SE df lower.CL upper.CL
+##  Negative Negative   1474 51.1 59     1372     1576
+##  Positive Negative   1628 58.9 59     1510     1746
+##  Negative Positive   1595 56.5 59     1482     1708
+##  Positive Positive   1579 63.9 59     1451     1707
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast                              estimate   SE df t.ratio p.value
+##  Negative Negative - Positive Negative   -153.9 50.0 59  -3.075  0.0032
+##  Negative Negative - Negative Positive   -120.9 63.4 59  -1.908  0.0612
+##  Negative Negative - Positive Positive   -105.2 53.5 59  -1.966  0.0540
+##  Positive Negative - Negative Positive     33.0 65.5 59   0.503  0.6165
+##  Positive Negative - Positive Positive     48.7 57.1 59   0.852  0.3976
+##  Negative Positive - Positive Positive     15.7 60.3 59   0.261  0.7953</code></pre>
+<p>The key comparisons are the <code>Negative Negative - Positive Negative</code> and the <code>Negative Positive - Positive Positive</code> ones. In the first case, we are comparing reaction times to Negative Sentences preceded by Negative vs. Positive Contexts, while in the second we are comparing reaction times to Positive Sentences preceded by Negative vs. Positive Contexts. We can manually correct for multiple comparisons (which in this case is 2) by multiplying the corresponding <em>p</em>-values by 2 (and putting a limit of 1 on the maximum <em>p</em>-value possible). In this case, the first key comparison is significant (<em>p</em> = .0064) while the second is not. We might write up the results like:</p>
+<p>We conducted a 2 (Context: Positive vs. Negative) x 2 (Sentence: Positive vs. Negative) repeated measures ANOVA to investigate the influence of Context valence on reaction times to Sentences of Positive or Negative valence. The ANOVA revealed no effect of Sentence (F &lt; 1), no effect of Context (F(1, 59) = 3.18, <em>p</em> = .080, ηG2 = .006), but an interaction between Sentence and Context (F(1, 59) = 4.60, <em>p</em> = .036, ηG2 = .009).</p>
+<p>The interaction was interpreted by conducting Bonferroni-corrected pairwise companions. These comparisons revealed that the interaction was driven by Negative Sentences being processed faster in Negative vs. Positive Contexts (1,474 ms. vs. 1,628 ms., t(118) = 3.08, <em>p</em> = .0064) while Positive Sentences were read at similar speeds in Negative vs. Positive Contexts (1,595 ms. vs. 1,579 ms., t(118) = .261, <em>p</em> = 1).</p>
+</div>
+</div>
+<div id="your-challenge-do-this-during-the-in-person-session-4" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Your Challenge (do this during the in-person session)<a href="anova-part-1.html#your-challenge-do-this-during-the-in-person-session-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I would now like you to work on the following questions on your own.</p>
+<div id="question-1" class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Question 1<a href="anova-part-1.html#question-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our first data file is called ANOVA_data1.csv and can be found here:</p>
+<p><a href="https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data1.csv" class="uri">https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data1.csv</a></p>
+<p>24 participants responded to a word that was either common (i.e., high lexical frequency) or rare (i.e., low lexical frequency). This is our IV and is coded as ‘high’ vs. low’. Our DV is reaction time and is coded as ‘RT’. Subject number is coded as ‘Subject’. We want to know whether there is a difference between conditions (and if so, where that difference lies). Visualise the data, generate descriptives, and run the appropriate ANOVA to determine whether our independent variable (Condition) has an influence on our dependent variable (RT).</p>
+</div>
+<div id="question-2" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> Question 2<a href="anova-part-1.html#question-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our second data file is called ANOVA_data2.csv and can be found here:</p>
+<p><a href="https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data2.csv" class="uri">https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data2.csv</a></p>
+<p>These data are also from a reaction time experiment but with a slightly more complex design.48 participants responded to a word that differed in how frequent it was. This factor is between participants and we have four levels coded as ‘very low’, ‘low’, ‘high’, and ‘very high’. Our DV is reaction time and is coded as ‘RT’. Subject number is coded as ‘Subject’. We want to know if there is a difference between our conditions (and if so, where that difference lies).</p>
+</div>
+<div id="question-3" class="section level3 hasAnchor" number="8.5.3">
+<h3><span class="header-section-number">8.5.3</span> Question 3<a href="anova-part-1.html#question-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our third data file is called ANOVA_data3.csv and can be found here:</p>
+<p><a href="https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data3.csv" class="uri">https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data3.csv</a></p>
+<p>These data are from a 2 x 2 repeated measures reaction time experiment. We were interested in how quickly participants could respond to images that were Large vs. Small and in Colour vs. Black &amp; White. We expect that Large Colour images will be responded to more quickly than Small B &amp; W images. We’re not sure about Small Colour images and Large B &amp; W images. We measured the response times of 24 participants responding to an image in each of these four conditions. We want to determine if there is a difference between our conditions (and if so, where that difference lies).</p>
+</div>
+<div id="question-4" class="section level3 hasAnchor" number="8.5.4">
+<h3><span class="header-section-number">8.5.4</span> Question 4<a href="anova-part-1.html#question-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our fourth data file is called ANOVA_data4.csv and can be found here:</p>
+<p><a href="https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data4.csv" class="uri">https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data4.csv</a></p>
+<p>These data are from a 2 x 2 x 3 mixed design experiment where we measured people’s response times to maths questions that were either Easy or Hard, and to which they had to respond either under Time Pressure or under No Time Pressure. These are our first two factors and are repeated measures (i.e., everyone saw all 4 conditions). Our third factor is between subjects and corresponds to whether our participants were in one of three groups. The groups were Psychology Students, Maths Students, and Arts Students. We want to know where a participant’s perfomance on the maths questions under time pressure vs. not under time pressure is influenced by which one of these three groups they belong to. Conduct the appropriate ANOVA to answer this question. Remember to start off with some data visualisation(s).</p>
+</div>
+</div>
+<div id="answers" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Answers<a href="anova-part-1.html#answers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="question-1-1" class="section level3 hasAnchor" number="8.6.1">
+<h3><span class="header-section-number">8.6.1</span> Question 1<a href="anova-part-1.html#question-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The ANOVA should reveal an effect of Condition with F(1, 22) = 91.217. As there are just two levels to our factor, we don’t need to run any follow up tests to know what’s driving the effect. By looking at the descriptive statistics, we see that RT is 865 for our <code>high</code> condition and 1178 for our <code>low</code> condition.</p>
+</div>
+<div id="question-2-1" class="section level3 hasAnchor" number="8.6.2">
+<h3><span class="header-section-number">8.6.2</span> Question 2<a href="anova-part-1.html#question-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The ANOVA should reveal an effect of Condition with F(3, 44) = 203.21. To interpret this further we need to run follow up comparisons. Using the Bonferroni correction these should indicate that every level of Condition differs from every other level.</p>
+</div>
+<div id="question-3-1" class="section level3 hasAnchor" number="8.6.3">
+<h3><span class="header-section-number">8.6.3</span> Question 3<a href="anova-part-1.html#question-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The ANOVA should reveal a main effect of Size (F(1, 23) = 198.97), a main effect of Colour (F(1, 23) = 524.27), and an interaction between these two factors (F(1, 23) = 11.08). To interpret this interaction further we need to run follow up comparisons. Using the Bonferroni correction these should indicate that every level of Condition differs from every other level.</p>
+</div>
+<div id="question-4-1" class="section level3 hasAnchor" number="8.6.4">
+<h3><span class="header-section-number">8.6.4</span> Question 4<a href="anova-part-1.html#question-4-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This question is slightly trickier than the ones we’ve looked at so far. After you’ve built your ANOVA (remember to add only your repeated measures factors to your random effect term), you’ll discover a significant 3-way interaction (F(2, 69) = 4.63). You’ll need to break this down further - one possible approach would be to look at the interaction between Difficulty and Time Pressure <em>separately</em> for each level of our between group factor. In other words, you’d build one 2 x 2 ANOVA model for each of your Student Groups. If you do this, you’ll see that the 2 x 2 interaction is not significant for the Arts group, nor the Maths group, but the interaction <em>is</em> significant for the Psychology group (F(1, 23) = 11.08)) - as too are the two main effects of Difficulty and Time Pressure. But as these two factors interact, the meaning in our data is in the interaction term (not just these two main effects).</p>
+<p>So, the 3-way interaction was telling us that the 2-way interaction differed for at least one of our Groups (relative to the other Groups). We need to examine this 2-way interaction further for our Psychology group by conducting pairwise comparisons, exactly as you’ve done above. This will reveal that for our Psychology group, each condition differs significantly from the other conditions. It means that for Psychology students, the Hard problems take long under Time Pressure vs. under No Time Pressure, and the Easy problems take longer under Time Pressure vs. under No Time Pressure (but neither of these are as long as for Hard problems).</p>
+<center>
+<strong>End of workshop 8 materials</strong>
+</center>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-part-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="anova-part-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"book_filename": "index",
+"output_dir": "docs"
+});
+});
+</script>
+
+</body>
+
+</html>

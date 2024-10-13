@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Workshop 1 Open Science | Advanced Data Skills, Open Science and Reproducibility 2024/25</title>
+  <meta name="description" content="Workshop 1 Open Science | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Workshop 1 Open Science | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workshop 1 Open Science | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="r-and-rstudio.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PCHN63101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="open-science.html"><a href="open-science.html"><i class="fa fa-check"></i><b>1</b> Open Science</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="open-science.html"><a href="open-science.html#open-research-and-reproducibility"><i class="fa fa-check"></i><b>1.1</b> Open Research and Reproducibility</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="open-science.html"><a href="open-science.html#how-to-do-reproducible-research"><i class="fa fa-check"></i><b>1.1.1</b> How to do Reproducible Research</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="open-science.html"><a href="open-science.html#experimental-power"><i class="fa fa-check"></i><b>1.2</b> Experimental Power</a></li>
+<li class="chapter" data-level="1.3" data-path="open-science.html"><a href="open-science.html#open-source-software"><i class="fa fa-check"></i><b>1.3</b> Open Source Software</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="open-science.html"><a href="open-science.html#statistical-and-scientific-computing"><i class="fa fa-check"></i><b>1.3.1</b> Statistical and Scientific Computing</a></li>
+<li class="chapter" data-level="1.3.2" data-path="open-science.html"><a href="open-science.html#document-creation"><i class="fa fa-check"></i><b>1.3.2</b> Document Creation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="open-science.html"><a href="open-science.html#building-experiments"><i class="fa fa-check"></i><b>1.3.3</b> Building Experiments</a></li>
+<li class="chapter" data-level="1.3.4" data-path="open-science.html"><a href="open-science.html#linux"><i class="fa fa-check"></i><b>1.3.4</b> Linux</a></li>
+<li class="chapter" data-level="1.3.5" data-path="open-science.html"><a href="open-science.html#more-reading"><i class="fa fa-check"></i><b>1.3.5</b> More Reading</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
+<li class="chapter" data-level="2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting Started</a></li>
+<li class="chapter" data-level="2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#keeping-things-organised"><i class="fa fa-check"></i><b>2.3</b> Keeping Things Organised</a></li>
+<li class="chapter" data-level="2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-coding-style"><i class="fa fa-check"></i><b>2.4</b> Good Coding Style</a></li>
+<li class="chapter" data-level="2.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#your-first-r-script"><i class="fa fa-check"></i><b>2.5</b> Your First R Script</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html"><i class="fa fa-check"></i><b>3</b> Data Wrangling and Data Summarising</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#wrangling-your-data"><i class="fa fa-check"></i><b>3.1</b> Wrangling your data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#loading-the-tidyverse"><i class="fa fa-check"></i><b>3.1.1</b> Loading the Tidyverse</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-head-and-str"><i class="fa fa-check"></i><b>3.1.2</b> Using <code>head()</code> and <code>str()</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-select-to-select-columns"><i class="fa fa-check"></i><b>3.1.3</b> Use <code>select()</code> to select columns</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-filter-to-select-rows"><i class="fa fa-check"></i><b>3.1.4</b> Use <code>filter()</code> to select rows</a></li>
+<li class="chapter" data-level="3.1.5" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#the-pipe"><i class="fa fa-check"></i><b>3.1.5</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.1.6" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#tidying-up-a-dataset"><i class="fa fa-check"></i><b>3.1.6</b> Tidying up a dataset</a></li>
+<li class="chapter" data-level="3.1.7" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#joining-two-datasets"><i class="fa fa-check"></i><b>3.1.7</b> Joining Two Datasets</a></li>
+<li class="chapter" data-level="3.1.8" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-complete-this-before-the-in-person-session"><i class="fa fa-check"></i><b>3.1.8</b> Your challenge (complete this before the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#summarising-your-data"><i class="fa fa-check"></i><b>3.2</b> Summarising your data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-group_by-and-summarise"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#adding-columns-using-mutate"><i class="fa fa-check"></i><b>3.2.2</b> Adding columns using <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-do-this-during-the-in-person-session"><i class="fa fa-check"></i><b>3.2.3</b> Your challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>4.1</b> The Basics of ggplot2</a></li>
+<li class="chapter" data-level="4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#your-first-visualisation"><i class="fa fa-check"></i><b>4.2</b> Your First Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#improving-the-plot"><i class="fa fa-check"></i><b>4.2.1</b> Improving the Plot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-summary-statistics"><i class="fa fa-check"></i><b>4.2.2</b> Adding Summary Statistics</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#the-finished-plot"><i class="fa fa-check"></i><b>4.2.3</b> The Finished(?) Plot</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#using-facet_wrap"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>4.3</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.4" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-histograms"><i class="fa fa-check"></i><b>4.4</b> Plotting Histograms</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-ggridges-package"><i class="fa fa-check"></i><b>4.4.1</b> The <code>ggridges</code> Package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-visualisation.html"><a href="data-visualisation.html#the-nhanes-dataset"><i class="fa fa-check"></i><b>4.5</b> The NHANES Dataset</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-visualisation.html"><a href="data-visualisation.html#tidying-the-data"><i class="fa fa-check"></i><b>4.5.1</b> Tidying the Data</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-a-histogram"><i class="fa fa-check"></i><b>4.5.2</b> Plotting a Histogram</a></li>
+<li class="chapter" data-level="4.5.3" data-path="data-visualisation.html"><a href="data-visualisation.html#summary-statistics"><i class="fa fa-check"></i><b>4.5.3</b> Summary Statistics</a></li>
+<li class="chapter" data-level="4.5.4" data-path="data-visualisation.html"><a href="data-visualisation.html#geom_violin"><i class="fa fa-check"></i><b>4.5.4</b> <code>geom_violin()</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-interaction-effects"><i class="fa fa-check"></i><b>4.5.5</b> Plotting Interaction Effects</a></li>
+<li class="chapter" data-level="4.5.6" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms-with-facet_wrap"><i class="fa fa-check"></i><b>4.5.6</b> Histograms with <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-visualisation.html"><a href="data-visualisation.html#your-challenge-do-this-during-the-in-person-session-1"><i class="fa fa-check"></i><b>4.6</b> Your Challenge (do this during the in-person session)</a></li>
+<li class="chapter" data-level="4.7" data-path="data-visualisation.html"><a href="data-visualisation.html#additional-resources"><i class="fa fa-check"></i><b>4.7</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>5</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-markdown.html"><a href="r-markdown.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="r-markdown.html"><a href="r-markdown.html#your-challenge-do-this-during-the-in-person-session-2"><i class="fa fa-check"></i><b>5.2</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-part-1.html"><a href="regression-part-1.html"><i class="fa fa-check"></i><b>6</b> Regression Part 1</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regression-part-1.html"><a href="regression-part-1.html#overview-1"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="regression-part-1.html"><a href="regression-part-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-part-1.html"><a href="regression-part-1.html#the-packages-we-need"><i class="fa fa-check"></i><b>6.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-part-1.html"><a href="regression-part-1.html#import-the-data"><i class="fa fa-check"></i><b>6.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-part-1.html"><a href="regression-part-1.html#tidy-the-data"><i class="fa fa-check"></i><b>6.2.3</b> Tidy the Data</a></li>
+<li class="chapter" data-level="6.2.4" data-path="regression-part-1.html"><a href="regression-part-1.html#plot-the-data"><i class="fa fa-check"></i><b>6.2.4</b> Plot the Data</a></li>
+<li class="chapter" data-level="6.2.5" data-path="regression-part-1.html"><a href="regression-part-1.html#pearsons-r"><i class="fa fa-check"></i><b>6.2.5</b> Pearson’s r</a></li>
+<li class="chapter" data-level="6.2.6" data-path="regression-part-1.html"><a href="regression-part-1.html#model-the-data"><i class="fa fa-check"></i><b>6.2.6</b> Model the Data</a></li>
+<li class="chapter" data-level="6.2.7" data-path="regression-part-1.html"><a href="regression-part-1.html#checking-our-assumptions"><i class="fa fa-check"></i><b>6.2.7</b> Checking Our Assumptions</a></li>
+<li class="chapter" data-level="6.2.8" data-path="regression-part-1.html"><a href="regression-part-1.html#interpreting-our-model"><i class="fa fa-check"></i><b>6.2.8</b> Interpreting Our Model</a></li>
+<li class="chapter" data-level="6.2.9" data-path="regression-part-1.html"><a href="regression-part-1.html#your-challenge-do-this-during-the-in-person-session-3"><i class="fa fa-check"></i><b>6.2.9</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-part-2.html"><a href="regression-part-2.html"><i class="fa fa-check"></i><b>7</b> Regression Part 2</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-part-2.html"><a href="regression-part-2.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="regression-part-2.html"><a href="regression-part-2.html#multiple-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-part-2.html"><a href="regression-part-2.html#the-packages-we-need-1"><i class="fa fa-check"></i><b>7.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="7.2.2" data-path="regression-part-2.html"><a href="regression-part-2.html#import-the-data-1"><i class="fa fa-check"></i><b>7.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-1"><i class="fa fa-check"></i><b>7.2.3</b> Model the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-part-2.html"><a href="regression-part-2.html#stepwise-regression"><i class="fa fa-check"></i><b>7.3</b> Stepwise regression</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-2"><i class="fa fa-check"></i><b>7.3.1</b> Model the Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-part-1.html"><a href="anova-part-1.html"><i class="fa fa-check"></i><b>8</b> ANOVA Part 1</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="anova-part-1.html"><a href="anova-part-1.html#overview-3"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-part-1.html"><a href="anova-part-1.html#between-participants-anova"><i class="fa fa-check"></i><b>8.2</b> Between Participants ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="anova-part-1.html"><a href="anova-part-1.html#loading-our-packages"><i class="fa fa-check"></i><b>8.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="8.2.2" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data"><i class="fa fa-check"></i><b>8.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data"><i class="fa fa-check"></i><b>8.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data"><i class="fa fa-check"></i><b>8.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model"><i class="fa fa-check"></i><b>8.2.5</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.2.6" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output"><i class="fa fa-check"></i><b>8.2.6</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="anova-part-1.html"><a href="anova-part-1.html#repeated-measures-anova"><i class="fa fa-check"></i><b>8.3</b> Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-1"><i class="fa fa-check"></i><b>8.3.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-1"><i class="fa fa-check"></i><b>8.3.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.3.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-1"><i class="fa fa-check"></i><b>8.3.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.3.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-1"><i class="fa fa-check"></i><b>8.3.4</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.3.5" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output-1"><i class="fa fa-check"></i><b>8.3.5</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="anova-part-1.html"><a href="anova-part-1.html#factorial-anova"><i class="fa fa-check"></i><b>8.4</b> Factorial ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-2"><i class="fa fa-check"></i><b>8.4.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-2"><i class="fa fa-check"></i><b>8.4.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.4.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-2"><i class="fa fa-check"></i><b>8.4.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.4.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-2"><i class="fa fa-check"></i><b>8.4.4</b> Building our ANOVA Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="anova-part-1.html"><a href="anova-part-1.html#your-challenge-do-this-during-the-in-person-session-4"><i class="fa fa-check"></i><b>8.5</b> Your Challenge (do this during the in-person session)</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1"><i class="fa fa-check"></i><b>8.5.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.5.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2"><i class="fa fa-check"></i><b>8.5.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.5.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3"><i class="fa fa-check"></i><b>8.5.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.5.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4"><i class="fa fa-check"></i><b>8.5.4</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="anova-part-1.html"><a href="anova-part-1.html#answers"><i class="fa fa-check"></i><b>8.6</b> Answers</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1-1"><i class="fa fa-check"></i><b>8.6.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.6.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2-1"><i class="fa fa-check"></i><b>8.6.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.6.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3-1"><i class="fa fa-check"></i><b>8.6.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.6.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4-1"><i class="fa fa-check"></i><b>8.6.4</b> Question 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="anova-part-2.html"><a href="anova-part-2.html"><i class="fa fa-check"></i><b>9</b> ANOVA Part 2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="anova-part-2.html"><a href="anova-part-2.html#overview-4"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-ancova"><i class="fa fa-check"></i><b>9.2</b> Building our ANCOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="anova-part-2.html"><a href="anova-part-2.html#loading-our-packages-1"><i class="fa fa-check"></i><b>9.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="9.2.2" data-path="anova-part-2.html"><a href="anova-part-2.html#reading-in-our-data-3"><i class="fa fa-check"></i><b>9.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="anova-part-2.html"><a href="anova-part-2.html#summarising-our-data-3"><i class="fa fa-check"></i><b>9.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="9.2.4" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-3"><i class="fa fa-check"></i><b>9.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.2.5" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-anova-model-3"><i class="fa fa-check"></i><b>9.2.5</b> Building our ANOVA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-special-case-of-regression"><i class="fa fa-check"></i><b>9.3</b> AN(C)OVA as a Special Case of Regression</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-4"><i class="fa fa-check"></i><b>9.3.1</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.3.2" data-path="anova-part-2.html"><a href="anova-part-2.html#setting-up-our-contrasts"><i class="fa fa-check"></i><b>9.3.2</b> Setting up our Contrasts</a></li>
+<li class="chapter" data-level="9.3.3" data-path="anova-part-2.html"><a href="anova-part-2.html#anova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.3</b> ANOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.4" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.4</b> ANCOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.5" data-path="anova-part-2.html"><a href="anova-part-2.html#centering-our-covariate"><i class="fa fa-check"></i><b>9.3.5</b> Centering our Covariate</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="technical-details-and-credits.html"><a href="technical-details-and-credits.html"><i class="fa fa-check"></i>Technical Details and Credits</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Data Skills, Open Science and Reproducibility 2024/25</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="open-science" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Workshop 1</span> Open Science<a href="open-science.html#open-science" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this workshop I will first introduce you to the key concepts in open research, and talk about the so-called “replication crisis” in the Psychological, Biomedical, and Life Sciences that has resulted in the Open Research movement. I will also discuss the importance of adopting reproducible research practices in your own research, and provide an introduction to various tools and processes you can incorporate into your own research workflows that will allow you to conduct reproducible research.</p>
+<p>Like the other workshops in this series, this one involves a mix of recorded videos, narrative, and links to various resources for you to explore and to read.</p>
+<div id="open-research-and-reproducibility" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Open Research and Reproducibility<a href="open-science.html#open-research-and-reproducibility" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First I’d like you to watch the following video on the history of the replication crisis and the issues which have motivated a move towards the adoption of open and reproducible research practices. The video covers the so-called replication crisis in the biomedical sciences, issues around open research, and summarise some of the initiatives (including the <a href="https://www.bristol.ac.uk/psychology/research/ukrn/">UK Reproducibility Network</a>) that have been established to address the fundamental problems around open research, transparency, and reproducibility in science.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/nfHOnuo1T2o" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>Before watching the next video, please have a read through the following paper by Ioannidis (2005) which arguably started the conversation around reproducibility that has had such an impact on research in Psychology and across the Biomedical sciences for the last few years. Clicking on the image below will take you to the paper.</p>
+<div id="ioannidis-2005" class="section level4 unnumbered hasAnchor">
+<h4>Ioannidis (2005)<a href="open-science.html#ioannidis-2005" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>  </p>
+<center>
+<p><a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124"><img src="../images/ionnidis.png" style="width:75.0%" alt="Link to John Ioannidis’ paper" /></a></p>
+</center>
+<p>  </p>
+</div>
+<div id="bishop-2019" class="section level4 unnumbered hasAnchor">
+<h4>Bishop (2019)<a href="open-science.html#bishop-2019" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This post by Dorothy Bishop in 2019 nicely captures the situation a number of years later. Clicking on the image below will take you to the paper.</p>
+<p>  </p>
+<center>
+<p><a href="https://www.nature.com/articles/d41586-019-01307-2"><img src="../images/bishop.png" style="width:75.0%" alt="Link to Dorothy Bishop’s paper" /></a></p>
+</center>
+</div>
+<div id="how-to-do-reproducible-research" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> How to do Reproducible Research<a href="open-science.html#how-to-do-reproducible-research" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the biggest challenges facing researchers who are used to the <strong>old</strong> way of conducting research is that they feel that they don’t have the knowledge or technical skills to adopt open and reproducible research practices. But it’s not that hard! Before you run your experiment, you can pre-register your hypotheses so that when you come to analyse and write-up your results, you can demonstrate that your predictions really were made in advance of data collection. You can also make your research data open (and <a href="https://www.nature.com/articles/sdata201618">FAIR</a>) alongside your code so that others can recreate your analyses. And by posting your research article on a pre-print server (such as <a href="https://psyarxiv.com">PsyArXiv</a> or <a href="https://www.biorxiv.org">bioRxiv</a>) before submission to a journal, you make your research findings available to all. The adoption of open source software such as R, also means that any research findings you produce can be <em>re</em>-produced by others who can access your data and code. This principle of using open tools to allow us to produce open (and reusable) data and code is the fundamental philosophy behind all of the workshops in this unit.</p>
+<!-- &nbsp;&nbsp; -->
+<!-- <center> -->
+<!-- <iframe width="560" height="315" src="https://youtube.com/embed/BscWSJFmsHE" data-external="1" frameborder="0" allowfullscreen></iframe> -->
+<!-- &nbsp;&nbsp; -->
+<!-- **Video update:** We will look at package called Groundhog rather than Binder. You can see the .rmd for this workshop [here]( -->
+<!-- https://github.com/george-farmer/PCHN63101/blob/main/01-OpenScience.Rmd) -->
+<!-- </center> -->
+<!-- &nbsp;&nbsp; -->
+<p>Take the time to read the following paper, it’s a great guide to the various things you can do to make your own research more open. Just click on the image to open the paper.</p>
+<center>
+<p><a href="https://psycnet.apa.org/fulltext/2019-80290-002.pdf"><img src="../images/7_steps.png" style="width:75.0%" alt="Link to guide on how to do open research" /></a></p>
+</center>
+<p>  </p>
+<div id="haeffel-2022" class="section level4 unnumbered hasAnchor">
+<h4>Haeffel (2022)<a href="open-science.html#haeffel-2022" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This thought provoking paper by Gerald Haeffel suggests that psychology needs to focus more on theory development (and encourage the publication of results that refute theories).</p>
+<p><a href="https://royalsocietypublishing.org/doi/10.1098/rsos.220099"><img src="../images/haeffel.png" style="width:75.0%" alt="Link to Haeffel paper" /></a></p>
+</div>
+</div>
+</div>
+<div id="experimental-power" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Experimental Power<a href="open-science.html#experimental-power" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are now going to look at the issues around experimental power (and why it is important). One of the insights revealed by the “replication crisis” is that very often research is underpowered for the effect size of interest (i.e., even if the effect is there, your experiment is unlikely to find it). Even when underpowered studies do reveal the effect of interest, the effect size itself will be over-estimated (thus causing problems for future work that might base their power estimates on this incorrect effect size estimate).</p>
+<p>One solution to the challenge is to conduct data simulation as part of the experimental design process. There are many ways to do this using R, and there are several packages on CRAN (the Comprehensive R Archive Network) that provide functions to simulate data for different kinds of designs.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/Vf0mMSvILiM" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>If you’re interested in reading more about power, you might like to take a look at <a href="https://pubmed.ncbi.nlm.nih.gov/19565683/">this classic “Power Primer” paper</a> by Jacob Cohen.</p>
+<p>  </p>
+</div>
+<div id="open-source-software" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Open Source Software<a href="open-science.html#open-source-software" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you want to produce open and reproducible research, you should be using open source software in your workflow. Research produced using proprietary software cannot be easily reproduced by others.</p>
+<p>Open source software is software that is licensed to be free to modify, remix, and improve. It is usually free to use, and is centred on the principles of open exchange, collaborative participation, rapid prototyping, transparency, meritocracy, and community-oriented development. The move towards open source began in the early 1980s partly because of a <a href="https://medium.com/@amogh/the-story-of-open-source-so-far-bfcb685d85a4">printer</a> and developed further that decade in the form of the <a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">Free Software Foundation</a> established by <a href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman</a>. In the late 1990s, the <a href="https://opensource.org">Open Source Initiative</a> was launched to raise awareness and adoption of open source software, and build bridges between open source communities of practice.</p>
+<p>Open source software is made by many people and distributed under an OSD-compliant license which grants all the rights to use, study, change, and share the software in modified and unmodified form. Software freedom is essential to enabling community development of open source software.</p>
+<p>There is a huge amount of open source software available - some of which you will find useful both in the context of this unit, but also in the context of how you study, and in how you conduct your research.</p>
+<p>Below is an interesting CNBC video discussing the rise of Open Source Software - it ends with mention of the need to collaborate in an open manner on global challenges such as the environment, cancer, and Alzheimer’s disease.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/SpeDK1TPbew" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<div id="statistical-and-scientific-computing" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Statistical and Scientific Computing<a href="open-science.html#statistical-and-scientific-computing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="r-and-rstudio-desktop" class="section level4 unnumbered hasAnchor">
+<h4>R and RStudio Desktop<a href="open-science.html#r-and-rstudio-desktop" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>It goes without saying that R and RStudio Desktop are the two most obvious examples of open source software that are relevant to this course. In terms of other open source languages used for data analysis and statistical modelling, you might also be interested in <a href="https://www.python.org">Python</a> and <a href="https://julialang.org/">Julia</a>.</p>
+<center>
+<a href="https://www.r-project.org"><img src="../images/r_logo.jpeg" style="width:15.0%" alt="R logo" /></a>            <a href="https://posit.co/products/open-source/rstudio"><img src="../images/RStudio-Logo-Flat.png" style="width:25.0%" alt="RStudio logo" /></a>
+</center>
+</div>
+<div id="python" class="section level4 unnumbered hasAnchor">
+<h4>Python<a href="open-science.html#python" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>While R tends to be the go-to language for people who are interested in data wrangling, data visualisation, and statistical modelling, Python is arguably the ‘better’ language in the sense it is more general purpose. Python is used widely by the machine learning community (to name just one example).</p>
+<center>
+<a href="https://www.python.org"><img src="../images/python-logo-master-v3-TM.png" style="width:25.0%" alt="Python logo" /></a>
+</center>
+</div>
+<div id="octave" class="section level4 unnumbered hasAnchor">
+<h4>Octave<a href="open-science.html#octave" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You may have heard of - or even used - MATLAB for numerical computing. There is an open source equivalent, called <a href="https://www.gnu.org/software/octave/">GNU Octave</a>, that you may be interested in checking out.</p>
+<center>
+<a href="https://www.gnu.org/software/octave/"><img src="../images/gnuoctave.jpg" style="width:25.0%" alt="GNU Octave logo" /></a>
+</center>
+</div>
+</div>
+<div id="document-creation" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Document Creation<a href="open-science.html#document-creation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Up until this time you’ve probably mainly used Microsoft Word for writing documents. <a href="https://www.libreoffice.org">LibreOffice</a> is a great open source equivalent to the Microsoft Office suite and offers a huge range of applications for document writing, working with spreadsheets, and the creation of presentations.</p>
+<center>
+<p><a href="https://www.libreoffice.org"><img src="../images/LibreOffice-6.4.png" style="width:25.0%" alt="Libre Office logo" /></a></p>
+</center>
+<p>If you’re interested in writing using <a href="https://www.markdownguide.org">Markdown</a> (which is really easy to get to grips with), you might be interested in using <a href="https://opensource.com/article/19/7/enable-collaboration-hackmd">HackMD</a>. HackMD is a Markdown editor that critically allows you to write collaborative documents and presentations with others.</p>
+<center>
+<a href="https://opensource.com/article/19/7/enable-collaboration-hackmd"><img src="../images/hack_md.png" style="width:25.0%" alt="!HackMD logo" /></a>
+</center>
+</div>
+<div id="building-experiments" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Building Experiments<a href="open-science.html#building-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="https://www.psychopy.org">PsychoPy</a> offers a great open source solution to build experiments to collect human data, and via the companion hosting site <a href="https://pavlovia.org">Pavlovia</a> provides an easy to use method for running the PsychoPy experiments online. PsychoPy has been around for a number of years and has lots of pre-built experiment templates that you can adapt as needs be. There is a great reference that describes the PsychoPy environment <a href="https://link.springer.com/article/10.3758/s13428-018-01193-y">here</a>.</p>
+<center>
+<a href="https://www.psychopy.org"><img src="../images/psychopyLogoOnlineStrap_h480.png" style="width:25.0%" alt="PsychPy logo" /></a>            <a href="https://pavlovia.org"><img src="../images/pavlovia.png" style="width:25.0%" alt="Pavlovia logo" /></a>
+</center>
+</div>
+<div id="linux" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Linux<a href="open-science.html#linux" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the most widely used pieces of open source software is the Linux operating system. Rather than running your computer on Windows, or Mac OS, you could choose to run it using <a href="https://www.linux.org">Linux</a>. Linux runs the majority of the internet servers in world is becoming increasingly popular in academic settings. Linux refers to a bunch of open source Unix-like operating systems. It was developed and released by <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a> in 1991.</p>
+<center>
+<a href="https://www.linux.org"><img src="../images/linux.jpg" style="width:25.0%" alt="Linux logo" /></a>
+</center>
+<p>Some of the most popular distributions of Linux are <a href="https://ubuntu.com">Ubuntu</a>, <a href="https://getfedora.org/en/workstation/download/">Fedora</a>, and <a href="https://www.debian.org">Debian</a>. If you really want to get into the computational side of research, it’s important to discover the world of Linux.</p>
+<center>
+<a href="https://ubuntu.com"><img src="../images/ubuntu-logo112.png" style="width:20.0%" alt="Ubuntu logo" /></a><a href="(https://getfedora.org/en/workstation/download/)"><img src="../images/Fedora-Logo.jpg" style="width:25.0%" alt="Fedora logo" /></a><a href="https://www.debian.org"><img src="../images/openlogo.ps.jpg" style="width:15.0%" alt="Debian logo" /></a>
+</center>
+</div>
+<div id="more-reading" class="section level3 hasAnchor" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> More Reading<a href="open-science.html#more-reading" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you’re interested in other examples of open source software, you might be interested in having a look at this list of open source alternatives on the <a href="https://www.techradar.com/uk/best/best-open-source-software">Tech Radar site</a>.</p>
+<center>
+<p><a href="https://www.techradar.com/uk/best/best-open-source-software"><img src="../images/oss.png" style="width:75.0%" alt="open source software logo" /></a></p>
+</center>
+<center>
+<strong>End of workshop 1 materials</strong>
+</center>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-and-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"book_filename": "index",
+"output_dir": "docs"
+});
+});
+</script>
+
+</body>
+
+</html>

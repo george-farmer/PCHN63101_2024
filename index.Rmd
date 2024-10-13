@@ -1,0 +1,26 @@
+---
+title: "Advanced Data Skills, Open Science and Reproducibility 2024/25"
+site: bookdown::bookdown_site
+documentclass: book
+output:
+  html_document:
+    df_print: paged
+description: null
+link-citations: yes
+github-repo: "rstudio/bookdown-demo"
+bibliography:
+- book.bib
+- packages.bib
+---
+
+# Welcome {-}
+
+**Unit Lead:** George Farmer
+
+**TA:** Lana Bojanić 
+
+Welcome to the Advanced Data Skills, Open Science and Reproducibility M.Res. unit PCHN63101. This unit will be taught via a flipped classroom model. Make sure you go through the content on this site in advance of the in-person sessions. These are held on Mondays from 1 to 3pm in the Engineering A building (also known as the Nancy Rothwell building) in room room 3A.012.
+
+For questions about the course you can contact me via email (george.farmer@manchester.ac.uk). If you have any questions or technical problems relating to each week's content, please post these on the Blackboard discussion board.
+
+There are two assignments associated with this unit. The full details of these (plus hand in dates) can be found on the Blackboard page for this unit.

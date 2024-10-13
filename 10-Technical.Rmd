@@ -1,0 +1,8 @@
+# Technical Details and Credits {-}
+
+This course was originally developed and made open access by [Andrew Stewart](https://github.com/ajstewartlang). Updates in 2023 and 2024 by George Farmer.
+
+The workshops and this website were all written using [R Markdown](https://rmarkdown.rstudio.com/) and [Bookdown](https://bookdown.org/). The website is hosted on [Netlify](https://www.netlify.com/).
+
+The lecture content is licensed under CC-BY.
+

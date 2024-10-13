@@ -1,0 +1,55 @@
+
+
+# R Markdown
+
+In this workshop we will see how to generate a report in .html format using R Markdown. Reports written using R Markdown allow you to combine narrative that you’ve written along with R code chunks, and the output associated with those code chunks all in one knitted document. The assignments for this unit need to be produced using R Markdown.
+
+
+## Overview
+
+In the following video I will give you a brief overview of how you can turn a script you have written in R into an R Markdown document that you can 'knit' and share with others.
+
+&nbsp;&nbsp;
+
+<center>
+
+<iframe width="560" height="315" src="https://youtube.com/embed/yuQXz9z-N6U" frameborder="0" allowfullscreen></iframe>
+
+</center>
+
+&nbsp;&nbsp;
+
+There are many resources available to help you explore the full range of possibilities in R Markdown. A good starting point is the "R Markdown: The Definitive Guide" by Yihui Xie, J. J. Allaire, and Garrett Grolemund. Just click on the image below to be taken to the online version of the book.
+
+&nbsp;&nbsp;
+
+<center>
+
+[![R Markdown Definitive Guide](../images/r_markdown_guide.png){width=50%}](https://bookdown.org/yihui/rmarkdown/)
+
+</center>
+
+&nbsp;&nbsp;
+
+You may also be interested in the "R Markdown Cookbook" by Yihui Xie, Christophe Dervieux, and Emily Riederer. Again, just click on the image below to be taken to the online version of the book.
+
+&nbsp;&nbsp;
+
+<center>
+
+[![R Markdown Cookbook](../images/RMarkDownCookbookCover.png){width=50%}](https://bookdown.org/yihui/rmarkdown-cookbook/)
+
+</center>
+
+&nbsp;&nbsp;
+
+## Your Challenge (do this during the in-person session)
+
+Take one of the scripts that you've already written - maybe one of the visualisation scripts that you've developed - and use it to create an R Markdown document. Add the code from your script to a new R Markdown document in meaningful small code chunks (maybe just a few lines each) - you might have a code chunk that loads your libraries, a chunk that reads in your data, another chunk for wrangling your data, and then separate chunks for each of the visualisations you have written. Before each small chunk of code, add some narrative explaining what the following code chunk does. Tweak the message and warning parameters at the start of each code chunk so that warnings and messages aren't displayed in the final R Markdown generated `.html` file. 
+
+Remember that when you're knitting an R Markdown document it is working in its own R session - and so can't access anything in the main R session in which you've been writing the R Markdown document itself. This means that your R Markdown must load the libraries needed and read in the data within the document itself. 
+
+<center>
+**End of workshop 5 materials**
+</center>
+

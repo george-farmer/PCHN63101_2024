@@ -1,0 +1,458 @@
+# Data Wrangling and Data Summarising
+
+In this workshop we shall take our first look at some key tools in the [Tidyverse](https://www.tidyverse.org) that will allow us to wrangle and tidy our data so that it's in the format that we need in order to visualize and model it. By making our data wrangling reproducible (i.e., by coding it in R), we can easily re-run this stage of our analysis pipeline as new data gets added. Reproducibility of the data wrangling stage is a key part of the analysis process and often gets overlooked in terms of needing to ensure it is reproducible. 
+
+The Tidyverse is a collection of packages that all 'play nicely' with each other. They are based on a common philosophy where data are represented in rectangular format (i.e., with rows and columns). These rectangular structures are known in the Tidyverse as `tibbles`. If you're interested, you can read more about `tibbles` in the R4DS book [here](https://r4ds.had.co.nz/tibbles.html).
+
+## Wrangling your data
+Have a look at the following video where I walk you through this worksheet. Then I want you to work through the content by writing (and running) the script on your own machine.
+
+  
+
+<center>
+
+<iframe width="560" height="315" src="https://youtube.com/embed/Vs2RYqX1qiM" frameborder="0" allowfullscreen>
+
+</iframe>
+
+</center>
+
+  
+
+### Loading the Tidyverse
+
+Let's take our first look at data wrangling. We are going to start with a dataset that comes with the Tidyverse. The dataset is called `mpg` and comprises fuel economy data from 1999 to 2008 for 38 popular models of cars in the US.
+
+First, we need to load the `tidyverse` library with the following:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+If you run this line without having first installed the Tidyverse on your computer, you will encounter an error. R packages only need to be installed once, so if you want to load one into your library for the first time, you need to install it with `install.packages(*packagename*)`.
+
+For the `tidyverse` we need to install it with:
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+Once you have installed the `tidyverse`, you can then load it into your llbrary with the `library()` function. You only ever need to install a package once on your machine (unless you have updated R or you want to install the most up-to-date version of a particular package). When you are writing your R scripts, you never want to have the `install.packages()` function in the body of the script as if someone else were to run your script, this would update packages on their computer (which they might not want).
+
+#### The `mpg` dataset {-}
+
+The `mpg` dataset is loaded as part of the Tidyverse. In the help file, which you can access by typing `help(mpg)` or `?mpg` we see the following:
+
+Description This dataset contains a subset of the fuel economy data that the EPA makes available on <http://fueleconomy.gov>. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car.
+
+A data frame with 234 rows and 11 variables.
+
+manufacturer - manufacturer model - model name displ - engine displacement, in litres year - year of manufacture cyl - number of cylinders trans -type of transmission drv -f = front-wheel drive, r = rear wheel drive, 4 = 4wd cty - city miles per gallon hwy - highway miles per gallon fl - fuel type class - "type" of car
+
+Note you can also use help to inspect functions, for example: Typing `?sd` will show you the documentation for R's Standard Deviation function.
+
+### Using `head()` and `str()`
+
+We can explore the `mpg` dataset that is loaded with the Tidyverse in a number of ways. If we want to look at the first 6 lines of the dataset, we can use the `head()` function.
+
+```{r}
+head(mpg)
+```
+
+We see that it is a tibble - or a rectangular data frame - made up of rows and columns. This is `tidy` format where each observation corresponds to a row. Most of the analyses we will run in R involve `tidy` data. Within the Tidyverse, the `tibble` is the standard way to represent data. You'll spend a lot of time tidying and wrangling your data to get it into this format! By doing this in R using a script that you write, you are making this key stage *reproducible*. You can run the script again on an updated or different dataset - thus likely saving you lots of time!
+
+We can also ask for information about the structure of our dataset with `str()`. This will tell us about the columns, what type of variable each is, the number of rows etc.
+
+```{r}
+str(mpg)
+```
+
+### Use `select()` to select columns
+
+If we want to, we could just select one of the columns using the `select()` function. Below we are just selecing the column entitled `manufacturer`.
+
+```{r}
+mpg %>%
+  select(manufacturer)
+```
+
+Related to the `select()` function is `rename()`. It does exactly what you think it might; it renames a column.
+
+We can also look at the different car manufacturers in the dataset by using the `distinct()` function. This gives us the unique manufacturer names. This function can be quite handy if you want to check a dataset for duplicates of (e.g.) participant IDs.
+
+```{r}
+mpg %>%
+  distinct(manufacturer)
+```
+
+### Use `filter()` to select rows
+
+Sometimes we might want to select only a subset of rows in our dataset. We can do that using the `filter()` function. For example, here we filter our dataset to include only cars made by 'honda'.
+
+```{r}
+mpg %>%
+  filter(manufacturer == "honda")
+```
+
+Note, we use the operator `==` which means 'is equal to'. This is a logical operator - other logical operators include less than `<`, greater than `>`, less than or equal to `<=`, greater then or equal to `>=`, and is not equal to `!=`.
+
+We can also filter using a combination of possibilities via logical OR `|` or logical AND `&`. The first code chunk below filters the dataset for cases where the manufacturer is 'honda' OR 'toyota'.
+
+```{r}
+mpg %>%
+  filter(manufacturer == "honda" | manufacturer == "toyota")
+```
+
+While below we filter for cases where the manufacturer is 'honda' and the year of manufacture is '1999'.
+
+```{r}
+mpg %>% 
+  filter(manufacturer == "honda" & year == "1999")
+```
+
+#### Combining functions {-}
+
+
+We can combine the use of `filter()` with `select()` to filter for case where the manufacturer is 'honda', the year of manufacture is '1999' and we only want to display these two columns plus those telling us about fuel economy - `cty` and `hwy`.
+
+```{r}
+mpg %>% 
+  filter(manufacturer == "honda" & year == "1999") %>%
+  select(manufacturer, year, cty, hwy)
+```
+
+By combining just a few functions, you can imagine that we can build some quite complex data wrangling rules quite straightforwardly.
+
+### The pipe `%>%`
+
+Note that in these examples above we used the `%>%` operator - this is called the pipe and allows us to pass information from one side of the pipe to the other. You can read it out load as 'and then'. All of the functions (such as `select()`, `filter()` etc.) in the Tidyverse are known as verbs, and they describe what they do. The pipe is one of the most commonly used operators in the Tidyverse and allows us to chain together different lines of code - with the output of each line being passed on as input into the next. In this example, the dataset `mpg` is passed along to the `distinct()` function where we ask for a list of the distinct (i.e., unique) manufacturers. This output itself is a vector. Vectors are a basic data structure and contain elements of the same type - for example, a bunch of numbers. We can add another line to our piped chain to tell us how many elements are in this vector. We could read this out loud as 'take the dataset mpg, and then work out the distinct manufacturer names, and then count them'.
+
+```{r}
+mpg %>% 
+  distinct(manufacturer) %>%
+  count()
+```
+
+### Tidying up a dataset
+
+#### Tidying variable names {-}
+
+At the moment, the car manufacturer names are all in lower case. It would look a lot nicer if they were in title case (i.e., with capitalisation on the first letter of each word). We can use the `mutate()` function to create a new column - this time, the name of the new column is also the name of the old column that we're wanting to modify using the function `str_to_title()`. What this will do is overwrite the column `manufacturer` and replace it with the new version with the car manufacturer names in title case.
+
+```{r}
+mpg %>%
+  mutate(manufacturer = str_to_title(manufacturer)) 
+```
+
+The column `model` is also lowercase. Let's make that title case too. We can use the `mutate()` function to work over more than one column at the same time like this:
+
+```{r}
+mpg %>%
+  mutate(manufacturer = str_to_title(manufacturer), model = str_to_title(model))
+```
+
+There are quite a few columns there, so how about we select just the manufacturer, model, year, transmission, and hwy columns:
+
+```{r}
+mpg %>%
+  mutate(manufacturer = str_to_title(manufacturer), model = str_to_title(model)) %>%
+  select(manufacturer, model, year, trans, hwy)
+```
+
+#### Recoding variables {-}
+
+In the real world, data frames do not always arrive on our computer in tidy format. Very often you need to engage in some data tidying before you can do anything useful with them. We're going to look at an example of how we go from messy data to tidy data.
+
+```{r, message=FALSE}
+my_messy_data <- read_csv("https://raw.githubusercontent.com/ajstewartlang/03_data_wrangling/master/data/my_data.csv")
+```
+
+We ran a reaction time experiment with 24 participants and 4 conditions - they are numbered 1-4 in our data file.
+
+```{r}
+head(my_messy_data)
+```
+
+This is a repeated measures design where we had one factor (Prime Type) with two levels (A vs. B) and a second factor (Target Type) with two levels (A vs. B). We want to recode our data frame so it better matches our experimental design. First we need to recode our 4 conditions like this:
+
+Recode condition columns follows: Condition 1 = Prime A, Target A Condition 2 = Prime A, Target B Condition 3 = Prime B, Target A Condition 4 = Prime B, Target B
+
+```{r}
+my_messy_data %>% 
+  mutate(condition = recode(condition,
+                            "1" = "PrimeA_TargetA",
+                            "2" = "PrimeA_TargetB", 
+                            "3" = "PrimeB_TargetA", 
+                            "4" = "PrimeB_TargetB")) %>%
+  head()
+```
+
+We now need to separate out our Condition column into two - one for our first factor (Prime), and one for our second factor (Target). The `separate()` function does just this - when used in conjunction with a piped tibble, it needs to know which column we want to separate, what new columns to create by separating that original column, and on what basis we want to do the separation. In the example below we tell `separate()` that we want to separate the column labeled `condition` into two new columns called `Prime` and `Target` and we want to do this at any points where a `_` is present in the column to be separated.
+
+```{r}
+my_messy_data %>% 
+  mutate(condition = recode(condition,
+                            "1" = "PrimeA_TargetA",
+                            "2" = "PrimeA_TargetB", 
+                            "3" = "PrimeB_TargetA", 
+                            "4" = "PrimeB_TargetB")) %>%
+  separate(col = "condition", into = c("Prime", "Target"), sep = "_")
+```
+
+```{r}
+my_messy_data %>% 
+  mutate(condition = recode(condition,
+                            "1" = "PrimeA_TargetA",
+                            "2" = "PrimeA_TargetB", 
+                            "3" = "PrimeB_TargetA", 
+                            "4" = "PrimeB_TargetB")) %>%
+  separate(col = "condition", into = c("Prime", "Target"), sep = "_") %>%
+  mutate(Prime = factor(Prime), Target = factor(Target))
+```
+
+#### The pivot functions {-}
+
+Most of the analysis we will conduct in R requires our data to be in tidy, or long, format. In such data sets, one row corresponds to one observation. In the real world, data are rarely in the right format for analysis. In R, the `pivot_wider()` and `pivot_longer()` functions are designed to reshape our data files. First, let's load a datafile that is in wide format (i.e., multiple observations per row). It is from an experiment where we had four conditions (labelled Condition1, Condition2, Condition3, and Condition4). In addition to there being a column for each of the 4 conditions, we also have a column corresponding to participant ID. Each cell in the data set corresponds to a reaction time (measured in milliseconds).
+
+```{r, message=FALSE}
+my_wide_data <- read_csv("https://raw.githubusercontent.com/ajstewartlang/03_data_wrangling/master/data/my_wide_data.csv")
+```
+
+##### The `pivot_longer()` function {-}
+
+```{r}
+head(my_wide_data)
+```
+
+So, we can see the data file is in wide format. We want to reshape it to long format. We can do that using the `pivot_longer()` function.
+
+Minially, we need to specify the data frame that we want to reshape, the columns that we want to 'pivot' into longer format, the name of the new column that we are creating, and the name of the column that will hold the values of our reshaped data frame. We are going to map the output to a variable I'm calling `my_longer_data`.
+
+```{r}
+my_longer_data <- my_wide_data %>%
+  pivot_longer(cols = c(Condition1, Condition2, Condition3, Condition4), 
+               names_to = "Condition", 
+               values_to = "RT")
+```
+
+Now let's have a look at what our reshaped data frame looks like.
+
+```{r}
+head(my_longer_data)
+```
+
+So you can see our data are now in long - or tidy - format with one observation per row. Note that our `Condition` column isn't coded as a factor. It's important that our data set reflects the structure of our experiment so let's convert that column to a factor - note that in the following code we are now 'saving' the change as we are not mapping the output onto a variable name.
+
+```{r}
+my_longer_data %>%
+  mutate(Condition = factor(Condition)) %>%
+  head()
+```
+
+##### The `pivot_wider()` function {-}
+
+We can use the `pivot_wider()` function to reshape a long data frame so that it goes from long to wide format. It works similarly to `pivot_longer()`. Let's take our new, long, data frame and turn it back into wide format. With `pivot_wider()` we minimally need to specify the data frame that we want to reshape, and a pair or arguments (names_from and values_from) that describe from which column to get the name of the output column, and from which column to get the cell values.
+
+```{r}
+my_wider_data <- my_longer_data %>%
+  pivot_wider(names_from = "Condition", 
+              values_from = "RT")
+```
+
+We can check that our data set is back in wide format.
+
+```{r}
+head(my_wider_data)
+```
+
+### Joining Two Datasets
+
+Sometimes you might need to combine two datasets. For example, you might have one dataset that contains reading time data (like the one above) and another than contains individual difference measures for the participants in the first dataset. How would we go about combining these two datasets so that we end up with one that includes both the reading time data *and* the individual difference measures (that perhaps we want to covary out later)? Luckily, the `{dplyr}` package contains a number of join functions that allows you to join together different tibbles. First, let's load the data that contains the individual different measures.
+
+```{r, message=FALSE}
+individual_diffs <- read_csv("https://raw.githubusercontent.com/ajstewartlang/03_data_wrangling/master/data/individual_diffs.csv")
+```
+
+Let's look at the first few rows of the individual differences data. This dataset contains the ID numbers of our participants plus measures of IQ (the iq column) and Working Memory (the wm column).
+
+```{r}
+head(individual_diffs)
+```
+
+We want to combine this dataset with our reading time dataset from above `my_longer_data` which looks like this:
+
+```{r}
+head(my_longer_data)
+```
+
+#### Full Join {-}
+
+We can combine using one of the join functions. There are a variety of options including `full_join()` which includes all of the rows from both tibbles that we want to join. Other options include `inner_join()` which keeps only the rows in tibble one that have a matching key in tibble 2, as well as `left_join()` and `right_join()`.
+
+```{r}
+combined_data <- full_join(my_longer_data, individual_diffs, by = "ID")
+```
+
+We now see that our dataset are combined as we'd expect.
+
+```{r}
+combined_data
+```
+
+#### Left Join {-}
+
+Of course, you may be thinking that we could just do a quick bit of Excel cut and paste of the columns we want from one dataset to the other. But what about the case where our individual differences file contains 10,000 participant IDs (in random order) and we're only interested in combining the two datasets where there is a match?
+
+```{r, message=FALSE}
+large_ind_diffs <- read_csv("https://raw.githubusercontent.com/ajstewartlang/03_data_wrangling/master/data/large_ind_diffs.csv")
+```
+
+```{r}
+head(large_ind_diffs)
+```
+
+We can actually use another join function (`left_join()`) to combine these two datasets, but only where there is a match of ID with the first of the two datasets (`my_longer_data`) in the function call.
+
+```{r}
+left_join(my_longer_data, large_ind_diffs, by = "ID")
+```
+
+### Your challenge (complete this before the in-person session)
+
+Have a go at recreating the join above using RStudio Desktop. Use `read_csv` to create the `my_wide_data` tibble (as shown above) and use `pivot_longer` to make my `my_longer_data`. Then use `read_csv` to create `large_ind_diffs` and use `left_join` to combine it with `my_longer_data`
+
+## Summarising your data
+
+We'll be using the `mpg` dataset that is built into the `tidyverse` for this workshop. This dataset contains information about cars (such as engine size, fuel economy) produced by a number of different manufacturers. Once a dataset has been tidied, often one of the first things we want to do is generate summary statistics, e.g. the means and standard deviations for one of our variables grouped by car manufacturer. Have a look at the following video where I walk you through this worksheet. Then I want you to work through the content by writing (and running) the script on your own machine.
+
+  
+
+<center>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y6zXyevC52g?si=uqyrQ0xPx7tQ0eV1" frameborder="0" allowfullscreen>
+
+</iframe>
+
+</center>
+
+  
+
+Remember to set up a .Rproj file for this workshop before continuing. In your script, you'll first need to load the tidyverse.
+
+```{r, message = FALSE}
+library(tidyverse)
+```
+
+### Using `group_by()` and `summarise()`
+
+We are going to use the `group_by()` function to group the dataset, and then the `summarise()` function to calculate the mean and sd of the `hwy` variable. The `summarise()` function can take a lot of different functions to give us summary statistics. To read more about the different options, type `?summarise` in the Console window. Commonly used ones are `mean()`, `median()`, `sd()`.
+
+```{r}
+mpg %>%
+  group_by(manufacturer) %>%
+  summarise(mean_hwy = mean(hwy), sd_hwy = sd(hwy), number = n())
+```
+
+Note that this output is currently ordered alphabetically by the first column `manufacturer`. What if we wanted to order this out by mean highway fuel economy highest (best) to lowest (worst)? We can use the arrange function.
+
+#### Re-ordering the output with `arrange()` {-}
+
+```{r}
+mpg %>%
+  group_by(manufacturer) %>%
+  summarise(mean_hwy = mean(hwy), sd_hwy = sd(hwy), number = n()) %>%
+  arrange(mean_hwy)
+```
+
+Hmm, so that isn't what we want - this is going from lowest to highest which is the default in R. We can change that by putting a `-` sign in from of the parameter we can to order by.
+
+```{r}
+mpg %>%
+  group_by(manufacturer) %>%
+  summarise(mean_hwy = mean(hwy), sd_hwy = sd(hwy), number = n()) %>%
+  arrange(-mean_hwy)
+```
+
+This is looking better.
+
+#### The `summarise_at()` variant {-}
+
+As well as using `summarise()`, you can use related functions such as `summarise_at()`. This is a scoped version of the `summarise()` function that can be applied across multiple columns. Note, when using `summarise_at()` you need to put the columns you want to summarise over in quotes. You also need to provide the summary function - in this case `mean`. Finally, in case our dataset contains any missing values (indicated by `NA`), we set the parameter `na.rm = TRUE`. This will ensure that missing data points are removed before the operation is applied. If we had missing data, but didn't tell R what we wanted to do with it, it would have thrown an error.
+
+```{r}
+mpg %>% 
+  group_by(manufacturer) %>%
+  summarise_at(c("displ", "cty", "hwy"), mean, na.rm = TRUE)
+```
+
+#### The `summarise_if()` variant {-}
+
+Imagine we had a really big dataset and wanted to summarise all columns that were of a certain type. We can use the `summarise_if()` function to work out the mean for each of our car manufactures as follows:
+
+```{r}
+mpg %>% 
+  group_by(manufacturer) %>%
+  summarise_if(is.numeric, mean, na.rm = TRUE)
+```
+
+The first parameter in `summarise_if()` is the logical test applied to each column - in this case, if a column is numeric (i.e., a number) - then the test evaluates to TRUE and the second function, `mean`, is applied. Again, we tell R to ignore missing (`NA`) data values with the `na.rm = TRUE` parameter.
+
+R functions differ in terms of what arguments they take. I often forget them - if you start typing a function name, you'll get a little bubble above where you're typing to remind you what parameters are needed. And if you can't remember the details, you can just type `help(function_name)` or `?function_name` in the console for any function that you need help with. A lot of data analysis with R (or Python or any other language really) involves a fair bit of Googling. This is normal. There are some things I can never remember and am always having to look up!
+
+### Adding columns using `mutate()`
+
+We can add a new column that I'm calling `mean_hwy` using the `mutate()` function like this.
+
+```{r}
+mpg %>% 
+  group_by(manufacturer) %>%
+  mutate(mean_hwy = mean(hwy), sd_hwy = sd(hwy))
+```
+
+We have too many columns to display on this page so we can drop a couple by using the `select()` function slightly differently. By putting a `-` sign in front of a column names in `select()` we end up dropping it.
+
+```{r}
+mpg %>% 
+  group_by(manufacturer) %>%
+  mutate(mean_hwy = mean(hwy), sd_hwy = sd(hwy)) %>%
+  select(-class, -trans)
+```
+
+Note that this doesn't change the `mpg` dataset permanently - the changes won't be saved unless we map the output of this code onto a new variable. Below I am doing this by using the assignment operator `<-` to map it onto a new variable I'm calling `mpg_with_mean`. Note that we remove the grouping at the end as we don't want our grouping rule to remain in our new data frame.
+
+```{r}
+mpg_with_mean <- mpg %>% 
+  group_by(manufacturer) %>%
+    mutate(mean_hwy = mean(hwy), sd_hyw = sd(hwy)) %>%
+  ungroup() %>%
+  select(-class, -trans) 
+```
+
+We can then inspect this new variable using `head()` and `str()`.
+
+```{r}
+head(mpg_with_mean)
+```
+
+```{r}
+str(mpg_with_mean)
+```
+
+### Your challenge (do this during the in-person session)
+
+The `Tidyverse` has a number of other built-in data sets. Another one is the `starwars` data set. You can have a look at it by typing `starwars` or by typing `view(starwars)`. This second option will open the data set in a new window. Have a go playing around with it. Work out the mean height of humans in the Star Wars universe. There might be some missing data (indicated by `NA`). You can use the `na.rm = TRUE` parameter in your `summarise()` function to ignore these values when generating your summary statistics.
+
+Another way to filter out `NA` values is to use the `filter()` function in your pipeline. The function `is.na()` returns a logical value of TRUE of FALSE. The operator `!` means NOT, so the expression `!is.na(height)` will return TRUE when the height value is present, and FALSE if absent. By combining this with `filter()` we have the line `filter(!is.na(height))` which will filter only the cases where we have height data (i.e., `!is.na(height)` is TRUE). So your code might look like this:
+
+```{r, eval=FALSE}
+starwars %>%
+  filter(!is.na(height)) %>%
+  filter(species == "Human") %>%
+  summarise(mean_height = mean(height))
+```
+
+Replace the word `mean` in the `summarise()` line with `median`. What other things can you replace it with? Hint: type `?summarise` in the console. What other summary information can you extract from this dataset?
+
+<center>
+**End of workshop 3 materials**
+</center>

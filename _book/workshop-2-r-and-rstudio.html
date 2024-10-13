@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Workshop 2: R and RStudio | Advanced Data Skills, Open Science and Reproducibility</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Workshop 2: R and RStudio | Advanced Data Skills, Open Science and Reproducibility" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Workshop 2: R and RStudio | Advanced Data Skills, Open Science and Reproducibility" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="George Farmer" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="workshop-1-open-science.html"/>
+<link rel="next" href="parts.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="workshop-1-open-science.html"><a href="workshop-1-open-science.html"><i class="fa fa-check"></i><b>1</b> Workshop 1: Open Science</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="workshop-1-open-science.html"><a href="workshop-1-open-science.html#open-research-and-reproducibility"><i class="fa fa-check"></i><b>1.1</b> Open Research and Reproducibility</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="workshop-1-open-science.html"><a href="workshop-1-open-science.html#open-research-a-brief-history"><i class="fa fa-check"></i><b>1.1.1</b> Open Research (A Brief History)</a></li>
+<li class="chapter" data-level="1.1.2" data-path="workshop-1-open-science.html"><a href="workshop-1-open-science.html#how-to-do-reproducible-research"><i class="fa fa-check"></i><b>1.1.2</b> How to do Reproducible Research</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="workshop-1-open-science.html"><a href="workshop-1-open-science.html#experimental-power"><i class="fa fa-check"></i><b>1.2</b> Experimental Power</a></li>
+<li class="chapter" data-level="1.3" data-path="workshop-1-open-science.html"><a href="workshop-1-open-science.html#open-source-software"><i class="fa fa-check"></i><b>1.3</b> Open Source Software</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="workshop-2-r-and-rstudio.html"><a href="workshop-2-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Workshop 2: R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="workshop-2-r-and-rstudio.html"><a href="workshop-2-r-and-rstudio.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
+<li class="chapter" data-level="2.2" data-path="workshop-2-r-and-rstudio.html"><a href="workshop-2-r-and-rstudio.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting Started</a></li>
+<li class="chapter" data-level="2.3" data-path="workshop-2-r-and-rstudio.html"><a href="workshop-2-r-and-rstudio.html#customising-rstudio"><i class="fa fa-check"></i><b>2.3</b> Customising RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="workshop-2-r-and-rstudio.html"><a href="workshop-2-r-and-rstudio.html#keeping-things-organised"><i class="fa fa-check"></i><b>2.4</b> Keeping Things Organised</a></li>
+<li class="chapter" data-level="2.5" data-path="workshop-2-r-and-rstudio.html"><a href="workshop-2-r-and-rstudio.html#good-coding-style"><i class="fa fa-check"></i><b>2.5</b> Good Coding Style</a></li>
+<li class="chapter" data-level="2.6" data-path="workshop-2-r-and-rstudio.html"><a href="workshop-2-r-and-rstudio.html#your-first-r-script"><i class="fa fa-check"></i><b>2.6</b> Your First R Script</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>3</b> Parts</a></li>
+<li class="chapter" data-level="4" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>4</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>4.1</b> Footnotes</a></li>
+<li class="chapter" data-level="4.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>4.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>5</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>5.1</b> Equations</a></li>
+<li class="chapter" data-level="5.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>5.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="5.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>5.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>6</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>6.1</b> Publishing</a></li>
+<li class="chapter" data-level="6.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>6.2</b> 404 pages</a></li>
+<li class="chapter" data-level="6.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>6.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Data Skills, Open Science and Reproducibility</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="workshop-2-r-and-rstudio" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Workshop 2: R and RStudio<a href="workshop-2-r-and-rstudio.html#workshop-2-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="why-r" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Why R?<a href="workshop-2-r-and-rstudio.html#why-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this workshop I will introduce you to the language, <a href="https://www.r-project.org/about.html">R</a>, and <a href="https://rstudio.com">RStudio Desktop</a>, the integrated development environment (IDE) that you will use to write reproducible code involving the wrangling, visualization, summary, and statistical modelling of your data. Both R and RStudio Desktop are examples of <a href="https://opensource.com/resources/what-open-source">Open Source Software</a>. Open Source is key to producing reproducible research as Open Source software is free and available to all.</p>
+<p>In the video below, I’ll introduce you to R and talk about the importance of adopting such tools in our research analysis workflows.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/GKJmY_YebhU" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<center>
+<p><a href="https://docs.google.com/presentation/d/1CkatVluJFu_XoBo1iA0xfACc-V9v-_-DqV3KIPZHgMU/edit?usp=sharing"><img src="../images/why_r.png" style="width:75.0%" alt="Link to R and RStudio Desktop slides" /></a></p>
+</center>
+<p>  </p>
+<p>Below is a video of a great talk by J.J. Allaire, entrepreneur and founder of RStudio (and other organizations). This video is from rstudio::conf 2020 and in it J.J. talks about his journey from being a Political Scientist, how he got involved in R, and the importance of Open Source in the context of Reproducible Data Science. If you click on the image, you’ll be taken to the RStudio website where you can watch the recording. If you’re interested, you might like to look at some of the other videos on the RStudio site.</p>
+<p>  </p>
+<p><a href="https://rstudio.com/resources/rstudioconf-2020/open-source-software-for-data-science/"><img src="../images/jj_allaire.png" alt="Link to JJ Allaire’s talk on Open Source Software for Data Science" /></a></p>
+<p>  </p>
+</div>
+<div id="getting-started" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Getting Started<a href="workshop-2-r-and-rstudio.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this next video I will show you how to install R (the language) and RStudio Desktop (the IDE for working with the language). You can download R from <a href="https://www.stats.bris.ac.uk/R/">here</a> for a variety of platforms including Mac OS, Windows, and Ubuntu. To download free RStudio Desktop just go to <a href="https://rstudio.com/products/rstudio/download/">here</a>.</p>
+<p>If you are using a Chromebook, or have a tablet, or are having difficulties installing R and RStudio Desktop on your computer, you can use <a href="https://rstudio.cloud/">RStudio Cloud</a> to run the RStudio environment in your browser. You’ll need to sign up - there is a free plan available which allows you to use the RStudio Cloud for 15 hours per month.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed//nsu2WQIeP5I" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<center>
+<p><a href="https://docs.google.com/presentation/d/19Y70sxKZH0Wp1Lm-0FMktiHjfAHBvHJHSfdxpPQuIgA/edit?usp=sharing"><img src="../images/getting_started.png" style="width:75.0%" alt="Link to R and RStudio Desktop slides" /></a></p>
+</center>
+<p>  </p>
+</div>
+<div id="customising-rstudio" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Customising RStudio<a href="workshop-2-r-and-rstudio.html#customising-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can customise the look of the RStudio IDE to make it work best for you. In this video I show you some of the possible customisations you can use.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/fwonkj-hZYc" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+</div>
+<div id="keeping-things-organised" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Keeping Things Organised<a href="workshop-2-r-and-rstudio.html#keeping-things-organised" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you are doing data analysis using R, it’s important to use a sensible structure for your folders and files. As you saw in the video above, creating a new project with a .Rproj file is the easiest way to this is using RStudio Desktop. Good file management is as important as good coding style (which we’ll come to next). There’s a great paper on project management that you can read by clicking the image below.</p>
+<p>  </p>
+<p><a href="https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005510&amp;type=printable"><img src="../images/wilson_paper.png" alt="Link to Greg Wilson et al paper" /></a></p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/JslVB6Vfn0Q" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+</div>
+<div id="good-coding-style" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Good Coding Style<a href="workshop-2-r-and-rstudio.html#good-coding-style" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the following video I’ll talk a little about good coding style. It’s important when you’re writing analysis scripts that your code is understandable by others, and by future you. If you get into the habit of good coding style early on, it will make things a lot easier in the long run - and you’ll find it easier to work collaboratively as others will find it easier to work with you.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/U6LuufvDO_c" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>You can have a look at the helpful Tidyverse Style Guide <a href="https://style.tidyverse.org">here</a>.</p>
+<p>If you want to make your code and data open (and you really should unless there’s a good reason not to do so), it’s important to license it properly to allow others to (re)use and remix it. For my own work, I tend to use the most permissive license that I can. My ‘go to’ licenses are the <a href="https://opensource.org/licenses/MIT">MIT License</a>, and the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons License CC-BY 4.0.</a></p>
+<p>You can use <a href="https://choosealicense.com">this handy guide</a> if you need help choosing the right license for your own work.</p>
+<p>  </p>
+<center>
+<p><a href="https://docs.google.com/presentation/d/1ZNnQwgHx0EuWcmfC2ZovSZjoaPP3eUOvdOFF_98H1oI/edit?usp=sharing"><img src="../images/good_coding_style.png" style="width:75.0%" alt="Link to Good coding style slides" /></a></p>
+</center>
+<p>  </p>
+</div>
+<div id="your-first-r-script" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Your First R Script<a href="workshop-2-r-and-rstudio.html#your-first-r-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You’re now going to run your first R script. We will create three visualisations of UFO sightings in the US using a database of more than 80,000 UFO sightings over the years. Before you run the code, you will need to install three packages onto your computer - they are <code>tidyverse</code> and <code>patchwork</code>.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/ABgJfJYmWOs" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>Once you have installed the packages, type the following code into a new R script. Run the code in the same way I show you in the video. Does your visualisation look like the one I generated?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="workshop-2-r-and-rstudio.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># load the tidyverse</span></span>
+<span id="cb1-2"><a href="workshop-2-r-and-rstudio.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork) <span class="co"># needed to combine our 4 plots at the end</span></span>
+<span id="cb1-3"><a href="workshop-2-r-and-rstudio.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># read in data </span></span>
+<span id="cb1-4"><a href="workshop-2-r-and-rstudio.html#cb1-4" aria-hidden="true" tabindex="-1"></a>ufo_sightings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv&quot;</span>)</span>
+<span id="cb1-5"><a href="workshop-2-r-and-rstudio.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot of top 10 US states with number of sightings in each state</span></span>
+<span id="cb1-6"><a href="workshop-2-r-and-rstudio.html#cb1-6" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> ufo_sightings <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="workshop-2-r-and-rstudio.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(state)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="workshop-2-r-and-rstudio.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">str_to_upper</span>(state)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a href="workshop-2-r-and-rstudio.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">%&gt;%</span></span>
+<span id="cb1-10"><a href="workshop-2-r-and-rstudio.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="workshop-2-r-and-rstudio.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="workshop-2-r-and-rstudio.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(state, n), <span class="at">y =</span> n, <span class="at">fill =</span> state)) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="workshop-2-r-and-rstudio.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb1-14"><a href="workshop-2-r-and-rstudio.html#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1-15"><a href="workshop-2-r-and-rstudio.html#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb1-16"><a href="workshop-2-r-and-rstudio.html#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Top 10 States for UFO Sightings&quot;</span>,</span>
+<span id="cb1-17"><a href="workshop-2-r-and-rstudio.html#cb1-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb1-18"><a href="workshop-2-r-and-rstudio.html#cb1-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="workshop-2-r-and-rstudio.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">11000</span>) <span class="sc">+</span></span>
+<span id="cb1-20"><a href="workshop-2-r-and-rstudio.html#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-21"><a href="workshop-2-r-and-rstudio.html#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb1-22"><a href="workshop-2-r-and-rstudio.html#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># work out states within lat and long limits (i.e., exclude Alaska)</span></span>
+<span id="cb1-23"><a href="workshop-2-r-and-rstudio.html#cb1-23" aria-hidden="true" tabindex="-1"></a>tidied_ufo <span class="ot">&lt;-</span> ufo_sightings <span class="sc">%&gt;%</span></span>
+<span id="cb1-24"><a href="workshop-2-r-and-rstudio.html#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">&quot;us&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-25"><a href="workshop-2-r-and-rstudio.html#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(latitude <span class="sc">&gt;</span> <span class="dv">24</span> <span class="sc">&amp;</span> latitude <span class="sc">&lt;</span> <span class="dv">50</span>)</span>
+<span id="cb1-26"><a href="workshop-2-r-and-rstudio.html#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># plot all sightings on a map of the US</span></span>
+<span id="cb1-27"><a href="workshop-2-r-and-rstudio.html#cb1-27" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> tidied_ufo <span class="sc">%&gt;%</span></span>
+<span id="cb1-28"><a href="workshop-2-r-and-rstudio.html#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude)) <span class="sc">+</span> </span>
+<span id="cb1-29"><a href="workshop-2-r-and-rstudio.html#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">5</span>, <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="workshop-2-r-and-rstudio.html#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb1-31"><a href="workshop-2-r-and-rstudio.html#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>() <span class="sc">+</span></span>
+<span id="cb1-32"><a href="workshop-2-r-and-rstudio.html#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sites of UFO Sightings in the US&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-33"><a href="workshop-2-r-and-rstudio.html#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb1-34"><a href="workshop-2-r-and-rstudio.html#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># plot of top 10 UFO shapes spotted in California</span></span>
+<span id="cb1-35"><a href="workshop-2-r-and-rstudio.html#cb1-35" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> tidied_ufo <span class="sc">%&gt;%</span></span>
+<span id="cb1-36"><a href="workshop-2-r-and-rstudio.html#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;ca&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-37"><a href="workshop-2-r-and-rstudio.html#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ufo_shape <span class="sc">!=</span> <span class="st">&quot;other&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-38"><a href="workshop-2-r-and-rstudio.html#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ufo_shape <span class="sc">!=</span> <span class="st">&quot;unknown&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-39"><a href="workshop-2-r-and-rstudio.html#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ufo_shape) <span class="sc">%&gt;%</span></span>
+<span id="cb1-40"><a href="workshop-2-r-and-rstudio.html#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-41"><a href="workshop-2-r-and-rstudio.html#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-42"><a href="workshop-2-r-and-rstudio.html#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ufo_shape =</span> <span class="fu">str_to_title</span>(ufo_shape)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-43"><a href="workshop-2-r-and-rstudio.html#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ufo_shape, n), <span class="at">y =</span> n, <span class="at">fill =</span> ufo_shape)) <span class="sc">+</span></span>
+<span id="cb1-44"><a href="workshop-2-r-and-rstudio.html#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb1-45"><a href="workshop-2-r-and-rstudio.html#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1-46"><a href="workshop-2-r-and-rstudio.html#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb1-47"><a href="workshop-2-r-and-rstudio.html#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Top 10 UFO Shapes spotted in California&quot;</span>,</span>
+<span id="cb1-48"><a href="workshop-2-r-and-rstudio.html#cb1-48" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb1-49"><a href="workshop-2-r-and-rstudio.html#cb1-49" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-50"><a href="workshop-2-r-and-rstudio.html#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-51"><a href="workshop-2-r-and-rstudio.html#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb1-52"><a href="workshop-2-r-and-rstudio.html#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Put plots together</span></span>
+<span id="cb1-53"><a href="workshop-2-r-and-rstudio.html#cb1-53" aria-hidden="true" tabindex="-1"></a>my_plot <span class="ot">&lt;-</span> (plot1 <span class="sc">+</span> plot3) <span class="sc">/</span> (plot2)</span>
+<span id="cb1-54"><a href="workshop-2-r-and-rstudio.html#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;ufo_plot.jpg&quot;</span>, <span class="at">plot =</span> my_plot, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">10</span>)</span></code></pre></div>
+<center>
+<p><span width="100%"><img src="../images/ufo_plot.jpg" alt="UFO visualisation" /></span></p>
+</center>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="workshop-1-open-science.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-R-RStudio.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

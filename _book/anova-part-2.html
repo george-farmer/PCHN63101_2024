@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Workshop 9 ANOVA Part 2 | Advanced Data Skills, Open Science and Reproducibility 2024/25</title>
+  <meta name="description" content="Workshop 9 ANOVA Part 2 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Workshop 9 ANOVA Part 2 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workshop 9 ANOVA Part 2 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="anova-part-1.html"/>
+<link rel="next" href="technical-details-and-credits.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PCHN63101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="open-science.html"><a href="open-science.html"><i class="fa fa-check"></i><b>1</b> Open Science</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="open-science.html"><a href="open-science.html#open-research-and-reproducibility"><i class="fa fa-check"></i><b>1.1</b> Open Research and Reproducibility</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="open-science.html"><a href="open-science.html#how-to-do-reproducible-research"><i class="fa fa-check"></i><b>1.1.1</b> How to do Reproducible Research</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="open-science.html"><a href="open-science.html#experimental-power"><i class="fa fa-check"></i><b>1.2</b> Experimental Power</a></li>
+<li class="chapter" data-level="1.3" data-path="open-science.html"><a href="open-science.html#open-source-software"><i class="fa fa-check"></i><b>1.3</b> Open Source Software</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="open-science.html"><a href="open-science.html#statistical-and-scientific-computing"><i class="fa fa-check"></i><b>1.3.1</b> Statistical and Scientific Computing</a></li>
+<li class="chapter" data-level="1.3.2" data-path="open-science.html"><a href="open-science.html#document-creation"><i class="fa fa-check"></i><b>1.3.2</b> Document Creation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="open-science.html"><a href="open-science.html#building-experiments"><i class="fa fa-check"></i><b>1.3.3</b> Building Experiments</a></li>
+<li class="chapter" data-level="1.3.4" data-path="open-science.html"><a href="open-science.html#linux"><i class="fa fa-check"></i><b>1.3.4</b> Linux</a></li>
+<li class="chapter" data-level="1.3.5" data-path="open-science.html"><a href="open-science.html#more-reading"><i class="fa fa-check"></i><b>1.3.5</b> More Reading</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
+<li class="chapter" data-level="2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting Started</a></li>
+<li class="chapter" data-level="2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#keeping-things-organised"><i class="fa fa-check"></i><b>2.3</b> Keeping Things Organised</a></li>
+<li class="chapter" data-level="2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-coding-style"><i class="fa fa-check"></i><b>2.4</b> Good Coding Style</a></li>
+<li class="chapter" data-level="2.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#your-first-r-script"><i class="fa fa-check"></i><b>2.5</b> Your First R Script</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html"><i class="fa fa-check"></i><b>3</b> Data Wrangling and Data Summarising</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#wrangling-your-data"><i class="fa fa-check"></i><b>3.1</b> Wrangling your data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#loading-the-tidyverse"><i class="fa fa-check"></i><b>3.1.1</b> Loading the Tidyverse</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-head-and-str"><i class="fa fa-check"></i><b>3.1.2</b> Using <code>head()</code> and <code>str()</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-select-to-select-columns"><i class="fa fa-check"></i><b>3.1.3</b> Use <code>select()</code> to select columns</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-filter-to-select-rows"><i class="fa fa-check"></i><b>3.1.4</b> Use <code>filter()</code> to select rows</a></li>
+<li class="chapter" data-level="3.1.5" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#the-pipe"><i class="fa fa-check"></i><b>3.1.5</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.1.6" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#tidying-up-a-dataset"><i class="fa fa-check"></i><b>3.1.6</b> Tidying up a dataset</a></li>
+<li class="chapter" data-level="3.1.7" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#joining-two-datasets"><i class="fa fa-check"></i><b>3.1.7</b> Joining Two Datasets</a></li>
+<li class="chapter" data-level="3.1.8" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-complete-this-before-the-in-person-session"><i class="fa fa-check"></i><b>3.1.8</b> Your challenge (complete this before the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#summarising-your-data"><i class="fa fa-check"></i><b>3.2</b> Summarising your data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-group_by-and-summarise"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#adding-columns-using-mutate"><i class="fa fa-check"></i><b>3.2.2</b> Adding columns using <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-do-this-during-the-in-person-session"><i class="fa fa-check"></i><b>3.2.3</b> Your challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>4.1</b> The Basics of ggplot2</a></li>
+<li class="chapter" data-level="4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#your-first-visualisation"><i class="fa fa-check"></i><b>4.2</b> Your First Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#improving-the-plot"><i class="fa fa-check"></i><b>4.2.1</b> Improving the Plot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-summary-statistics"><i class="fa fa-check"></i><b>4.2.2</b> Adding Summary Statistics</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#the-finished-plot"><i class="fa fa-check"></i><b>4.2.3</b> The Finished(?) Plot</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#using-facet_wrap"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>4.3</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.4" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-histograms"><i class="fa fa-check"></i><b>4.4</b> Plotting Histograms</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-ggridges-package"><i class="fa fa-check"></i><b>4.4.1</b> The <code>ggridges</code> Package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-visualisation.html"><a href="data-visualisation.html#the-nhanes-dataset"><i class="fa fa-check"></i><b>4.5</b> The NHANES Dataset</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-visualisation.html"><a href="data-visualisation.html#tidying-the-data"><i class="fa fa-check"></i><b>4.5.1</b> Tidying the Data</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-a-histogram"><i class="fa fa-check"></i><b>4.5.2</b> Plotting a Histogram</a></li>
+<li class="chapter" data-level="4.5.3" data-path="data-visualisation.html"><a href="data-visualisation.html#summary-statistics"><i class="fa fa-check"></i><b>4.5.3</b> Summary Statistics</a></li>
+<li class="chapter" data-level="4.5.4" data-path="data-visualisation.html"><a href="data-visualisation.html#geom_violin"><i class="fa fa-check"></i><b>4.5.4</b> <code>geom_violin()</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-interaction-effects"><i class="fa fa-check"></i><b>4.5.5</b> Plotting Interaction Effects</a></li>
+<li class="chapter" data-level="4.5.6" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms-with-facet_wrap"><i class="fa fa-check"></i><b>4.5.6</b> Histograms with <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-visualisation.html"><a href="data-visualisation.html#your-challenge-do-this-during-the-in-person-session-1"><i class="fa fa-check"></i><b>4.6</b> Your Challenge (do this during the in-person session)</a></li>
+<li class="chapter" data-level="4.7" data-path="data-visualisation.html"><a href="data-visualisation.html#additional-resources"><i class="fa fa-check"></i><b>4.7</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>5</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-markdown.html"><a href="r-markdown.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="r-markdown.html"><a href="r-markdown.html#your-challenge-do-this-during-the-in-person-session-2"><i class="fa fa-check"></i><b>5.2</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-part-1.html"><a href="regression-part-1.html"><i class="fa fa-check"></i><b>6</b> Regression Part 1</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regression-part-1.html"><a href="regression-part-1.html#overview-1"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="regression-part-1.html"><a href="regression-part-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-part-1.html"><a href="regression-part-1.html#the-packages-we-need"><i class="fa fa-check"></i><b>6.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-part-1.html"><a href="regression-part-1.html#import-the-data"><i class="fa fa-check"></i><b>6.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-part-1.html"><a href="regression-part-1.html#tidy-the-data"><i class="fa fa-check"></i><b>6.2.3</b> Tidy the Data</a></li>
+<li class="chapter" data-level="6.2.4" data-path="regression-part-1.html"><a href="regression-part-1.html#plot-the-data"><i class="fa fa-check"></i><b>6.2.4</b> Plot the Data</a></li>
+<li class="chapter" data-level="6.2.5" data-path="regression-part-1.html"><a href="regression-part-1.html#pearsons-r"><i class="fa fa-check"></i><b>6.2.5</b> Pearson’s r</a></li>
+<li class="chapter" data-level="6.2.6" data-path="regression-part-1.html"><a href="regression-part-1.html#model-the-data"><i class="fa fa-check"></i><b>6.2.6</b> Model the Data</a></li>
+<li class="chapter" data-level="6.2.7" data-path="regression-part-1.html"><a href="regression-part-1.html#checking-our-assumptions"><i class="fa fa-check"></i><b>6.2.7</b> Checking Our Assumptions</a></li>
+<li class="chapter" data-level="6.2.8" data-path="regression-part-1.html"><a href="regression-part-1.html#interpreting-our-model"><i class="fa fa-check"></i><b>6.2.8</b> Interpreting Our Model</a></li>
+<li class="chapter" data-level="6.2.9" data-path="regression-part-1.html"><a href="regression-part-1.html#your-challenge-do-this-during-the-in-person-session-3"><i class="fa fa-check"></i><b>6.2.9</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-part-2.html"><a href="regression-part-2.html"><i class="fa fa-check"></i><b>7</b> Regression Part 2</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-part-2.html"><a href="regression-part-2.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="regression-part-2.html"><a href="regression-part-2.html#multiple-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-part-2.html"><a href="regression-part-2.html#the-packages-we-need-1"><i class="fa fa-check"></i><b>7.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="7.2.2" data-path="regression-part-2.html"><a href="regression-part-2.html#import-the-data-1"><i class="fa fa-check"></i><b>7.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-1"><i class="fa fa-check"></i><b>7.2.3</b> Model the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-part-2.html"><a href="regression-part-2.html#stepwise-regression"><i class="fa fa-check"></i><b>7.3</b> Stepwise regression</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-2"><i class="fa fa-check"></i><b>7.3.1</b> Model the Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-part-1.html"><a href="anova-part-1.html"><i class="fa fa-check"></i><b>8</b> ANOVA Part 1</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="anova-part-1.html"><a href="anova-part-1.html#overview-3"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-part-1.html"><a href="anova-part-1.html#between-participants-anova"><i class="fa fa-check"></i><b>8.2</b> Between Participants ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="anova-part-1.html"><a href="anova-part-1.html#loading-our-packages"><i class="fa fa-check"></i><b>8.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="8.2.2" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data"><i class="fa fa-check"></i><b>8.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data"><i class="fa fa-check"></i><b>8.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data"><i class="fa fa-check"></i><b>8.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model"><i class="fa fa-check"></i><b>8.2.5</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.2.6" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output"><i class="fa fa-check"></i><b>8.2.6</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="anova-part-1.html"><a href="anova-part-1.html#repeated-measures-anova"><i class="fa fa-check"></i><b>8.3</b> Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-1"><i class="fa fa-check"></i><b>8.3.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-1"><i class="fa fa-check"></i><b>8.3.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.3.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-1"><i class="fa fa-check"></i><b>8.3.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.3.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-1"><i class="fa fa-check"></i><b>8.3.4</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.3.5" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output-1"><i class="fa fa-check"></i><b>8.3.5</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="anova-part-1.html"><a href="anova-part-1.html#factorial-anova"><i class="fa fa-check"></i><b>8.4</b> Factorial ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-2"><i class="fa fa-check"></i><b>8.4.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-2"><i class="fa fa-check"></i><b>8.4.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.4.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-2"><i class="fa fa-check"></i><b>8.4.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.4.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-2"><i class="fa fa-check"></i><b>8.4.4</b> Building our ANOVA Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="anova-part-1.html"><a href="anova-part-1.html#your-challenge-do-this-during-the-in-person-session-4"><i class="fa fa-check"></i><b>8.5</b> Your Challenge (do this during the in-person session)</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1"><i class="fa fa-check"></i><b>8.5.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.5.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2"><i class="fa fa-check"></i><b>8.5.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.5.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3"><i class="fa fa-check"></i><b>8.5.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.5.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4"><i class="fa fa-check"></i><b>8.5.4</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="anova-part-1.html"><a href="anova-part-1.html#answers"><i class="fa fa-check"></i><b>8.6</b> Answers</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1-1"><i class="fa fa-check"></i><b>8.6.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.6.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2-1"><i class="fa fa-check"></i><b>8.6.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.6.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3-1"><i class="fa fa-check"></i><b>8.6.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.6.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4-1"><i class="fa fa-check"></i><b>8.6.4</b> Question 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="anova-part-2.html"><a href="anova-part-2.html"><i class="fa fa-check"></i><b>9</b> ANOVA Part 2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="anova-part-2.html"><a href="anova-part-2.html#overview-4"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-ancova"><i class="fa fa-check"></i><b>9.2</b> Building our ANCOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="anova-part-2.html"><a href="anova-part-2.html#loading-our-packages-1"><i class="fa fa-check"></i><b>9.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="9.2.2" data-path="anova-part-2.html"><a href="anova-part-2.html#reading-in-our-data-3"><i class="fa fa-check"></i><b>9.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="anova-part-2.html"><a href="anova-part-2.html#summarising-our-data-3"><i class="fa fa-check"></i><b>9.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="9.2.4" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-3"><i class="fa fa-check"></i><b>9.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.2.5" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-anova-model-3"><i class="fa fa-check"></i><b>9.2.5</b> Building our ANOVA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-special-case-of-regression"><i class="fa fa-check"></i><b>9.3</b> AN(C)OVA as a Special Case of Regression</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-4"><i class="fa fa-check"></i><b>9.3.1</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.3.2" data-path="anova-part-2.html"><a href="anova-part-2.html#setting-up-our-contrasts"><i class="fa fa-check"></i><b>9.3.2</b> Setting up our Contrasts</a></li>
+<li class="chapter" data-level="9.3.3" data-path="anova-part-2.html"><a href="anova-part-2.html#anova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.3</b> ANOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.4" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.4</b> ANCOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.5" data-path="anova-part-2.html"><a href="anova-part-2.html#centering-our-covariate"><i class="fa fa-check"></i><b>9.3.5</b> Centering our Covariate</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="technical-details-and-credits.html"><a href="technical-details-and-credits.html"><i class="fa fa-check"></i>Technical Details and Credits</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Data Skills, Open Science and Reproducibility 2024/25</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anova-part-2" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Workshop 9</span> ANOVA Part 2<a href="anova-part-2.html#anova-part-2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="overview-4" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Overview<a href="anova-part-2.html#overview-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this workshop we will continue our examination of ANOVA. Specifically, we will focus on ANCOVA (Analysis of Covariance) before exploring how AN(C)OVA is a special case of regression and how both can be understood in the context of the General Linear Model.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/zGifY-McqsQ" frameborder="0" data-external="1" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<center>
+<a href="https://lindeloev.github.io/tests-as-linear/">Lindeløv link</a>
+</center>
+</div>
+<div id="building-our-ancova" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Building our ANCOVA<a href="anova-part-2.html#building-our-ancova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="loading-our-packages-1" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Loading our Packages<a href="anova-part-2.html#loading-our-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s run through the ANCOVA example that I cover in the video above. First we need to load the packages we need. We’ll be using the <code>tidyverse</code> for general data wrangling and data visualisation, and then the <code>afex</code> package for building our ANCOVA model, and the <code>emmeans</code> package for running pairwise comparisons and displaying our adjusted means.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="anova-part-2.html#cb231-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Load the tidyverse packages</span></span>
+<span id="cb231-2"><a href="anova-part-2.html#cb231-2" tabindex="-1"></a><span class="fu">library</span>(afex) <span class="co"># ANOVA functions</span></span>
+<span id="cb231-3"><a href="anova-part-2.html#cb231-3" tabindex="-1"></a><span class="fu">library</span>(emmeans) <span class="co"># Needed for pairwise comparisons</span></span></code></pre></div>
+</div>
+<div id="reading-in-our-data-3" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Reading in our Data<a href="anova-part-2.html#reading-in-our-data-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now we’re going to read in our data.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="anova-part-2.html#cb232-1" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/12_glm_anova_pt2/master/data/ancova_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="anova-part-2.html#cb233-1" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   Participant Condition Ability Gaming
+##         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
+## 1           1 Water        3.49   9.37
+## 2           2 Water        5.61  10.7 
+## 3           3 Water        5.29   9.35
+## 4           4 Water        4.75  10.2 
+## 5           5 Water        4.44   9.57
+## 6           6 Water        2.53   7.37</code></pre>
+<p>We see Condition isn’t properly coded as a factor, so let’s fix that.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="anova-part-2.html#cb235-1" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> my_data <span class="sc">%&gt;%</span> </span>
+<span id="cb235-2"><a href="anova-part-2.html#cb235-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span>
+<span id="cb235-3"><a href="anova-part-2.html#cb235-3" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   Participant Condition Ability Gaming
+##         &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt;  &lt;dbl&gt;
+## 1           1 Water        3.49   9.37
+## 2           2 Water        5.61  10.7 
+## 3           3 Water        5.29   9.35
+## 4           4 Water        4.75  10.2 
+## 5           5 Water        4.44   9.57
+## 6           6 Water        2.53   7.37</code></pre>
+</div>
+<div id="summarising-our-data-3" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Summarising our Data<a href="anova-part-2.html#summarising-our-data-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s work our some summary statistics and build a data visualisation next.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="anova-part-2.html#cb237-1" tabindex="-1"></a>my_data <span class="sc">%&gt;%</span></span>
+<span id="cb237-2"><a href="anova-part-2.html#cb237-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb237-3"><a href="anova-part-2.html#cb237-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_ability =</span> <span class="fu">mean</span>(Ability))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   Condition       mean_ability
+##   &lt;fct&gt;                  &lt;dbl&gt;
+## 1 Double Espresso         9.02
+## 2 Single Espresso         6.69
+## 3 Water                   4.82</code></pre>
+</div>
+<div id="visualising-our-data-3" class="section level3 hasAnchor" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Visualising our Data<a href="anova-part-2.html#visualising-our-data-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="anova-part-2.html#cb239-1" tabindex="-1"></a><span class="fu">ggplot</span>(my_data, <span class="fu">aes</span>(<span class="at">x =</span> Gaming, <span class="at">y =</span> Ability,  <span class="at">colour =</span> Condition)) <span class="sc">+</span> </span>
+<span id="cb239-2"><a href="anova-part-2.html#cb239-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> .<span class="dv">9</span>) <span class="sc">+</span></span>
+<span id="cb239-3"><a href="anova-part-2.html#cb239-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Gaming Frequency (hours per week)&quot;</span>, </span>
+<span id="cb239-4"><a href="anova-part-2.html#cb239-4" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Motor Ability&quot;</span>) <span class="sc">+</span></span>
+<span id="cb239-5"><a href="anova-part-2.html#cb239-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb239-6"><a href="anova-part-2.html#cb239-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>)) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p>We have built a visualisation where we have plotted the raw data points using the <code>geom_point()</code> function.</p>
+</div>
+<div id="building-our-anova-model-3" class="section level3 hasAnchor" number="9.2.5">
+<h3><span class="header-section-number">9.2.5</span> Building our ANOVA model<a href="anova-part-2.html#building-our-anova-model-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s first build an ANOVA model, and ignore the presence of the covariate in our dataset.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="anova-part-2.html#cb240-1" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span><span class="fu">aov_4</span>(Ability <span class="sc">~</span> Condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Participant), <span class="at">data =</span> my_data)</span></code></pre></div>
+<pre><code>## Contrasts set to contr.sum for the following variables: Condition</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="anova-part-2.html#cb242-1" tabindex="-1"></a><span class="fu">anova</span>(anova_model)</span></code></pre></div>
+<pre><code>## Anova Table (Type 3 tests)
+## 
+## Response: Ability
+##           num Df den Df    MSE      F     ges    Pr(&gt;F)    
+## Condition      2     42 1.2422 53.432 0.71786 2.882e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>On the basis of this output, it appears we have an effect of Condition. To explore this further, we would use the <code>emmeans()</code> function to run the pairwise comparisons.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="anova-part-2.html#cb244-1" tabindex="-1"></a><span class="fu">emmeans</span>(anova_model, pairwise <span class="sc">~</span> Condition)</span></code></pre></div>
+<pre><code>## $emmeans
+##  Condition       emmean    SE df lower.CL upper.CL
+##  Double Espresso   9.02 0.288 42     8.43     9.60
+##  Single Espresso   6.69 0.288 42     6.11     7.27
+##  Water             4.82 0.288 42     4.24     5.40
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast                          estimate    SE df t.ratio p.value
+##  Double Espresso - Single Espresso     2.33 0.407 42   5.720  &lt;.0001
+##  Double Espresso - Water               4.20 0.407 42  10.317  &lt;.0001
+##  Single Espresso - Water               1.87 0.407 42   4.597  0.0001
+## 
+## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+<p>On the basis of this, we might conclude that we have an effect of Condition, and that each of our three groups differs significantly from the others. But would this be right? No, because we haven’t taken account of our covariate.</p>
+<p>We will build our ANCOVA model, adding our covariate before our experimental Condition manipulation. We set the <code>factorize</code> parameter to be <code>FALSE</code> so that it is treated as a continuous predictor, rather than an experimental factor in our model.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="anova-part-2.html#cb246-1" tabindex="-1"></a>model_ancova <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(Ability <span class="sc">~</span> Gaming <span class="sc">+</span> Condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Participant), <span class="at">data =</span> my_data, <span class="at">factorize =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning: Numerical variables NOT centered on 0 (matters if variable in interaction):
+##    Gaming</code></pre>
+<pre><code>## Contrasts set to contr.sum for the following variables: Condition</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="anova-part-2.html#cb249-1" tabindex="-1"></a><span class="fu">anova</span>(model_ancova)</span></code></pre></div>
+<pre><code>## Anova Table (Type 3 tests)
+## 
+## Response: Ability
+##           num Df den Df     MSE       F     ges   Pr(&gt;F)    
+## Gaming         1     41 0.55171 53.5636 0.56643 5.87e-09 ***
+## Condition      2     41 0.55171  0.8771 0.04103   0.4236    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>On this basis of this output, we see that we no longer have an effect of Condition, but we <em>do</em> have an effect of our covariate.</p>
+<p>We can use the <code>emmeans()</code> function to produce the adjusted means (i.e., the means for each of our three groups taking into account the influence of our covariate).</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="anova-part-2.html#cb251-1" tabindex="-1"></a><span class="fu">emmeans</span>(model_ancova, pairwise <span class="sc">~</span> Condition)</span></code></pre></div>
+<pre><code>## $emmeans
+##  Condition       emmean    SE df lower.CL upper.CL
+##  Double Espresso   6.32 0.415 41     5.48     7.16
+##  Single Espresso   6.87 0.193 41     6.48     7.26
+##  Water             7.33 0.393 41     6.53     8.12
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast                          estimate    SE df t.ratio p.value
+##  Double Espresso - Single Espresso   -0.552 0.478 41  -1.155  0.4863
+##  Double Espresso - Water             -1.008 0.761 41  -1.324  0.3900
+##  Single Espresso - Water             -0.456 0.418 41  -1.092  0.5244
+## 
+## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+</div>
+</div>
+<div id="ancova-as-a-special-case-of-regression" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> AN(C)OVA as a Special Case of Regression<a href="anova-part-2.html#ancova-as-a-special-case-of-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are now going to look at ANOVA (and then ANCOVA) as a special case of regression.</p>
+<div id="visualising-our-data-4" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Visualising our Data<a href="anova-part-2.html#visualising-our-data-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s visualise the data with Condition on the x-axis.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="anova-part-2.html#cb253-1" tabindex="-1"></a>my_data <span class="sc">%&gt;%</span></span>
+<span id="cb253-2"><a href="anova-part-2.html#cb253-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Condition, <span class="at">y =</span> Ability, <span class="at">colour =</span> Condition)) <span class="sc">+</span></span>
+<span id="cb253-3"><a href="anova-part-2.html#cb253-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb253-4"><a href="anova-part-2.html#cb253-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">05</span>, <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb253-5"><a href="anova-part-2.html#cb253-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Condition&quot;</span>, </span>
+<span id="cb253-6"><a href="anova-part-2.html#cb253-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Motor Ability&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-7"><a href="anova-part-2.html#cb253-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_boot, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-8"><a href="anova-part-2.html#cb253-8" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb253-9"><a href="anova-part-2.html#cb253-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb253-10"><a href="anova-part-2.html#cb253-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<p>Let’s check how our Condition factor is currently coded in terms of its contrasts. Note, the expression <code>my_data$Condition</code> is the Base R way of referring to the variable called <code>Condition</code> in the dataset <code>my_data</code>.</p>
+</div>
+<div id="setting-up-our-contrasts" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Setting up our Contrasts<a href="anova-part-2.html#setting-up-our-contrasts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="anova-part-2.html#cb254-1" tabindex="-1"></a><span class="fu">contrasts</span>(my_data<span class="sc">$</span>Condition)</span></code></pre></div>
+<pre><code>##                 Single Espresso Water
+## Double Espresso               0     0
+## Single Espresso               1     0
+## Water                         0     1</code></pre>
+<p>We want our Water group to be the reference level (thus corresponding to the intercept of our linear model), and dummy coded as (0, 0) but it’s not currently coded as such. Let’s fix that.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="anova-part-2.html#cb256-1" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> my_data <span class="sc">%&gt;%</span></span>
+<span id="cb256-2"><a href="anova-part-2.html#cb256-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">fct_relevel</span>(Condition,</span>
+<span id="cb256-3"><a href="anova-part-2.html#cb256-3" tabindex="-1"></a>                                 <span class="fu">c</span>(<span class="st">&quot;Water&quot;</span>, <span class="st">&quot;Double Espresso&quot;</span>, <span class="st">&quot;Single Espresso&quot;</span>)))</span>
+<span id="cb256-4"><a href="anova-part-2.html#cb256-4" tabindex="-1"></a></span>
+<span id="cb256-5"><a href="anova-part-2.html#cb256-5" tabindex="-1"></a><span class="fu">contrasts</span>(my_data<span class="sc">$</span>Condition)</span></code></pre></div>
+<pre><code>##                 Double Espresso Single Espresso
+## Water                         0               0
+## Double Espresso               1               0
+## Single Espresso               0               1</code></pre>
+</div>
+<div id="anova-as-a-linear-model" class="section level3 hasAnchor" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> ANOVA as a Linear Model<a href="anova-part-2.html#anova-as-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>OK, this is now what we want. Let’s model our linear model using the <code>lm()</code> function and examine the result.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="anova-part-2.html#cb258-1" tabindex="-1"></a>model_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Ability <span class="sc">~</span> Condition, <span class="at">data =</span> my_data)</span>
+<span id="cb258-2"><a href="anova-part-2.html#cb258-2" tabindex="-1"></a>model_lm</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Ability ~ Condition, data = my_data)
+## 
+## Coefficients:
+##              (Intercept)  ConditionDouble Espresso  ConditionSingle Espresso  
+##                    4.817                     4.199                     1.871</code></pre>
+<p>We can see that the Intercept corresponds to the mean of our Water Condition. To work out the mean Ability of our Double Espresso Group, we use the coding for the Double Espresso group (1, 0) with our equation:</p>
+<p>Ability = Intercept + β1(Double Espresso) + β2(Single Espresso)</p>
+<p>Ability = 4.817 + 4.199(1) + 1.871(0)</p>
+<p>Ability = 4.817 + 4.199</p>
+<p>Ability = 9.016</p>
+<p>To work out the mean Ability of our Single Espresso Group, we use the coding for the Single Espresso group (0, 1) with our equation:</p>
+<p>Ability = 4.817 + 4.199(0) + 1.871(1)</p>
+<p>Ability = 4.817 + 1.871</p>
+<p>Ability = 6.688</p>
+</div>
+<div id="ancova-as-a-linear-model" class="section level3 hasAnchor" number="9.3.4">
+<h3><span class="header-section-number">9.3.4</span> ANCOVA as a Linear Model<a href="anova-part-2.html#ancova-as-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>OK, now to build our ANCOVA using the <code>lm()</code> function, we simply add the covariate (<code>Gaming</code>) to our model specification.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="anova-part-2.html#cb260-1" tabindex="-1"></a>model_ancova <span class="ot">&lt;-</span> <span class="fu">lm</span>(Ability <span class="sc">~</span> Gaming <span class="sc">+</span> Condition, <span class="at">data =</span> my_data)</span>
+<span id="cb260-2"><a href="anova-part-2.html#cb260-2" tabindex="-1"></a>model_ancova</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Ability ~ Gaming + Condition, data = my_data)
+## 
+## Coefficients:
+##              (Intercept)                    Gaming  ConditionDouble Espresso  
+##                  -3.4498                    0.8538                   -1.0085  
+## ConditionSingle Espresso  
+##                  -0.4563</code></pre>
+<p>We can work out the mean of our reference group (Water) by plugging in the values to our equation - note that Gaming is not a factor and we need to enter the mean of this variable.</p>
+<p>We can work it out with the following.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="anova-part-2.html#cb262-1" tabindex="-1"></a><span class="fu">mean</span>(my_data<span class="sc">$</span>Gaming)</span></code></pre></div>
+<pre><code>## [1] 12.62296</code></pre>
+<p>We add this mean (12.62296) to our equation alongside the co-efficients for each of our predictors. With our dummy coding scheme, we can work out the adjusted mean of our Water group.</p>
+<p>Ability = Intercept + β1(Gaming) + β2(Double Espresso) + β3(Single Espresso)</p>
+<p>Ability = -3.4498 + 0.8538(12.62296) + (- 1.0085)(0) + (-0.4563)(0)</p>
+<p>Ability = -3.4498 + 10.777</p>
+<p>Ability = 7.33</p>
+<p>7.33 is the adjusted mean for the Water group, which is what we had from calling the <code>emmeans()</code> function following the ANCOVA. Have a go yourselves at working out the adjusted means of the other two Conditions using our dummy coding.</p>
+</div>
+<div id="centering-our-covariate" class="section level3 hasAnchor" number="9.3.5">
+<h3><span class="header-section-number">9.3.5</span> Centering our Covariate<a href="anova-part-2.html#centering-our-covariate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the video, I mention that we could also have scaled and centred our covariate. This standardises the variable (with the mean centred on zero) and removes the need to multiply the linear model coeffficient for the covariate by the covariate’s mean. Generally, it makes interpretation of the coefficients in our linear model easier.</p>
+<p>We can use the <code>scale()</code> function to create a new (scaled and centred) version of our covariate in our data frame.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="anova-part-2.html#cb264-1" tabindex="-1"></a>my_scaled_data <span class="ot">&lt;-</span> my_data <span class="sc">%&gt;%</span></span>
+<span id="cb264-2"><a href="anova-part-2.html#cb264-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">centred_gaming =</span> <span class="fu">scale</span>(Gaming))</span></code></pre></div>
+<p>We can look at both the uncentred and the centred covariate to see that nothing has changed in the data, other than the variable mean is now centred on zero and the distribution has been scaled.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="anova-part-2.html#cb265-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(my_scaled_data<span class="sc">$</span>Gaming))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="anova-part-2.html#cb266-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(my_scaled_data<span class="sc">$</span>centred_gaming))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p>So let’s build our linear model with the scaled and centred covariate.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="anova-part-2.html#cb267-1" tabindex="-1"></a>model_ancova_centred <span class="ot">&lt;-</span> <span class="fu">lm</span>(Ability <span class="sc">~</span> centred_gaming <span class="sc">+</span> Condition, <span class="at">data =</span> my_scaled_data)</span>
+<span id="cb267-2"><a href="anova-part-2.html#cb267-2" tabindex="-1"></a>model_ancova_centred</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Ability ~ centred_gaming + Condition, data = my_scaled_data)
+## 
+## Coefficients:
+##              (Intercept)            centred_gaming  ConditionDouble Espresso  
+##                   7.3280                    2.3046                   -1.0085  
+## ConditionSingle Espresso  
+##                  -0.4563</code></pre>
+<p>We see that the Intercept now corresponds to the adjusted mean for the Water group. We can calculate the adjusted mean for the Double Espresso group by subtracting 1.0085 from 7.3280, and we can calculate the adjusted mean for the Single Espresso group by subtracting 0.4563 from 7.3280. Hopefully you see that scaling and centering the covariate makes it’s a lot easier to then interpret the coefficients of our linear model.</p>
+  
+<center>
+<strong>End of workshop 9 materials</strong>
+</center>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="anova-part-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="technical-details-and-credits.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"book_filename": "index",
+"output_dir": "docs"
+});
+});
+</script>
+
+</body>
+
+</html>
