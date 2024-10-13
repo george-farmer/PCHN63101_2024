@@ -732,12 +732,12 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 Chapter 1.
 [7]
 
-LaTeX Warning: File `../images/ionnidis.png' not found on input line 167.
+LaTeX Warning: File `images/ionnidis.png' not found on input line 167.
 
-! Unable to load picture or PDF file '../images/ionnidis.png'.
+! Unable to load picture or PDF file 'images/ionnidis.png'.
 <to be read again> 
                    }
-l.167 ...ght=\textheight]{../images/ionnidis.png}}
+l.167 ...ght=\textheight]{images/ionnidis.png}}
                                                    
 Here is how much of TeX's memory you used:
  17238 strings out of 477590

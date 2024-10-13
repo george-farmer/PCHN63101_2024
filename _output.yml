@@ -1,3 +1,5 @@
+book_filename: "index"  # GitHub Pages uses 'index.html' as the default homepage
+output_dir: "docs"      # GitHub Pages serves files from the 'docs' folder
 bookdown::gitbook:
   css: style.css
   config:
@@ -9,8 +11,7 @@ bookdown::gitbook:
     edit: null
     download: null
     sharing: null
-    book_filename: "index"  # GitHub Pages uses 'index.html' as the default homepage
-    output_dir: "docs"      # GitHub Pages serves files from the 'docs' folder
+
 
 bookdown::pdf_book:
   includes:
