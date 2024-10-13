@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Workshop 6 Regression Part 1 | Advanced Data Skills, Open Science and Reproducibility 2024/25</title>
+  <meta name="description" content="Workshop 6 Regression Part 1 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Workshop 6 Regression Part 1 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workshop 6 Regression Part 1 | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-markdown.html"/>
+<link rel="next" href="regression-part-2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PCHN63101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="open-science.html"><a href="open-science.html"><i class="fa fa-check"></i><b>1</b> Open Science</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="open-science.html"><a href="open-science.html#open-research-and-reproducibility"><i class="fa fa-check"></i><b>1.1</b> Open Research and Reproducibility</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="open-science.html"><a href="open-science.html#how-to-do-reproducible-research"><i class="fa fa-check"></i><b>1.1.1</b> How to do Reproducible Research</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="open-science.html"><a href="open-science.html#experimental-power"><i class="fa fa-check"></i><b>1.2</b> Experimental Power</a></li>
+<li class="chapter" data-level="1.3" data-path="open-science.html"><a href="open-science.html#open-source-software"><i class="fa fa-check"></i><b>1.3</b> Open Source Software</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="open-science.html"><a href="open-science.html#statistical-and-scientific-computing"><i class="fa fa-check"></i><b>1.3.1</b> Statistical and Scientific Computing</a></li>
+<li class="chapter" data-level="1.3.2" data-path="open-science.html"><a href="open-science.html#document-creation"><i class="fa fa-check"></i><b>1.3.2</b> Document Creation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="open-science.html"><a href="open-science.html#building-experiments"><i class="fa fa-check"></i><b>1.3.3</b> Building Experiments</a></li>
+<li class="chapter" data-level="1.3.4" data-path="open-science.html"><a href="open-science.html#linux"><i class="fa fa-check"></i><b>1.3.4</b> Linux</a></li>
+<li class="chapter" data-level="1.3.5" data-path="open-science.html"><a href="open-science.html#more-reading"><i class="fa fa-check"></i><b>1.3.5</b> More Reading</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
+<li class="chapter" data-level="2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting Started</a></li>
+<li class="chapter" data-level="2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#keeping-things-organised"><i class="fa fa-check"></i><b>2.3</b> Keeping Things Organised</a></li>
+<li class="chapter" data-level="2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-coding-style"><i class="fa fa-check"></i><b>2.4</b> Good Coding Style</a></li>
+<li class="chapter" data-level="2.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#your-first-r-script"><i class="fa fa-check"></i><b>2.5</b> Your First R Script</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html"><i class="fa fa-check"></i><b>3</b> Data Wrangling and Data Summarising</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#wrangling-your-data"><i class="fa fa-check"></i><b>3.1</b> Wrangling your data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#loading-the-tidyverse"><i class="fa fa-check"></i><b>3.1.1</b> Loading the Tidyverse</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-head-and-str"><i class="fa fa-check"></i><b>3.1.2</b> Using <code>head()</code> and <code>str()</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-select-to-select-columns"><i class="fa fa-check"></i><b>3.1.3</b> Use <code>select()</code> to select columns</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-filter-to-select-rows"><i class="fa fa-check"></i><b>3.1.4</b> Use <code>filter()</code> to select rows</a></li>
+<li class="chapter" data-level="3.1.5" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#the-pipe"><i class="fa fa-check"></i><b>3.1.5</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.1.6" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#tidying-up-a-dataset"><i class="fa fa-check"></i><b>3.1.6</b> Tidying up a dataset</a></li>
+<li class="chapter" data-level="3.1.7" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#joining-two-datasets"><i class="fa fa-check"></i><b>3.1.7</b> Joining Two Datasets</a></li>
+<li class="chapter" data-level="3.1.8" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-complete-this-before-the-in-person-session"><i class="fa fa-check"></i><b>3.1.8</b> Your challenge (complete this before the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#summarising-your-data"><i class="fa fa-check"></i><b>3.2</b> Summarising your data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-group_by-and-summarise"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#adding-columns-using-mutate"><i class="fa fa-check"></i><b>3.2.2</b> Adding columns using <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-do-this-during-the-in-person-session"><i class="fa fa-check"></i><b>3.2.3</b> Your challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>4.1</b> The Basics of ggplot2</a></li>
+<li class="chapter" data-level="4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#your-first-visualisation"><i class="fa fa-check"></i><b>4.2</b> Your First Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#improving-the-plot"><i class="fa fa-check"></i><b>4.2.1</b> Improving the Plot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-summary-statistics"><i class="fa fa-check"></i><b>4.2.2</b> Adding Summary Statistics</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#the-finished-plot"><i class="fa fa-check"></i><b>4.2.3</b> The Finished(?) Plot</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#using-facet_wrap"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>4.3</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.4" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-histograms"><i class="fa fa-check"></i><b>4.4</b> Plotting Histograms</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-ggridges-package"><i class="fa fa-check"></i><b>4.4.1</b> The <code>ggridges</code> Package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-visualisation.html"><a href="data-visualisation.html#the-nhanes-dataset"><i class="fa fa-check"></i><b>4.5</b> The NHANES Dataset</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-visualisation.html"><a href="data-visualisation.html#tidying-the-data"><i class="fa fa-check"></i><b>4.5.1</b> Tidying the Data</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-a-histogram"><i class="fa fa-check"></i><b>4.5.2</b> Plotting a Histogram</a></li>
+<li class="chapter" data-level="4.5.3" data-path="data-visualisation.html"><a href="data-visualisation.html#summary-statistics"><i class="fa fa-check"></i><b>4.5.3</b> Summary Statistics</a></li>
+<li class="chapter" data-level="4.5.4" data-path="data-visualisation.html"><a href="data-visualisation.html#geom_violin"><i class="fa fa-check"></i><b>4.5.4</b> <code>geom_violin()</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-interaction-effects"><i class="fa fa-check"></i><b>4.5.5</b> Plotting Interaction Effects</a></li>
+<li class="chapter" data-level="4.5.6" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms-with-facet_wrap"><i class="fa fa-check"></i><b>4.5.6</b> Histograms with <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-visualisation.html"><a href="data-visualisation.html#your-challenge-do-this-during-the-in-person-session-1"><i class="fa fa-check"></i><b>4.6</b> Your Challenge (do this during the in-person session)</a></li>
+<li class="chapter" data-level="4.7" data-path="data-visualisation.html"><a href="data-visualisation.html#additional-resources"><i class="fa fa-check"></i><b>4.7</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>5</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-markdown.html"><a href="r-markdown.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="r-markdown.html"><a href="r-markdown.html#your-challenge-do-this-during-the-in-person-session-2"><i class="fa fa-check"></i><b>5.2</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-part-1.html"><a href="regression-part-1.html"><i class="fa fa-check"></i><b>6</b> Regression Part 1</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regression-part-1.html"><a href="regression-part-1.html#overview-1"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="regression-part-1.html"><a href="regression-part-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-part-1.html"><a href="regression-part-1.html#the-packages-we-need"><i class="fa fa-check"></i><b>6.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-part-1.html"><a href="regression-part-1.html#import-the-data"><i class="fa fa-check"></i><b>6.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-part-1.html"><a href="regression-part-1.html#tidy-the-data"><i class="fa fa-check"></i><b>6.2.3</b> Tidy the Data</a></li>
+<li class="chapter" data-level="6.2.4" data-path="regression-part-1.html"><a href="regression-part-1.html#plot-the-data"><i class="fa fa-check"></i><b>6.2.4</b> Plot the Data</a></li>
+<li class="chapter" data-level="6.2.5" data-path="regression-part-1.html"><a href="regression-part-1.html#pearsons-r"><i class="fa fa-check"></i><b>6.2.5</b> Pearson’s r</a></li>
+<li class="chapter" data-level="6.2.6" data-path="regression-part-1.html"><a href="regression-part-1.html#model-the-data"><i class="fa fa-check"></i><b>6.2.6</b> Model the Data</a></li>
+<li class="chapter" data-level="6.2.7" data-path="regression-part-1.html"><a href="regression-part-1.html#checking-our-assumptions"><i class="fa fa-check"></i><b>6.2.7</b> Checking Our Assumptions</a></li>
+<li class="chapter" data-level="6.2.8" data-path="regression-part-1.html"><a href="regression-part-1.html#interpreting-our-model"><i class="fa fa-check"></i><b>6.2.8</b> Interpreting Our Model</a></li>
+<li class="chapter" data-level="6.2.9" data-path="regression-part-1.html"><a href="regression-part-1.html#your-challenge-do-this-during-the-in-person-session-3"><i class="fa fa-check"></i><b>6.2.9</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-part-2.html"><a href="regression-part-2.html"><i class="fa fa-check"></i><b>7</b> Regression Part 2</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-part-2.html"><a href="regression-part-2.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="regression-part-2.html"><a href="regression-part-2.html#multiple-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-part-2.html"><a href="regression-part-2.html#the-packages-we-need-1"><i class="fa fa-check"></i><b>7.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="7.2.2" data-path="regression-part-2.html"><a href="regression-part-2.html#import-the-data-1"><i class="fa fa-check"></i><b>7.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-1"><i class="fa fa-check"></i><b>7.2.3</b> Model the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-part-2.html"><a href="regression-part-2.html#stepwise-regression"><i class="fa fa-check"></i><b>7.3</b> Stepwise regression</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-2"><i class="fa fa-check"></i><b>7.3.1</b> Model the Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-part-1.html"><a href="anova-part-1.html"><i class="fa fa-check"></i><b>8</b> ANOVA Part 1</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="anova-part-1.html"><a href="anova-part-1.html#overview-3"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-part-1.html"><a href="anova-part-1.html#between-participants-anova"><i class="fa fa-check"></i><b>8.2</b> Between Participants ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="anova-part-1.html"><a href="anova-part-1.html#loading-our-packages"><i class="fa fa-check"></i><b>8.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="8.2.2" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data"><i class="fa fa-check"></i><b>8.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data"><i class="fa fa-check"></i><b>8.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data"><i class="fa fa-check"></i><b>8.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model"><i class="fa fa-check"></i><b>8.2.5</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.2.6" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output"><i class="fa fa-check"></i><b>8.2.6</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="anova-part-1.html"><a href="anova-part-1.html#repeated-measures-anova"><i class="fa fa-check"></i><b>8.3</b> Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-1"><i class="fa fa-check"></i><b>8.3.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-1"><i class="fa fa-check"></i><b>8.3.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.3.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-1"><i class="fa fa-check"></i><b>8.3.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.3.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-1"><i class="fa fa-check"></i><b>8.3.4</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.3.5" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output-1"><i class="fa fa-check"></i><b>8.3.5</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="anova-part-1.html"><a href="anova-part-1.html#factorial-anova"><i class="fa fa-check"></i><b>8.4</b> Factorial ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-2"><i class="fa fa-check"></i><b>8.4.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-2"><i class="fa fa-check"></i><b>8.4.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.4.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-2"><i class="fa fa-check"></i><b>8.4.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.4.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-2"><i class="fa fa-check"></i><b>8.4.4</b> Building our ANOVA Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="anova-part-1.html"><a href="anova-part-1.html#your-challenge-do-this-during-the-in-person-session-4"><i class="fa fa-check"></i><b>8.5</b> Your Challenge (do this during the in-person session)</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1"><i class="fa fa-check"></i><b>8.5.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.5.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2"><i class="fa fa-check"></i><b>8.5.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.5.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3"><i class="fa fa-check"></i><b>8.5.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.5.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4"><i class="fa fa-check"></i><b>8.5.4</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="anova-part-1.html"><a href="anova-part-1.html#answers"><i class="fa fa-check"></i><b>8.6</b> Answers</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1-1"><i class="fa fa-check"></i><b>8.6.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.6.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2-1"><i class="fa fa-check"></i><b>8.6.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.6.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3-1"><i class="fa fa-check"></i><b>8.6.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.6.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4-1"><i class="fa fa-check"></i><b>8.6.4</b> Question 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="anova-part-2.html"><a href="anova-part-2.html"><i class="fa fa-check"></i><b>9</b> ANOVA Part 2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="anova-part-2.html"><a href="anova-part-2.html#overview-4"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-ancova"><i class="fa fa-check"></i><b>9.2</b> Building our ANCOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="anova-part-2.html"><a href="anova-part-2.html#loading-our-packages-1"><i class="fa fa-check"></i><b>9.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="9.2.2" data-path="anova-part-2.html"><a href="anova-part-2.html#reading-in-our-data-3"><i class="fa fa-check"></i><b>9.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="anova-part-2.html"><a href="anova-part-2.html#summarising-our-data-3"><i class="fa fa-check"></i><b>9.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="9.2.4" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-3"><i class="fa fa-check"></i><b>9.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.2.5" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-anova-model-3"><i class="fa fa-check"></i><b>9.2.5</b> Building our ANOVA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-special-case-of-regression"><i class="fa fa-check"></i><b>9.3</b> AN(C)OVA as a Special Case of Regression</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-4"><i class="fa fa-check"></i><b>9.3.1</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.3.2" data-path="anova-part-2.html"><a href="anova-part-2.html#setting-up-our-contrasts"><i class="fa fa-check"></i><b>9.3.2</b> Setting up our Contrasts</a></li>
+<li class="chapter" data-level="9.3.3" data-path="anova-part-2.html"><a href="anova-part-2.html#anova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.3</b> ANOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.4" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.4</b> ANCOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.5" data-path="anova-part-2.html"><a href="anova-part-2.html#centering-our-covariate"><i class="fa fa-check"></i><b>9.3.5</b> Centering our Covariate</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="technical-details-and-credits.html"><a href="technical-details-and-credits.html"><i class="fa fa-check"></i>Technical Details and Credits</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Data Skills, Open Science and Reproducibility 2024/25</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression-part-1" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Workshop 6</span> Regression Part 1<a href="regression-part-1.html#regression-part-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this workshop we will explore Simple Regression in the context of the General Linear Model (GLM). You will also have the opportunity to build some regression models where you predict an outcome variable on the basis of one predictor. You will also learn how to run model diagnostics to ensure you are not violating any key assumptions of regression.</p>
+<div id="overview-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Overview<a href="regression-part-1.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First off I’d like you to watch the following videos which start off by revising the basics of correlation, before examining how we build regressions models.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/cfyb3T_j9VQ" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/jUTUBVWwwPI" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>  </p>
+</div>
+<div id="simple-linear-regression" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Simple Linear Regression<a href="regression-part-1.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After having watched the videos above, I’d like you to work through the following simple linear regression example in R. Remember to create a new <code>.Rproj</code> file to keep things organised.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/wxCST9aeT9E" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<div id="the-packages-we-need" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> The Packages We Need<a href="regression-part-1.html#the-packages-we-need" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First we need to install the packages we need. We’re going to install the <code>tidyverse</code> set of packages plus a few others. The package <code>Hmisc</code> allows us to use the <code>rcorr()</code> function for calculating Pearson’s r, and the <code>performance</code> package so we can test our model assumptions. Remember, if you haven’t previously installed these packages on your laptop you first need to type <code>install.packages("packagename")</code> in the console before you can call the <code>library()</code> function for that package. You <em>may</em> also need to install the package <code>see</code> to get the <code>performance</code> package working. If so, do that in the console by typing <code>install.packages("see")</code>.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="regression-part-1.html#cb115-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb115-2"><a href="regression-part-1.html#cb115-2" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb115-3"><a href="regression-part-1.html#cb115-3" tabindex="-1"></a><span class="fu">library</span>(performance)</span></code></pre></div>
+</div>
+<div id="import-the-data" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Import the Data<a href="regression-part-1.html#import-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Import the dataset called <code>crime_dataset.csv</code> - this dataset contains population data, housing price index data and crime data for cities in the US.</p>
+<p>We can use the function <code>head()</code> to display the first few rows of our dataset called “crime”.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="regression-part-1.html#cb116-1" tabindex="-1"></a>crime <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/09_glm_regression_pt1/master/data/crime_dataset.csv&quot;</span>)</span>
+<span id="cb116-2"><a href="regression-part-1.html#cb116-2" tabindex="-1"></a><span class="fu">head</span>(crime)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 9
+##    Year index_nsa `City, State` Population `Violent Crimes` Homicides Rapes
+##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1  1975      41.1 Atlanta, GA       490584             8033       185   443
+## 2  1975      30.8 Chicago, IL      3150000            37160       818  1657
+## 3  1975      36.4 Cleveland, OH     659931            10403       288   491
+## 4  1975      20.9 Oakland, CA       337748             5900       111   316
+## 5  1975      20.4 Seattle, WA       503500             3971        52   324
+## 6    NA      NA   &lt;NA&gt;                  NA               NA        NA    NA
+## # ℹ 2 more variables: Assaults &lt;dbl&gt;, Robberies &lt;dbl&gt;</code></pre>
+</div>
+<div id="tidy-the-data" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Tidy the Data<a href="regression-part-1.html#tidy-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First let’s do some wrangling. There is one column that combines both City and State information. Let’s separate that information out into two new columns called “City” and “State” using the function <code>separate()</code>. We’ll also rename the columns to change the name of the “index_nsa” column to “House_price” and get rid of the space in the “Violent Crimes” heading.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="regression-part-1.html#cb118-1" tabindex="-1"></a>crime_tidied <span class="ot">&lt;-</span> crime <span class="sc">%&gt;%</span></span>
+<span id="cb118-2"><a href="regression-part-1.html#cb118-2" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;City, State&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;City&quot;</span>, <span class="st">&quot;State&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb118-3"><a href="regression-part-1.html#cb118-3" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">House_price =</span> index_nsa) <span class="sc">%&gt;%</span></span>
+<span id="cb118-4"><a href="regression-part-1.html#cb118-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Violent_Crimes =</span> <span class="st">&quot;Violent Crimes&quot;</span>)</span>
+<span id="cb118-5"><a href="regression-part-1.html#cb118-5" tabindex="-1"></a><span class="fu">head</span>(crime_tidied)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 10
+##    Year House_price City      State Population Violent_Crimes Homicides Rapes
+##   &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1  1975        41.1 Atlanta   GA        490584           8033       185   443
+## 2  1975        30.8 Chicago   IL       3150000          37160       818  1657
+## 3  1975        36.4 Cleveland OH        659931          10403       288   491
+## 4  1975        20.9 Oakland   CA        337748           5900       111   316
+## 5  1975        20.4 Seattle   WA        503500           3971        52   324
+## 6    NA        NA   &lt;NA&gt;      &lt;NA&gt;          NA             NA        NA    NA
+## # ℹ 2 more variables: Assaults &lt;dbl&gt;, Robberies &lt;dbl&gt;</code></pre>
+</div>
+<div id="plot-the-data" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Plot the Data<a href="regression-part-1.html#plot-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We might first think that as population size increases, crime rate also increases. Let’s first build a scatter plot.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="regression-part-1.html#cb120-1" tabindex="-1"></a>crime_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb120-2"><a href="regression-part-1.html#cb120-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Population, <span class="at">y =</span> Violent_Crimes)) <span class="sc">+</span> </span>
+<span id="cb120-3"><a href="regression-part-1.html#cb120-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb120-4"><a href="regression-part-1.html#cb120-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb120-5"><a href="regression-part-1.html#cb120-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb120-6"><a href="regression-part-1.html#cb120-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
+<span id="cb120-7"><a href="regression-part-1.html#cb120-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Population&quot;</span>, </span>
+<span id="cb120-8"><a href="regression-part-1.html#cb120-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Violent Crimes&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+</div>
+<div id="pearsons-r" class="section level3 hasAnchor" number="6.2.5">
+<h3><span class="header-section-number">6.2.5</span> Pearson’s r<a href="regression-part-1.html#pearsons-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This plot looks pretty interesting. How about calculating Pearson’s r?</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="regression-part-1.html#cb121-1" tabindex="-1"></a><span class="fu">rcorr</span>(crime_tidied<span class="sc">$</span>Population, crime_tidied<span class="sc">$</span>Violent_Crimes)</span></code></pre></div>
+<pre><code>##      x    y
+## x 1.00 0.81
+## y 0.81 1.00
+## 
+## n
+##      x    y
+## x 1714 1708
+## y 1708 1708
+## 
+## P
+##   x  y 
+## x     0
+## y  0</code></pre>
+<p>Look at the r and p-values - r is =.81 and p &lt; .001. So ~66% of the variance in our Violent_Crimes variable is explained by our Population size variable. Clearly there is a positive relationship between population size and the rate of violent crime. From the plot, we might conclude that the relationship is being overly influenced by crime in a small number of very large cities (top right of the plot above). Let’s exclude cities with populations greater than 2,000,000</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="regression-part-1.html#cb123-1" tabindex="-1"></a>crime_filtered <span class="ot">&lt;-</span> <span class="fu">filter</span>(crime_tidied, Population <span class="sc">&lt;</span> <span class="dv">2000000</span>)</span></code></pre></div>
+<p>Now let’s redo the plot. As there are still likely to be quite a lot of points (and thus overplotting with many points appearing roughly in the same place), we can set the alpha parameter to be &lt; 1 in the <code>geom_point()</code> line of code. This parameter corresponds to the translucency of each point. Change it to other values to see what happens.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="regression-part-1.html#cb124-1" tabindex="-1"></a>crime_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb124-2"><a href="regression-part-1.html#cb124-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Population, <span class="at">y =</span> Violent_Crimes)) <span class="sc">+</span> </span>
+<span id="cb124-3"><a href="regression-part-1.html#cb124-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span> </span>
+<span id="cb124-4"><a href="regression-part-1.html#cb124-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb124-5"><a href="regression-part-1.html#cb124-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb124-6"><a href="regression-part-1.html#cb124-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
+<span id="cb124-7"><a href="regression-part-1.html#cb124-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Population&quot;</span>, </span>
+<span id="cb124-8"><a href="regression-part-1.html#cb124-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Violent Crimes&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p>And calculate Pearson’s r.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="regression-part-1.html#cb125-1" tabindex="-1"></a><span class="fu">rcorr</span>(crime_filtered<span class="sc">$</span>Population, crime_filtered<span class="sc">$</span>Violent_Crimes)</span></code></pre></div>
+<pre><code>##      x    y
+## x 1.00 0.69
+## y 0.69 1.00
+## 
+## n
+##      x    y
+## x 1659 1653
+## y 1653 1653
+## 
+## P
+##   x  y 
+## x     0
+## y  0</code></pre>
+<p>There is still a clear positive relationship (r=.69). Let’s build a linear model. The dataset contains a lot of data and each city appears a number of times (once each year). For our linear model, our observations need to be independent of each other so let’s just focus on the year 2015. That way each city will just appear once.</p>
+<p>First we apply our filter.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="regression-part-1.html#cb127-1" tabindex="-1"></a>crime_filtered <span class="ot">&lt;-</span> <span class="fu">filter</span>(crime_filtered, Year <span class="sc">==</span> <span class="dv">2015</span>)</span></code></pre></div>
+<p>Then we build a plot. I’m using the layer <code>geom_text()</code> to plot the City names and set the check_overlap parameter to <code>TRUE</code> to ensure the labels don’t overlap.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="regression-part-1.html#cb128-1" tabindex="-1"></a>crime_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb128-2"><a href="regression-part-1.html#cb128-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Population, <span class="at">y =</span> Violent_Crimes, <span class="at">label =</span> City)) <span class="sc">+</span> </span>
+<span id="cb128-3"><a href="regression-part-1.html#cb128-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb128-4"><a href="regression-part-1.html#cb128-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">nudge_y =</span> <span class="dv">500</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb128-5"><a href="regression-part-1.html#cb128-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb128-6"><a href="regression-part-1.html#cb128-6" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1800000</span>) <span class="sc">+</span></span>
+<span id="cb128-7"><a href="regression-part-1.html#cb128-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb128-8"><a href="regression-part-1.html#cb128-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
+<span id="cb128-9"><a href="regression-part-1.html#cb128-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Population&quot;</span>, </span>
+<span id="cb128-10"><a href="regression-part-1.html#cb128-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Violent Crimes&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<p>This shows a clear positive linear relationship so let’s work out Pearson’s r.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="regression-part-1.html#cb129-1" tabindex="-1"></a><span class="fu">rcorr</span>(crime_filtered<span class="sc">$</span>Population, crime_filtered<span class="sc">$</span>Violent_Crimes)</span></code></pre></div>
+<pre><code>##      x    y
+## x 1.00 0.65
+## y 0.65 1.00
+## 
+## n
+##    x  y
+## x 42 40
+## y 40 40
+## 
+## P
+##   x  y 
+## x     0
+## y  0</code></pre>
+</div>
+<div id="model-the-data" class="section level3 hasAnchor" number="6.2.6">
+<h3><span class="header-section-number">6.2.6</span> Model the Data<a href="regression-part-1.html#model-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Imagine we are a city planner, and we want to know by how much we think violent crimes might increase as a function of population size. In other words, we want to work out how the violent crime rate is predicted by population size.</p>
+<p>We’re going to build two linear models - one <code>model1</code> where we’re using the mean of our outcome variable as the predictor, and a second <code>model2</code> where we are using Population size to predict the Violent Crimes outcome.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="regression-part-1.html#cb131-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Violent_Crimes <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> crime_filtered)</span>
+<span id="cb131-2"><a href="regression-part-1.html#cb131-2" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Violent_Crimes <span class="sc">~</span> Population, <span class="at">data =</span> crime_filtered)</span></code></pre></div>
+</div>
+<div id="checking-our-assumptions" class="section level3 hasAnchor" number="6.2.7">
+<h3><span class="header-section-number">6.2.7</span> Checking Our Assumptions<a href="regression-part-1.html#checking-our-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s use the <code>check_model()</code> function from the performance package to check the assumptions of our model.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="regression-part-1.html#cb132-1" tabindex="-1"></a><span class="fu">check_model</span>(model2, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<p>Our dataset is small and so some of our diagnostic plots don’t look great. We’ll come back to the influential outlier (case 29) later - but for now let’s use the <code>anova()</code> function to see if our model with Population as the predictor is better than the one using just the mean.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="regression-part-1.html#cb133-1" tabindex="-1"></a><span class="fu">anova</span>(model1, model2)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: Violent_Crimes ~ 1
+## Model 2: Violent_Crimes ~ Population
+##   Res.Df       RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1     39 445568991                                  
+## 2     38 257690819  1 187878173 27.705 5.813e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>It is - the models differ and you’ll see the residual sum of squares (or the error) is less in the second model (which has Population as the predictor). This means the deviation between our observed data and the regression line model <code>model2</code> is significantly less than the deviation between our observed data and the mean as a model of our data <code>model1</code>. So let’s get the parameter estimates of <code>model2</code>.</p>
+</div>
+<div id="interpreting-our-model" class="section level3 hasAnchor" number="6.2.8">
+<h3><span class="header-section-number">6.2.8</span> Interpreting Our Model<a href="regression-part-1.html#interpreting-our-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="regression-part-1.html#cb135-1" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Violent_Crimes ~ Population, data = crime_filtered)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5465.8 -1633.4  -809.1   684.3  6213.8 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 9.443e+02  9.216e+02   1.025    0.312    
+## Population  6.963e-03  1.323e-03   5.264 5.81e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2604 on 38 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.4217, Adjusted R-squared:  0.4064 
+## F-statistic: 27.71 on 1 and 38 DF,  p-value: 5.813e-06</code></pre>
+<p>The intercept corresponds to where our regression line intercepts the y-axis, and the Population parameter corresponds to the slope of our line. We see that for every increase in population by 1 there is an extra 0.006963 increase in violent crime.</p>
+<p>For a city with a population of about a million, there will be about 7907 Violent Crimes. We calculate this by multiplying the estimate of our predictor (0.006963) by 1,000,000 and then adding the intercept (944.3). This gives us 7907.3 crimes - which tallys with what you see in our regression line above. We may have a few outliers - how would you figure out what those were? Try excluding any outliers you find and re-building your model.</p>
+</div>
+<div id="your-challenge-do-this-during-the-in-person-session-3" class="section level3 hasAnchor" number="6.2.9">
+<h3><span class="header-section-number">6.2.9</span> Your Challenge (do this during the in-person session)<a href="regression-part-1.html#your-challenge-do-this-during-the-in-person-session-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You now have three tasks:<br>
+1. Check whether the same relationship holds for population size and robberies in 2015.<br>
+2. Are house prices predicted by the number of violent crimes in 2015?<br>
+3. Are house prices predicted by population size in 2015?</p>
+<center>
+<strong>End of workshop 6 materials</strong>
+</center>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-part-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

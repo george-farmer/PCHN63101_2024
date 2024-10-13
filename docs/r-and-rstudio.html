@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Workshop 2 R and RStudio | Advanced Data Skills, Open Science and Reproducibility 2024/25</title>
+  <meta name="description" content="Workshop 2 R and RStudio | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Workshop 2 R and RStudio | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workshop 2 R and RStudio | Advanced Data Skills, Open Science and Reproducibility 2024/25" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="open-science.html"/>
+<link rel="next" href="data-wrangling-and-data-summarising.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PCHN63101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="open-science.html"><a href="open-science.html"><i class="fa fa-check"></i><b>1</b> Open Science</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="open-science.html"><a href="open-science.html#open-research-and-reproducibility"><i class="fa fa-check"></i><b>1.1</b> Open Research and Reproducibility</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="open-science.html"><a href="open-science.html#how-to-do-reproducible-research"><i class="fa fa-check"></i><b>1.1.1</b> How to do Reproducible Research</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="open-science.html"><a href="open-science.html#experimental-power"><i class="fa fa-check"></i><b>1.2</b> Experimental Power</a></li>
+<li class="chapter" data-level="1.3" data-path="open-science.html"><a href="open-science.html#open-source-software"><i class="fa fa-check"></i><b>1.3</b> Open Source Software</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="open-science.html"><a href="open-science.html#statistical-and-scientific-computing"><i class="fa fa-check"></i><b>1.3.1</b> Statistical and Scientific Computing</a></li>
+<li class="chapter" data-level="1.3.2" data-path="open-science.html"><a href="open-science.html#document-creation"><i class="fa fa-check"></i><b>1.3.2</b> Document Creation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="open-science.html"><a href="open-science.html#building-experiments"><i class="fa fa-check"></i><b>1.3.3</b> Building Experiments</a></li>
+<li class="chapter" data-level="1.3.4" data-path="open-science.html"><a href="open-science.html#linux"><i class="fa fa-check"></i><b>1.3.4</b> Linux</a></li>
+<li class="chapter" data-level="1.3.5" data-path="open-science.html"><a href="open-science.html#more-reading"><i class="fa fa-check"></i><b>1.3.5</b> More Reading</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
+<li class="chapter" data-level="2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting Started</a></li>
+<li class="chapter" data-level="2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#keeping-things-organised"><i class="fa fa-check"></i><b>2.3</b> Keeping Things Organised</a></li>
+<li class="chapter" data-level="2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-coding-style"><i class="fa fa-check"></i><b>2.4</b> Good Coding Style</a></li>
+<li class="chapter" data-level="2.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#your-first-r-script"><i class="fa fa-check"></i><b>2.5</b> Your First R Script</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html"><i class="fa fa-check"></i><b>3</b> Data Wrangling and Data Summarising</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#wrangling-your-data"><i class="fa fa-check"></i><b>3.1</b> Wrangling your data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#loading-the-tidyverse"><i class="fa fa-check"></i><b>3.1.1</b> Loading the Tidyverse</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-head-and-str"><i class="fa fa-check"></i><b>3.1.2</b> Using <code>head()</code> and <code>str()</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-select-to-select-columns"><i class="fa fa-check"></i><b>3.1.3</b> Use <code>select()</code> to select columns</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#use-filter-to-select-rows"><i class="fa fa-check"></i><b>3.1.4</b> Use <code>filter()</code> to select rows</a></li>
+<li class="chapter" data-level="3.1.5" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#the-pipe"><i class="fa fa-check"></i><b>3.1.5</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.1.6" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#tidying-up-a-dataset"><i class="fa fa-check"></i><b>3.1.6</b> Tidying up a dataset</a></li>
+<li class="chapter" data-level="3.1.7" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#joining-two-datasets"><i class="fa fa-check"></i><b>3.1.7</b> Joining Two Datasets</a></li>
+<li class="chapter" data-level="3.1.8" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-complete-this-before-the-in-person-session"><i class="fa fa-check"></i><b>3.1.8</b> Your challenge (complete this before the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#summarising-your-data"><i class="fa fa-check"></i><b>3.2</b> Summarising your data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#using-group_by-and-summarise"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#adding-columns-using-mutate"><i class="fa fa-check"></i><b>3.2.2</b> Adding columns using <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-wrangling-and-data-summarising.html"><a href="data-wrangling-and-data-summarising.html#your-challenge-do-this-during-the-in-person-session"><i class="fa fa-check"></i><b>3.2.3</b> Your challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>4.1</b> The Basics of ggplot2</a></li>
+<li class="chapter" data-level="4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#your-first-visualisation"><i class="fa fa-check"></i><b>4.2</b> Your First Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#improving-the-plot"><i class="fa fa-check"></i><b>4.2.1</b> Improving the Plot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-summary-statistics"><i class="fa fa-check"></i><b>4.2.2</b> Adding Summary Statistics</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#the-finished-plot"><i class="fa fa-check"></i><b>4.2.3</b> The Finished(?) Plot</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#using-facet_wrap"><i class="fa fa-check"></i><b>4.2.4</b> Using <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>4.3</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.4" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-histograms"><i class="fa fa-check"></i><b>4.4</b> Plotting Histograms</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-ggridges-package"><i class="fa fa-check"></i><b>4.4.1</b> The <code>ggridges</code> Package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-visualisation.html"><a href="data-visualisation.html#the-nhanes-dataset"><i class="fa fa-check"></i><b>4.5</b> The NHANES Dataset</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-visualisation.html"><a href="data-visualisation.html#tidying-the-data"><i class="fa fa-check"></i><b>4.5.1</b> Tidying the Data</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-a-histogram"><i class="fa fa-check"></i><b>4.5.2</b> Plotting a Histogram</a></li>
+<li class="chapter" data-level="4.5.3" data-path="data-visualisation.html"><a href="data-visualisation.html#summary-statistics"><i class="fa fa-check"></i><b>4.5.3</b> Summary Statistics</a></li>
+<li class="chapter" data-level="4.5.4" data-path="data-visualisation.html"><a href="data-visualisation.html#geom_violin"><i class="fa fa-check"></i><b>4.5.4</b> <code>geom_violin()</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="data-visualisation.html"><a href="data-visualisation.html#plotting-interaction-effects"><i class="fa fa-check"></i><b>4.5.5</b> Plotting Interaction Effects</a></li>
+<li class="chapter" data-level="4.5.6" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms-with-facet_wrap"><i class="fa fa-check"></i><b>4.5.6</b> Histograms with <code>facet_wrap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-visualisation.html"><a href="data-visualisation.html#your-challenge-do-this-during-the-in-person-session-1"><i class="fa fa-check"></i><b>4.6</b> Your Challenge (do this during the in-person session)</a></li>
+<li class="chapter" data-level="4.7" data-path="data-visualisation.html"><a href="data-visualisation.html#additional-resources"><i class="fa fa-check"></i><b>4.7</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>5</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-markdown.html"><a href="r-markdown.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="r-markdown.html"><a href="r-markdown.html#your-challenge-do-this-during-the-in-person-session-2"><i class="fa fa-check"></i><b>5.2</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-part-1.html"><a href="regression-part-1.html"><i class="fa fa-check"></i><b>6</b> Regression Part 1</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regression-part-1.html"><a href="regression-part-1.html#overview-1"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="regression-part-1.html"><a href="regression-part-1.html#simple-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regression-part-1.html"><a href="regression-part-1.html#the-packages-we-need"><i class="fa fa-check"></i><b>6.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regression-part-1.html"><a href="regression-part-1.html#import-the-data"><i class="fa fa-check"></i><b>6.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regression-part-1.html"><a href="regression-part-1.html#tidy-the-data"><i class="fa fa-check"></i><b>6.2.3</b> Tidy the Data</a></li>
+<li class="chapter" data-level="6.2.4" data-path="regression-part-1.html"><a href="regression-part-1.html#plot-the-data"><i class="fa fa-check"></i><b>6.2.4</b> Plot the Data</a></li>
+<li class="chapter" data-level="6.2.5" data-path="regression-part-1.html"><a href="regression-part-1.html#pearsons-r"><i class="fa fa-check"></i><b>6.2.5</b> Pearson’s r</a></li>
+<li class="chapter" data-level="6.2.6" data-path="regression-part-1.html"><a href="regression-part-1.html#model-the-data"><i class="fa fa-check"></i><b>6.2.6</b> Model the Data</a></li>
+<li class="chapter" data-level="6.2.7" data-path="regression-part-1.html"><a href="regression-part-1.html#checking-our-assumptions"><i class="fa fa-check"></i><b>6.2.7</b> Checking Our Assumptions</a></li>
+<li class="chapter" data-level="6.2.8" data-path="regression-part-1.html"><a href="regression-part-1.html#interpreting-our-model"><i class="fa fa-check"></i><b>6.2.8</b> Interpreting Our Model</a></li>
+<li class="chapter" data-level="6.2.9" data-path="regression-part-1.html"><a href="regression-part-1.html#your-challenge-do-this-during-the-in-person-session-3"><i class="fa fa-check"></i><b>6.2.9</b> Your Challenge (do this during the in-person session)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-part-2.html"><a href="regression-part-2.html"><i class="fa fa-check"></i><b>7</b> Regression Part 2</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-part-2.html"><a href="regression-part-2.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="regression-part-2.html"><a href="regression-part-2.html#multiple-regression"><i class="fa fa-check"></i><b>7.2</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-part-2.html"><a href="regression-part-2.html#the-packages-we-need-1"><i class="fa fa-check"></i><b>7.2.1</b> The Packages We Need</a></li>
+<li class="chapter" data-level="7.2.2" data-path="regression-part-2.html"><a href="regression-part-2.html#import-the-data-1"><i class="fa fa-check"></i><b>7.2.2</b> Import the Data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-1"><i class="fa fa-check"></i><b>7.2.3</b> Model the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-part-2.html"><a href="regression-part-2.html#stepwise-regression"><i class="fa fa-check"></i><b>7.3</b> Stepwise regression</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="regression-part-2.html"><a href="regression-part-2.html#model-the-data-2"><i class="fa fa-check"></i><b>7.3.1</b> Model the Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-part-1.html"><a href="anova-part-1.html"><i class="fa fa-check"></i><b>8</b> ANOVA Part 1</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="anova-part-1.html"><a href="anova-part-1.html#overview-3"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-part-1.html"><a href="anova-part-1.html#between-participants-anova"><i class="fa fa-check"></i><b>8.2</b> Between Participants ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="anova-part-1.html"><a href="anova-part-1.html#loading-our-packages"><i class="fa fa-check"></i><b>8.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="8.2.2" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data"><i class="fa fa-check"></i><b>8.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data"><i class="fa fa-check"></i><b>8.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.2.4" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data"><i class="fa fa-check"></i><b>8.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.2.5" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model"><i class="fa fa-check"></i><b>8.2.5</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.2.6" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output"><i class="fa fa-check"></i><b>8.2.6</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="anova-part-1.html"><a href="anova-part-1.html#repeated-measures-anova"><i class="fa fa-check"></i><b>8.3</b> Repeated Measures ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-1"><i class="fa fa-check"></i><b>8.3.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-1"><i class="fa fa-check"></i><b>8.3.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.3.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-1"><i class="fa fa-check"></i><b>8.3.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.3.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-1"><i class="fa fa-check"></i><b>8.3.4</b> Building our ANOVA Model</a></li>
+<li class="chapter" data-level="8.3.5" data-path="anova-part-1.html"><a href="anova-part-1.html#interpreting-the-model-output-1"><i class="fa fa-check"></i><b>8.3.5</b> Interpreting the Model Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="anova-part-1.html"><a href="anova-part-1.html#factorial-anova"><i class="fa fa-check"></i><b>8.4</b> Factorial ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="anova-part-1.html"><a href="anova-part-1.html#reading-in-our-data-2"><i class="fa fa-check"></i><b>8.4.1</b> Reading in our Data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="anova-part-1.html"><a href="anova-part-1.html#summarising-our-data-2"><i class="fa fa-check"></i><b>8.4.2</b> Summarising our Data</a></li>
+<li class="chapter" data-level="8.4.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-2"><i class="fa fa-check"></i><b>8.4.3</b> Visualising our Data</a></li>
+<li class="chapter" data-level="8.4.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-2"><i class="fa fa-check"></i><b>8.4.4</b> Building our ANOVA Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="anova-part-1.html"><a href="anova-part-1.html#your-challenge-do-this-during-the-in-person-session-4"><i class="fa fa-check"></i><b>8.5</b> Your Challenge (do this during the in-person session)</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1"><i class="fa fa-check"></i><b>8.5.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.5.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2"><i class="fa fa-check"></i><b>8.5.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.5.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3"><i class="fa fa-check"></i><b>8.5.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.5.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4"><i class="fa fa-check"></i><b>8.5.4</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="anova-part-1.html"><a href="anova-part-1.html#answers"><i class="fa fa-check"></i><b>8.6</b> Answers</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1-1"><i class="fa fa-check"></i><b>8.6.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.6.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2-1"><i class="fa fa-check"></i><b>8.6.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.6.3" data-path="anova-part-1.html"><a href="anova-part-1.html#question-3-1"><i class="fa fa-check"></i><b>8.6.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.6.4" data-path="anova-part-1.html"><a href="anova-part-1.html#question-4-1"><i class="fa fa-check"></i><b>8.6.4</b> Question 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="anova-part-2.html"><a href="anova-part-2.html"><i class="fa fa-check"></i><b>9</b> ANOVA Part 2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="anova-part-2.html"><a href="anova-part-2.html#overview-4"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-ancova"><i class="fa fa-check"></i><b>9.2</b> Building our ANCOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="anova-part-2.html"><a href="anova-part-2.html#loading-our-packages-1"><i class="fa fa-check"></i><b>9.2.1</b> Loading our Packages</a></li>
+<li class="chapter" data-level="9.2.2" data-path="anova-part-2.html"><a href="anova-part-2.html#reading-in-our-data-3"><i class="fa fa-check"></i><b>9.2.2</b> Reading in our Data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="anova-part-2.html"><a href="anova-part-2.html#summarising-our-data-3"><i class="fa fa-check"></i><b>9.2.3</b> Summarising our Data</a></li>
+<li class="chapter" data-level="9.2.4" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-3"><i class="fa fa-check"></i><b>9.2.4</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.2.5" data-path="anova-part-2.html"><a href="anova-part-2.html#building-our-anova-model-3"><i class="fa fa-check"></i><b>9.2.5</b> Building our ANOVA model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-special-case-of-regression"><i class="fa fa-check"></i><b>9.3</b> AN(C)OVA as a Special Case of Regression</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="anova-part-2.html"><a href="anova-part-2.html#visualising-our-data-4"><i class="fa fa-check"></i><b>9.3.1</b> Visualising our Data</a></li>
+<li class="chapter" data-level="9.3.2" data-path="anova-part-2.html"><a href="anova-part-2.html#setting-up-our-contrasts"><i class="fa fa-check"></i><b>9.3.2</b> Setting up our Contrasts</a></li>
+<li class="chapter" data-level="9.3.3" data-path="anova-part-2.html"><a href="anova-part-2.html#anova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.3</b> ANOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.4" data-path="anova-part-2.html"><a href="anova-part-2.html#ancova-as-a-linear-model"><i class="fa fa-check"></i><b>9.3.4</b> ANCOVA as a Linear Model</a></li>
+<li class="chapter" data-level="9.3.5" data-path="anova-part-2.html"><a href="anova-part-2.html#centering-our-covariate"><i class="fa fa-check"></i><b>9.3.5</b> Centering our Covariate</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="technical-details-and-credits.html"><a href="technical-details-and-credits.html"><i class="fa fa-check"></i>Technical Details and Credits</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Data Skills, Open Science and Reproducibility 2024/25</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-and-rstudio" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Workshop 2</span> R and RStudio<a href="r-and-rstudio.html#r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="why-r" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Why R?<a href="r-and-rstudio.html#why-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this workshop we will cover the language, <a href="https://www.r-project.org/about.html">R</a>, and <a href="https://posit.co/products/open-source/rstudio">RStudio Desktop</a>, the integrated development environment (IDE) that you will use to write reproducible code involving the wrangling, visualization, summary, and statistical modelling of your data. Both R and RStudio Desktop are examples of <a href="https://opensource.com/resources/what-open-source">Open Source Software</a>.</p>
+<p>The video below introduces you to R and talks about the importance of adopting such tools in our research analysis workflows.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://youtube.com/embed/GKJmY_YebhU" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<!-- <center> -->
+<!-- [![Link to R and RStudio Desktop slides](../images/why_r.png){width=75%}](https://docs.google.com/presentation/d/1CkatVluJFu_XoBo1iA0xfACc-V9v-_-DqV3KIPZHgMU/edit?usp=sharing) -->
+<!-- </center> -->
+<!-- &nbsp;&nbsp; -->
+<p>Below is a video of a great talk by J.J. Allaire, entrepreneur and founder of RStudio (and other organizations). This video is from rstudio::conf 2020 and in it J.J. talks about his journey from being a Political Scientist, how he got involved in R, and the importance of Open Source in the context of Reproducible Data Science. If you click on the image, you’ll be taken to the RStudio website where you can watch the recording. If you’re interested, you might like to look at some of the other videos on the RStudio site.</p>
+<p>  </p>
+<p><a href="https://rstudio.com/resources/rstudioconf-2020/open-source-software-for-data-science/"><img src="../images/jj_allaire.png" alt="Link to JJ Allaire’s talk on Open Source Software for Data Science" /></a></p>
+<p>  </p>
+</div>
+<div id="getting-started" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Getting Started<a href="r-and-rstudio.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this next video you’ll see how to install R (the language) and RStudio Desktop (the IDE for working with the language). You can download R from <a href="https://www.r-project.org">here</a> for a variety of platforms including Mac OS, Windows, and Ubuntu. To download free RStudio Desktop just go to <a href="https://posit.co">here</a>.</p>
+<p>If you are using a Chromebook, or have a tablet, or are having difficulties installing R and RStudio Desktop on your computer, you can use <a href="https://posit.cloud/plans/free">Posit cloud</a> to run the RStudio environment in your browser. You’ll need to sign up - there is a free plan available.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/O_uMR29mBiI?si=zCS4H1qXFwE5UhnR" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<!-- <center> -->
+<!-- [![Link to R and RStudio Desktop slides](../images/getting_started.png){width=75%}](https://docs.google.com/presentation/d/19Y70sxKZH0Wp1Lm-0FMktiHjfAHBvHJHSfdxpPQuIgA/edit?usp=sharing) -->
+<!-- </center> -->
+<!-- &nbsp;&nbsp; -->
+</div>
+<div id="keeping-things-organised" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Keeping Things Organised<a href="r-and-rstudio.html#keeping-things-organised" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you are doing data analysis using R, it’s important to use a sensible structure for your folders and files. As you saw in the video above, creating a new project with a .Rproj file is the easiest way to this is using RStudio Desktop. Good file management is as important as good coding style (which we’ll come to next). There’s a great paper on project management that you can read by clicking the image below.</p>
+<p>  </p>
+<p><a href="https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005510&amp;type=printable"><img src="../images/wilson_paper.png" alt="Link to Greg Wilson et al paper" /></a></p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KtQ63L7d7LU?si=1o-stz8GXvfeTLB_" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+</div>
+<div id="good-coding-style" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Good Coding Style<a href="r-and-rstudio.html#good-coding-style" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the following video you will learn a little about good coding style. It’s important when you’re writing analysis scripts that your code is understandable by others, and by future you. If you get into the habit of good coding style early on, it will make things a lot easier in the long run - and you’ll find it easier to work collaboratively as others will find it easier to work with you.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1qAIevrQI6I?si=t6OMg7y2luG2_-85" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>You can have a look at the helpful Tidyverse Style Guide <a href="https://style.tidyverse.org">here</a>.</p>
+<p>If you want to make your code and data open (and you really should unless there’s a good reason not to do so), it’s important to license it properly to allow others to (re)use and remix it. It’s often good to use the most permissive license that you can. Some good licenses are the <a href="https://opensource.org/licenses/MIT">MIT License</a>, and the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons License CC-BY 4.0.</a></p>
+<p>You can use <a href="https://choosealicense.com">this handy guide</a> if you need help choosing the right license for your own work.</p>
+<p>  </p>
+<!-- <center> -->
+<!-- [![Link to Good coding style slides](../images/good_coding_style.png){width=75%}](https://docs.google.com/presentation/d/1ZNnQwgHx0EuWcmfC2ZovSZjoaPP3eUOvdOFF_98H1oI/edit?usp=sharing) -->
+<!-- </center> -->
+<!-- &nbsp;&nbsp; -->
+</div>
+<div id="your-first-r-script" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Your First R Script<a href="r-and-rstudio.html#your-first-r-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You’re now going to run your first R script. We will create three visualisations of UFO sightings in the US using a database of more than 80,000 UFO sightings over the years. Before you run the code, you will need to install two packages onto your computer - they are <code>tidyverse</code> and <code>patchwork</code>.</p>
+<p>  </p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UJ5u9lwQrw8?si=G3mnOyEiysdlJeEj" data-external="1" frameborder="0" allowfullscreen>
+</iframe>
+</center>
+<p>  </p>
+<p>Once you have installed the packages, paste the following code into a new R script. Run the code in the same way shown in the video. Does your visualisation look like the one in the video?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-and-rstudio.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># load the tidyverse</span></span>
+<span id="cb1-2"><a href="r-and-rstudio.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(patchwork) <span class="co"># needed to combine our 4 plots at the end</span></span>
+<span id="cb1-3"><a href="r-and-rstudio.html#cb1-3" tabindex="-1"></a><span class="co"># read in data </span></span>
+<span id="cb1-4"><a href="r-and-rstudio.html#cb1-4" tabindex="-1"></a>ufo_sightings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv&quot;</span>)</span>
+<span id="cb1-5"><a href="r-and-rstudio.html#cb1-5" tabindex="-1"></a><span class="co"># plot of top 10 US states with number of sightings in each state</span></span>
+<span id="cb1-6"><a href="r-and-rstudio.html#cb1-6" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> ufo_sightings <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href="r-and-rstudio.html#cb1-7" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(state)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="r-and-rstudio.html#cb1-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">str_to_upper</span>(state)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a href="r-and-rstudio.html#cb1-9" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">%&gt;%</span></span>
+<span id="cb1-10"><a href="r-and-rstudio.html#cb1-10" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="r-and-rstudio.html#cb1-11" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="r-and-rstudio.html#cb1-12" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(state, n), <span class="at">y =</span> n, <span class="at">fill =</span> state)) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="r-and-rstudio.html#cb1-13" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb1-14"><a href="r-and-rstudio.html#cb1-14" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1-15"><a href="r-and-rstudio.html#cb1-15" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb1-16"><a href="r-and-rstudio.html#cb1-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Top 10 States for UFO Sightings&quot;</span>,</span>
+<span id="cb1-17"><a href="r-and-rstudio.html#cb1-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb1-18"><a href="r-and-rstudio.html#cb1-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="r-and-rstudio.html#cb1-19" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">11000</span>) <span class="sc">+</span></span>
+<span id="cb1-20"><a href="r-and-rstudio.html#cb1-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-21"><a href="r-and-rstudio.html#cb1-21" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb1-22"><a href="r-and-rstudio.html#cb1-22" tabindex="-1"></a><span class="co"># work out states within lat and long limits (i.e., exclude Alaska)</span></span>
+<span id="cb1-23"><a href="r-and-rstudio.html#cb1-23" tabindex="-1"></a>tidied_ufo <span class="ot">&lt;-</span> ufo_sightings <span class="sc">%&gt;%</span></span>
+<span id="cb1-24"><a href="r-and-rstudio.html#cb1-24" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">&quot;us&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-25"><a href="r-and-rstudio.html#cb1-25" tabindex="-1"></a>  <span class="fu">filter</span>(latitude <span class="sc">&gt;</span> <span class="dv">24</span> <span class="sc">&amp;</span> latitude <span class="sc">&lt;</span> <span class="dv">50</span>)</span>
+<span id="cb1-26"><a href="r-and-rstudio.html#cb1-26" tabindex="-1"></a><span class="co"># plot all sightings on a map of the US</span></span>
+<span id="cb1-27"><a href="r-and-rstudio.html#cb1-27" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> tidied_ufo <span class="sc">%&gt;%</span></span>
+<span id="cb1-28"><a href="r-and-rstudio.html#cb1-28" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude)) <span class="sc">+</span> </span>
+<span id="cb1-29"><a href="r-and-rstudio.html#cb1-29" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">5</span>, <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="r-and-rstudio.html#cb1-30" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb1-31"><a href="r-and-rstudio.html#cb1-31" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>() <span class="sc">+</span></span>
+<span id="cb1-32"><a href="r-and-rstudio.html#cb1-32" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sites of UFO Sightings in the US&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-33"><a href="r-and-rstudio.html#cb1-33" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb1-34"><a href="r-and-rstudio.html#cb1-34" tabindex="-1"></a><span class="co"># plot of top 10 UFO shapes spotted in California</span></span>
+<span id="cb1-35"><a href="r-and-rstudio.html#cb1-35" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> tidied_ufo <span class="sc">%&gt;%</span></span>
+<span id="cb1-36"><a href="r-and-rstudio.html#cb1-36" tabindex="-1"></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;ca&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-37"><a href="r-and-rstudio.html#cb1-37" tabindex="-1"></a>  <span class="fu">filter</span>(ufo_shape <span class="sc">!=</span> <span class="st">&quot;other&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-38"><a href="r-and-rstudio.html#cb1-38" tabindex="-1"></a>  <span class="fu">filter</span>(ufo_shape <span class="sc">!=</span> <span class="st">&quot;unknown&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-39"><a href="r-and-rstudio.html#cb1-39" tabindex="-1"></a>  <span class="fu">group_by</span>(ufo_shape) <span class="sc">%&gt;%</span></span>
+<span id="cb1-40"><a href="r-and-rstudio.html#cb1-40" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-41"><a href="r-and-rstudio.html#cb1-41" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-42"><a href="r-and-rstudio.html#cb1-42" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ufo_shape =</span> <span class="fu">str_to_title</span>(ufo_shape)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-43"><a href="r-and-rstudio.html#cb1-43" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ufo_shape, n), <span class="at">y =</span> n, <span class="at">fill =</span> ufo_shape)) <span class="sc">+</span></span>
+<span id="cb1-44"><a href="r-and-rstudio.html#cb1-44" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb1-45"><a href="r-and-rstudio.html#cb1-45" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1-46"><a href="r-and-rstudio.html#cb1-46" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb1-47"><a href="r-and-rstudio.html#cb1-47" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Top 10 UFO Shapes spotted in California&quot;</span>,</span>
+<span id="cb1-48"><a href="r-and-rstudio.html#cb1-48" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb1-49"><a href="r-and-rstudio.html#cb1-49" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-50"><a href="r-and-rstudio.html#cb1-50" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-51"><a href="r-and-rstudio.html#cb1-51" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span>
+<span id="cb1-52"><a href="r-and-rstudio.html#cb1-52" tabindex="-1"></a><span class="co"># Put plots together</span></span>
+<span id="cb1-53"><a href="r-and-rstudio.html#cb1-53" tabindex="-1"></a>my_plot <span class="ot">&lt;-</span> (plot1 <span class="sc">+</span> plot3) <span class="sc">/</span> (plot2)</span>
+<span id="cb1-54"><a href="r-and-rstudio.html#cb1-54" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;ufo_plot.jpg&quot;</span>, <span class="at">plot =</span> my_plot, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">10</span>)</span></code></pre></div>
+<center>
+<p><span width="100%"><img src="../images/ufo_plot.jpg" alt="UFO visualisation" /></span></p>
+</center>
+<center>
+<strong>End of workshop 2 materials</strong>
+</center>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="open-science.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-wrangling-and-data-summarising.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
