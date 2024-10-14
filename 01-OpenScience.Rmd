@@ -37,7 +37,7 @@ Before watching the next video, please have a read through the following paper b
 
 <center>
 
-[![Link to John Ioannidis' paper](../images/ionnidis.png){ width=75% }](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124)
+[![Link to John Ioannidis' paper](images/ionnidis.png){ width=75% }](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124)
 
 </center>
 
@@ -51,7 +51,7 @@ This post by Dorothy Bishop in 2019 nicely captures the situation a number of ye
 
 <center>
 
-[![Link to Dorothy Bishop's paper](../images/bishop.png){width=75% }](https://www.nature.com/articles/d41586-019-01307-2)
+[![Link to Dorothy Bishop's paper](images/bishop.png){width=75% }](https://www.nature.com/articles/d41586-019-01307-2)
 
 </center>
 
@@ -77,7 +77,7 @@ Take the time to read the following paper, it's a great guide to the various thi
 
 <center>
 
-[![Link to guide on how to do open research](../images/7_steps.png){width=75%}](
+[![Link to guide on how to do open research](images/7_steps.png){width=75%}](
 https://psycnet.apa.org/fulltext/2019-80290-002.pdf)
 
 </center>
@@ -88,7 +88,7 @@ https://psycnet.apa.org/fulltext/2019-80290-002.pdf)
 
 This thought provoking paper by Gerald Haeffel suggests that psychology needs to focus more on theory development (and encourage the publication of results that refute theories).
 
-[![Link to Haeffel paper](../images/haeffel.png){width=75%}](
+[![Link to Haeffel paper](images/haeffel.png){width=75%}](
 https://royalsocietypublishing.org/doi/10.1098/rsos.220099)
 
 
@@ -142,7 +142,7 @@ It goes without saying that R and RStudio Desktop are the two most obvious examp
 
 <center>
 
-[![R logo](../images/r_logo.jpeg){width=15%}](https://www.r-project.org)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![RStudio logo](../images/RStudio-Logo-Flat.png){width=25%}](https://posit.co/products/open-source/rstudio)
+[![R logo](images/r_logo.jpeg){width=15%}](https://www.r-project.org)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![RStudio logo](images/RStudio-Logo-Flat.png){width=25%}](https://posit.co/products/open-source/rstudio)
 </center>
 
 #### Python {-}
@@ -150,7 +150,7 @@ While R tends to be the go-to language for people who are interested in data wra
 
 <center>
 
-[![Python logo](../images/python-logo-master-v3-TM.png){width=25%}](https://www.python.org)
+[![Python logo](images/python-logo-master-v3-TM.png){width=25%}](https://www.python.org)
 </center>
 
 #### Octave {-}
@@ -158,7 +158,7 @@ You may have heard of - or even used - MATLAB for numerical computing. There is 
 
 <center>
 
-[![GNU Octave logo](../images/gnuoctave.jpg){width=25%}](https://www.gnu.org/software/octave/)
+[![GNU Octave logo](images/gnuoctave.jpg){width=25%}](https://www.gnu.org/software/octave/)
 </center>
 
 ### Document Creation
@@ -166,7 +166,7 @@ Up until this time you've probably mainly used Microsoft Word for writing docume
 
 <center>
 
-[![Libre Office logo](../images/LibreOffice-6.4.png){width=25%}](https://www.libreoffice.org)
+[![Libre Office logo](images/LibreOffice-6.4.png){width=25%}](https://www.libreoffice.org)
 
 </center>
 
@@ -174,7 +174,7 @@ If you're interested in writing using [Markdown](https://www.markdownguide.org) 
 
 <center>
 
-[![!HackMD logo](../images/hack_md.png){width=25%}](https://opensource.com/article/19/7/enable-collaboration-hackmd)
+[![!HackMD logo](images/hack_md.png){width=25%}](https://opensource.com/article/19/7/enable-collaboration-hackmd)
 </center>
 
 ### Building Experiments
@@ -182,7 +182,7 @@ If you're interested in writing using [Markdown](https://www.markdownguide.org) 
 
 <center>
 
-[![PsychPy logo](../images/psychopyLogoOnlineStrap_h480.png){width=25%}](https://www.psychopy.org)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Pavlovia logo](../images/pavlovia.png){width=25%}](https://pavlovia.org)
+[![PsychPy logo](images/psychopyLogoOnlineStrap_h480.png){width=25%}](https://www.psychopy.org)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Pavlovia logo](images/pavlovia.png){width=25%}](https://pavlovia.org)
 </center>
 
 ### Linux
@@ -190,14 +190,14 @@ One of the most widely used pieces of open source software is the Linux operatin
 
 <center>
 
-[![Linux logo](../images/linux.jpg){width=25%}](https://www.linux.org)
+[![Linux logo](images/linux.jpg){width=25%}](https://www.linux.org)
 </center>
 
 Some of the most popular distributions of Linux are [Ubuntu](https://ubuntu.com), [Fedora](https://getfedora.org/en/workstation/download/), and [Debian](https://www.debian.org). If you really want to get into the computational side of research, it's important to discover the world of Linux.
 
 <center>
 
-[![Ubuntu logo](../images/ubuntu-logo112.png){width=20%}](https://ubuntu.com)[![Fedora logo](../images/Fedora-Logo.jpg){width=25%}]((https://getfedora.org/en/workstation/download/))[![Debian logo](../images/openlogo.ps.jpg){width=15%}](https://www.debian.org)
+[![Ubuntu logo](images/ubuntu-logo112.png){width=20%}](https://ubuntu.com)[![Fedora logo](images/Fedora-Logo.jpg){width=25%}]((https://getfedora.org/en/workstation/download/))[![Debian logo](images/openlogo.ps.jpg){width=15%}](https://www.debian.org)
 </center>
 
 ### More Reading
@@ -205,7 +205,7 @@ If you're interested in other examples of open source software, you might be int
 
 <center>
 
-[![open source software logo](../images/oss.png){width=75%}](https://www.techradar.com/uk/best/best-open-source-software)
+[![open source software logo](images/oss.png){width=75%}](https://www.techradar.com/uk/best/best-open-source-software)
 
 </center>
 

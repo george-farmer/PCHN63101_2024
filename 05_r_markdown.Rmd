@@ -25,7 +25,7 @@ There are many resources available to help you explore the full range of possibi
 
 <center>
 
-[![R Markdown Definitive Guide](../images/r_markdown_guide.png){width=50%}](https://bookdown.org/yihui/rmarkdown/)
+[![R Markdown Definitive Guide](images/r_markdown_guide.png){width=50%}](https://bookdown.org/yihui/rmarkdown/)
 
 </center>
 
@@ -37,7 +37,7 @@ You may also be interested in the "R Markdown Cookbook" by Yihui Xie, Christophe
 
 <center>
 
-[![R Markdown Cookbook](../images/RMarkDownCookbookCover.png){width=50%}](https://bookdown.org/yihui/rmarkdown-cookbook/)
+[![R Markdown Cookbook](images/markdowncoookbookcover.png){width=50%}](https://bookdown.org/yihui/rmarkdown-cookbook/)
 
 </center>
 

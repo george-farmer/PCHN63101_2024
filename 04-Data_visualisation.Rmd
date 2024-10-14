@@ -11,7 +11,7 @@ If you click on the image of the Claus Wilke book, you'll be taken to the online
 
 <center>
 
-[![Link to Healey book](../images/healey.jpg){width=30%}](https://socviz.co) [![Link to Healey book](../images/wilke.png){width=30%}](https://serialmentor.com/dataviz/)
+[![Link to Healey book](images/healey.jpg){width=30%}](https://socviz.co) [![Link to Healey book](images/wilke.png){width=30%}](https://serialmentor.com/dataviz/)
 
 </center>
 
@@ -181,7 +181,7 @@ mpg %>%
 
 ### The `ggridges` Package
 
-Given in a previous visualisation we saw that there seemed to be variability between vehicle classes, wouldn't it be great if we could compare the distributions of engine size separated by vehicle class? We're now going to use the `ggridges()` package to do just that...
+Given in a previous visualisation we saw that there seemed to be variability between vehicle classes, wouldn't it be great if we could compare the distributions of engine size separated by vehicle class? We're now going to use the `ggridges` package to do just that...
 
 ```{r}
 library(ggridges)
@@ -368,9 +368,9 @@ If you are interested in understanding more about ggplot2, you might be interest
 
 <center>
 
-[![Link to ggplot2 video part 1](../images/ggplot2_pt1.png){width=75%}](https://youtu.be/h29g21z0a68)
+[![Link to ggplot2 video part 1](images/ggplot2_pt1.png){width=75%}](https://youtu.be/h29g21z0a68)
 
-[![Link to ggplot2 video part 2](../images/ggplot2_pt2.png){width=75%}](https://youtu.be/0m4yywqNPVY)
+[![Link to ggplot2 video part 2](images/ggplot2_pt2.png){width=75%}](https://youtu.be/0m4yywqNPVY)
 
 </center>
 

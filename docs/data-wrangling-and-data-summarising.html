@@ -54,7 +54,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -64,7 +64,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -656,7 +656,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5     5        504        478        513        504
 ## 6     6        505        486        503        495</code></pre>
 <p>So, we can see the data file is in wide format. We want to reshape it to long format. We can do that using the <code>pivot_longer()</code> function.</p>
-<p>Minially, we need to specify the data frame that we want to reshape, the columns that we want to ‘pivot’ into longer format, the name of the new column that we are creating, and the name of the column that will hold the values of our reshaped data frame. We are going to map the output to a variable I’m calling <code>my_longer_data</code>.</p>
+<p>Minimally, we need to specify the data frame that we want to reshape, the columns that we want to ‘pivot’ into longer format, the name of the new column that we are creating, and the name of the column that will hold the values of our reshaped data frame. We are going to map the output to a variable I’m calling <code>my_longer_data</code>.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-wrangling-and-data-summarising.html#cb40-1" tabindex="-1"></a>my_longer_data <span class="ot">&lt;-</span> my_wide_data <span class="sc">%&gt;%</span></span>
 <span id="cb40-2"><a href="data-wrangling-and-data-summarising.html#cb40-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Condition1, Condition2, Condition3, Condition4), </span>
 <span id="cb40-3"><a href="data-wrangling-and-data-summarising.html#cb40-3" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Condition&quot;</span>, </span>
@@ -708,7 +708,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="joining-two-datasets" class="section level3 hasAnchor" number="3.1.7">
 <h3><span class="header-section-number">3.1.7</span> Joining Two Datasets<a href="data-wrangling-and-data-summarising.html#joining-two-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sometimes you might need to combine two datasets. For example, you might have one dataset that contains reading time data (like the one above) and another than contains individual difference measures for the participants in the first dataset. How would we go about combining these two datasets so that we end up with one that includes both the reading time data <em>and</em> the individual difference measures (that perhaps we want to covary out later)? Luckily, the <code>{dplyr}</code> package contains a number of join functions that allows you to join together different tibbles. First, let’s load the data that contains the individual different measures.</p>
+<p>Sometimes you might need to combine two datasets. For example, you might have one dataset that contains reading time data (like the one above) and another than contains individual difference measures for the participants in the first dataset. How would we go about combining these two datasets so that we end up with one that includes both the reading time data <em>and</em> the individual difference measures (that perhaps we want to covary out later)? Luckily, the <code>dplyr</code> package contains a number of join functions that allows you to join together different tibbles. First, let’s load the data that contains the individual different measures.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-wrangling-and-data-summarising.html#cb48-1" tabindex="-1"></a>individual_diffs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/03_data_wrangling/master/data/individual_diffs.csv&quot;</span>)</span></code></pre></div>
 <p>Let’s look at the first few rows of the individual differences data. This dataset contains the ID numbers of our participants plus measures of IQ (the iq column) and Working Memory (the wm column).</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-wrangling-and-data-summarising.html#cb49-1" tabindex="-1"></a><span class="fu">head</span>(individual_diffs)</span></code></pre></div>

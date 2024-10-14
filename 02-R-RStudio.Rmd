@@ -23,7 +23,7 @@ The video below introduces you to R and talks about the importance of adopting s
 
 <!-- <center> -->
 
-<!-- [![Link to R and RStudio Desktop slides](../images/why_r.png){width=75%}](https://docs.google.com/presentation/d/1CkatVluJFu_XoBo1iA0xfACc-V9v-_-DqV3KIPZHgMU/edit?usp=sharing) -->
+<!-- [![Link to R and RStudio Desktop slides](images/why_r.png){width=75%}](https://docs.google.com/presentation/d/1CkatVluJFu_XoBo1iA0xfACc-V9v-_-DqV3KIPZHgMU/edit?usp=sharing) -->
 
 <!-- </center> -->
 
@@ -33,7 +33,7 @@ Below is a video of a great talk by J.J. Allaire, entrepreneur and founder of RS
 
 &nbsp;&nbsp;
 
-[![Link to JJ Allaire's talk on Open Source Software for Data Science](../images/jj_allaire.png)](https://rstudio.com/resources/rstudioconf-2020/open-source-software-for-data-science/)
+[![Link to JJ Allaire's talk on Open Source Software for Data Science](images/jj_allaire.png)](https://rstudio.com/resources/rstudioconf-2020/open-source-software-for-data-science/)
 
 &nbsp;&nbsp;
 
@@ -55,7 +55,7 @@ If you are using a Chromebook, or have a tablet, or are having difficulties inst
 
 <!-- <center> -->
 
-<!-- [![Link to R and RStudio Desktop slides](../images/getting_started.png){width=75%}](https://docs.google.com/presentation/d/19Y70sxKZH0Wp1Lm-0FMktiHjfAHBvHJHSfdxpPQuIgA/edit?usp=sharing) -->
+<!-- [![Link to R and RStudio Desktop slides](images/getting_started.png){width=75%}](https://docs.google.com/presentation/d/19Y70sxKZH0Wp1Lm-0FMktiHjfAHBvHJHSfdxpPQuIgA/edit?usp=sharing) -->
 
 <!-- </center> -->
 
@@ -68,7 +68,7 @@ When you are doing data analysis using R, it's important to use a sensible struc
 
 &nbsp;&nbsp;
 
-[![Link to Greg Wilson et al paper](../images/wilson_paper.png)](https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005510&type=printable
+[![Link to Greg Wilson et al paper](images/wilson_paper.png)](https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005510&type=printable
 )
 
 &nbsp;&nbsp;
@@ -105,7 +105,7 @@ You can use [this handy guide](https://choosealicense.com) if you need help choo
 
 <!-- <center> -->
 
-<!-- [![Link to Good coding style slides](../images/good_coding_style.png){width=75%}](https://docs.google.com/presentation/d/1ZNnQwgHx0EuWcmfC2ZovSZjoaPP3eUOvdOFF_98H1oI/edit?usp=sharing) -->
+<!-- [![Link to Good coding style slides](images/good_coding_style.png){width=75%}](https://docs.google.com/presentation/d/1ZNnQwgHx0EuWcmfC2ZovSZjoaPP3eUOvdOFF_98H1oI/edit?usp=sharing) -->
 
 <!-- </center> -->
 
@@ -185,7 +185,7 @@ ggsave("ufo_plot.jpg", plot = my_plot, width = 12, height = 10)
 
 <center>
 
-[![UFO visualisation](../images/ufo_plot.jpg)]{width=100%}
+[![UFO visualisation](images/ufo_plot.jpg)]{width=100%}
 
 </center>
 

@@ -54,7 +54,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -64,7 +64,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -464,7 +464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <div id="the-ggridges-package" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> The <code>ggridges</code> Package<a href="data-visualisation.html#the-ggridges-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Given in a previous visualisation we saw that there seemed to be variability between vehicle classes, wouldn’t it be great if we could compare the distributions of engine size separated by vehicle class? We’re now going to use the <code>ggridges()</code> package to do just that…</p>
+<p>Given in a previous visualisation we saw that there seemed to be variability between vehicle classes, wouldn’t it be great if we could compare the distributions of engine size separated by vehicle class? We’re now going to use the <code>ggridges</code> package to do just that…</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="data-visualisation.html#cb92-1" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span></code></pre></div>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="data-visualisation.html#cb93-1" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb93-2"><a href="data-visualisation.html#cb93-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">str_to_title</span>(class)) <span class="sc">%&gt;%</span></span>
