@@ -1,12 +1,8 @@
 Welcome! 
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
+This book accompanies the course PCHN63101.
 
-This template provides a skeleton file structure that you can edit to create your book. 
-
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
-
-Additional resources:
+It was created using bookdown.
 
 The **bookdown** book: https://bookdown.org/yihui/bookdown/
 
