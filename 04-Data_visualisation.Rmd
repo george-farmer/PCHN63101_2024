@@ -122,7 +122,7 @@ mpg %>%
   coord_flip()
 ```
 
-This is looks pretty good. Can you tell what the other bits of code do that I added? Have a go changing some of the numbers to see what happens. You can prevent a line of code being run by adding a `#` in front of it. So if you need to temporarily not run a line, just add a `#` rather than delete the line.
+This looks pretty good. Can you tell what the other bits of code do that I added? Have a go changing some of the numbers to see what happens. You can prevent a line of code being run by adding a `#` in front of it. So if you need to temporarily not run a line, just add a `#` rather than delete the line.
 
 Plots are rarely completely "finished" as you'll often think of a minor aesthetic tweak that might make some improvement.
 
@@ -145,7 +145,7 @@ mpg %>%
   facet_wrap(~ class)
 ```
 
-Can you tell what each of code is doing? Again, edit the numbers and put a `#` before lines you want to temporarily ignore to see what happens.
+Can you tell what each bit of code is doing? Again, edit the numbers and put a `#` before lines you want to temporarily ignore to see what happens.
 
 ## Scatterplots
 
@@ -164,7 +164,7 @@ mpg %>%
        colour = "Vehicle Class")
 ```
 
-In the above example, we used the `geom_smooth()` function to add a layer corresponding to fitting a curve to our data. We can see a fairly clear negative correlation between Engine Displacement and Fuel Economhy for Fuel Economy values that are less than 25 mpg, but little relationship between the two for values that are great than 25 mpg. These seems to suggest there are some cars with relaitively small engines that have great fuel economy, and others with similar engine sizes were much worse fuel economy. 
+In the above example, we used the `geom_smooth()` function to add a layer corresponding to fitting a curve to our data. We can see a fairly clear negative correlation between Engine Displacement and Fuel Economy for Fuel Economy values that are less than 25 mpg, but little relationship between the two for values that are great than 25 mpg. These seems to suggest there are some cars with relatively small engines that have great fuel economy, and others with similar engine sizes that have much worse fuel economy. 
 
 ## Plotting Histograms
 
@@ -217,7 +217,7 @@ We need to load the `NHANES` package as this is where the dataset is contained.
 library(NHANES)
 ```
 
-If running the above command generated an error, is it because you haven't installed the packed on your machine with `install.packages("NHANES")`?
+If running the above command generated an error, is it because you haven't installed the package on your machine with `install.packages("NHANES")`?
 
 First we're going to explore the NHANES dataset.
 
@@ -242,7 +242,7 @@ NHANES %>%
   n_distinct()
 ```
 
-We see we have 6,779 unique individuals. Let's tidy our data to remove duplicate IDs. Note that below we're using the pipe operator `%>%` You can read it as 'and then' so it means we're taking the NHANES dataset and then filtering it keep just rows with distinct ID numbers. The pipe operator really helps with the readability of your data wrangling code and is an integral part of the tidyverse philosophy - tidy data and tidy code.
+We see we have 6,779 unique individuals. Let's tidy our data to remove duplicate IDs. Note that below we're using the pipe operator `%>%` You can read it as 'and then' so it means we're taking the NHANES dataset and then filtering it keeping just rows with distinct ID numbers. The pipe operator really helps with the readability of your data wrangling code and is an integral part of the tidyverse philosophy - tidy data and tidy code.
 
 ```{r}
 NHANES_tidied <- NHANES %>% 

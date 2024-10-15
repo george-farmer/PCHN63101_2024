@@ -414,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb88-11"><a href="data-visualisation.html#cb88-11" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
 <span id="cb88-12"><a href="data-visualisation.html#cb88-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
-<p>This is looks pretty good. Can you tell what the other bits of code do that I added? Have a go changing some of the numbers to see what happens. You can prevent a line of code being run by adding a <code>#</code> in front of it. So if you need to temporarily not run a line, just add a <code>#</code> rather than delete the line.</p>
+<p>This looks pretty good. Can you tell what the other bits of code do that I added? Have a go changing some of the numbers to see what happens. You can prevent a line of code being run by adding a <code>#</code> in front of it. So if you need to temporarily not run a line, just add a <code>#</code> rather than delete the line.</p>
 <p>Plots are rarely completely “finished” as you’ll often think of a minor aesthetic tweak that might make some improvement.</p>
 </div>
 <div id="using-facet_wrap" class="section level3 hasAnchor" number="4.2.4">
@@ -433,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb89-11"><a href="data-visualisation.html#cb89-11" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
 <span id="cb89-12"><a href="data-visualisation.html#cb89-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> class)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
-<p>Can you tell what each of code is doing? Again, edit the numbers and put a <code>#</code> before lines you want to temporarily ignore to see what happens.</p>
+<p>Can you tell what each bit of code is doing? Again, edit the numbers and put a <code>#</code> before lines you want to temporarily ignore to see what happens.</p>
 </div>
 </div>
 <div id="scatterplots" class="section level2 hasAnchor" number="4.3">
@@ -450,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb90-9"><a href="data-visualisation.html#cb90-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Engine Displacement (litres)&quot;</span>, </span>
 <span id="cb90-10"><a href="data-visualisation.html#cb90-10" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Vehicle Class&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
-<p>In the above example, we used the <code>geom_smooth()</code> function to add a layer corresponding to fitting a curve to our data. We can see a fairly clear negative correlation between Engine Displacement and Fuel Economhy for Fuel Economy values that are less than 25 mpg, but little relationship between the two for values that are great than 25 mpg. These seems to suggest there are some cars with relaitively small engines that have great fuel economy, and others with similar engine sizes were much worse fuel economy.</p>
+<p>In the above example, we used the <code>geom_smooth()</code> function to add a layer corresponding to fitting a curve to our data. We can see a fairly clear negative correlation between Engine Displacement and Fuel Economy for Fuel Economy values that are less than 25 mpg, but little relationship between the two for values that are great than 25 mpg. These seems to suggest there are some cars with relatively small engines that have great fuel economy, and others with similar engine sizes that have much worse fuel economy.</p>
 </div>
 <div id="plotting-histograms" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Plotting Histograms<a href="data-visualisation.html#plotting-histograms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -489,7 +489,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>  </p>
 <p>We need to load the <code>NHANES</code> package as this is where the dataset is contained.</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-visualisation.html#cb94-1" tabindex="-1"></a><span class="fu">library</span>(NHANES)</span></code></pre></div>
-<p>If running the above command generated an error, is it because you haven’t installed the packed on your machine with <code>install.packages("NHANES")</code>?</p>
+<p>If running the above command generated an error, is it because you haven’t installed the package on your machine with <code>install.packages("NHANES")</code>?</p>
 <p>First we’re going to explore the NHANES dataset.</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-visualisation.html#cb95-1" tabindex="-1"></a><span class="fu">ncol</span>(NHANES)</span></code></pre></div>
 <pre><code>## [1] 76</code></pre>
@@ -520,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb101-2"><a href="data-visualisation.html#cb101-2" tabindex="-1"></a>  <span class="fu">select</span>(ID) <span class="sc">%&gt;%</span> </span>
 <span id="cb101-3"><a href="data-visualisation.html#cb101-3" tabindex="-1"></a>  <span class="fu">n_distinct</span>()</span></code></pre></div>
 <pre><code>## [1] 6779</code></pre>
-<p>We see we have 6,779 unique individuals. Let’s tidy our data to remove duplicate IDs. Note that below we’re using the pipe operator <code>%&gt;%</code> You can read it as ‘and then’ so it means we’re taking the NHANES dataset and then filtering it keep just rows with distinct ID numbers. The pipe operator really helps with the readability of your data wrangling code and is an integral part of the tidyverse philosophy - tidy data and tidy code.</p>
+<p>We see we have 6,779 unique individuals. Let’s tidy our data to remove duplicate IDs. Note that below we’re using the pipe operator <code>%&gt;%</code> You can read it as ‘and then’ so it means we’re taking the NHANES dataset and then filtering it keeping just rows with distinct ID numbers. The pipe operator really helps with the readability of your data wrangling code and is an integral part of the tidyverse philosophy - tidy data and tidy code.</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-visualisation.html#cb103-1" tabindex="-1"></a>NHANES_tidied <span class="ot">&lt;-</span> NHANES <span class="sc">%&gt;%</span> </span>
 <span id="cb103-2"><a href="data-visualisation.html#cb103-2" tabindex="-1"></a>  <span class="fu">distinct</span>(ID, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-visualisation.html#cb104-1" tabindex="-1"></a><span class="fu">ncol</span>(NHANES_tidied)</span></code></pre></div>
