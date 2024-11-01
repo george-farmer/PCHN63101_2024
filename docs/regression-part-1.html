@@ -228,7 +228,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.6" data-path="regression-part-1.html"><a href="regression-part-1.html#model-the-data"><i class="fa fa-check"></i><b>6.2.6</b> Model the Data</a></li>
 <li class="chapter" data-level="6.2.7" data-path="regression-part-1.html"><a href="regression-part-1.html#checking-our-assumptions"><i class="fa fa-check"></i><b>6.2.7</b> Checking Our Assumptions</a></li>
 <li class="chapter" data-level="6.2.8" data-path="regression-part-1.html"><a href="regression-part-1.html#interpreting-our-model"><i class="fa fa-check"></i><b>6.2.8</b> Interpreting Our Model</a></li>
-<li class="chapter" data-level="6.2.9" data-path="regression-part-1.html"><a href="regression-part-1.html#your-challenge-do-this-during-the-in-person-session-3"><i class="fa fa-check"></i><b>6.2.9</b> Your Challenge (do this during the in-person session)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="regression-part-2.html"><a href="regression-part-2.html"><i class="fa fa-check"></i><b>7</b> Regression Part 2</a>
@@ -272,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.3" data-path="anova-part-1.html"><a href="anova-part-1.html#visualising-our-data-2"><i class="fa fa-check"></i><b>8.4.3</b> Visualising our Data</a></li>
 <li class="chapter" data-level="8.4.4" data-path="anova-part-1.html"><a href="anova-part-1.html#building-our-anova-model-2"><i class="fa fa-check"></i><b>8.4.4</b> Building our ANOVA Model</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="anova-part-1.html"><a href="anova-part-1.html#your-challenge-do-this-during-the-in-person-session-4"><i class="fa fa-check"></i><b>8.5</b> Your Challenge (do this during the in-person session)</a>
+<li class="chapter" data-level="8.5" data-path="anova-part-1.html"><a href="anova-part-1.html#your-challenge-do-this-during-the-in-person-session-3"><i class="fa fa-check"></i><b>8.5</b> Your Challenge (do this during the in-person session)</a>
 <ul>
 <li class="chapter" data-level="8.5.1" data-path="anova-part-1.html"><a href="anova-part-1.html#question-1"><i class="fa fa-check"></i><b>8.5.1</b> Question 1</a></li>
 <li class="chapter" data-level="8.5.2" data-path="anova-part-1.html"><a href="anova-part-1.html#question-2"><i class="fa fa-check"></i><b>8.5.2</b> Question 2</a></li>
@@ -333,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this workshop we will explore Simple Regression in the context of the General Linear Model (GLM). You will also have the opportunity to build some regression models where you predict an outcome variable on the basis of one predictor. You will also learn how to run model diagnostics to ensure you are not violating any key assumptions of regression.</p>
 <div id="overview-1" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Overview<a href="regression-part-1.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>First off I’d like you to watch the following videos which start off by revising the basics of correlation, before examining how we build regressions models.</p>
+<p>First off I’d like you to watch the following video which starts off by revising the basics of correlation, before examining how we build regressions models.</p>
 <p>  </p>
 <center>
 <iframe width="560" height="315" src="https://youtube.com/embed/cfyb3T_j9VQ" data-external="1" frameborder="0" allowfullscreen>
@@ -341,22 +340,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>  </p>
 <p>  </p>
-<center>
-<iframe width="560" height="315" src="https://youtube.com/embed/jUTUBVWwwPI" data-external="1" frameborder="0" allowfullscreen>
-</iframe>
-</center>
-<p>  </p>
-<p>  </p>
 </div>
 <div id="simple-linear-regression" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Simple Linear Regression<a href="regression-part-1.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>After having watched the videos above, I’d like you to work through the following simple linear regression example in R. Remember to create a new <code>.Rproj</code> file to keep things organised.</p>
-<p>  </p>
-<center>
-<iframe width="560" height="315" src="https://youtube.com/embed/wxCST9aeT9E" data-external="1" frameborder="0" allowfullscreen>
-</iframe>
-</center>
-<p>  </p>
+<p>After having watched the video above, I’d like you to work through the following simple linear regression example in R. Remember to create a new <code>.Rproj</code> file to keep things organised.</p>
 <div id="the-packages-we-need" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> The Packages We Need<a href="regression-part-1.html#the-packages-we-need" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First we need to install the packages we need. We’re going to install the <code>tidyverse</code> set of packages plus a few others. The package <code>Hmisc</code> allows us to use the <code>rcorr()</code> function for calculating Pearson’s r, and the <code>performance</code> package so we can test our model assumptions. Remember, if you haven’t previously installed these packages on your laptop you first need to type <code>install.packages("packagename")</code> in the console before you can call the <code>library()</code> function for that package. You <em>may</em> also need to install the package <code>see</code> to get the <code>performance</code> package working. If so, do that in the console by typing <code>install.packages("see")</code>.</p>
@@ -368,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.2.2</span> Import the Data<a href="regression-part-1.html#import-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Import the dataset called <code>crime_dataset.csv</code> - this dataset contains population data, housing price index data and crime data for cities in the US.</p>
 <p>We can use the function <code>head()</code> to display the first few rows of our dataset called “crime”.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="regression-part-1.html#cb116-1" tabindex="-1"></a>crime <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/09_glm_regression_pt1/master/data/crime_dataset.csv&quot;</span>)</span>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="regression-part-1.html#cb116-1" tabindex="-1"></a>crime <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/reg_pt1.csv&quot;</span>)</span>
 <span id="cb116-2"><a href="regression-part-1.html#cb116-2" tabindex="-1"></a><span class="fu">head</span>(crime)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 9
 ##    Year index_nsa `City, State` Population `Violent Crimes` Homicides Rapes
@@ -500,7 +487,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s use the <code>check_model()</code> function from the performance package to check the assumptions of our model.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="regression-part-1.html#cb132-1" tabindex="-1"></a><span class="fu">check_model</span>(model2, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
-<p>Our dataset is small and so some of our diagnostic plots don’t look great. We’ll come back to the influential outlier (case 29) later - but for now let’s use the <code>anova()</code> function to see if our model with Population as the predictor is better than the one using just the mean.</p>
+<p>Our dataset is small and so some of our diagnostic plots don’t look great. But for now let’s use the <code>anova()</code> function to see if our model with Population as the predictor is better than the one using just the mean.</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="regression-part-1.html#cb133-1" tabindex="-1"></a><span class="fu">anova</span>(model1, model2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -537,13 +524,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## F-statistic: 27.71 on 1 and 38 DF,  p-value: 5.813e-06</code></pre>
 <p>The intercept corresponds to where our regression line intercepts the y-axis, and the Population parameter corresponds to the slope of our line. We see that for every increase in population by 1 there is an extra 0.006963 increase in violent crime.</p>
 <p>For a city with a population of about a million, there will be about 7907 Violent Crimes. We calculate this by multiplying the estimate of our predictor (0.006963) by 1,000,000 and then adding the intercept (944.3). This gives us 7907.3 crimes - which tallys with what you see in our regression line above. We may have a few outliers - how would you figure out what those were? Try excluding any outliers you find and re-building your model.</p>
-</div>
-<div id="your-challenge-do-this-during-the-in-person-session-3" class="section level3 hasAnchor" number="6.2.9">
-<h3><span class="header-section-number">6.2.9</span> Your Challenge (do this during the in-person session)<a href="regression-part-1.html#your-challenge-do-this-during-the-in-person-session-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>You now have three tasks:<br>
-1. Check whether the same relationship holds for population size and robberies in 2015.<br>
-2. Are house prices predicted by the number of violent crimes in 2015?<br>
-3. Are house prices predicted by population size in 2015?</p>
 <center>
 <strong>End of workshop 6 materials</strong>
 </center>

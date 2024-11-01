@@ -61,7 +61,6 @@ pearsons-r
 model-the-data
 checking-our-assumptions
 interpreting-our-model
-your-challenge-do-this-during-the-in-person-session-3
 regression-part-2
 overview-2
 multiple-regression
@@ -90,7 +89,7 @@ reading-in-our-data-2
 summarising-our-data-2
 visualising-our-data-2
 building-our-anova-model-2
-your-challenge-do-this-during-the-in-person-session-4
+your-challenge-do-this-during-the-in-person-session-3
 question-1
 question-2
 question-3

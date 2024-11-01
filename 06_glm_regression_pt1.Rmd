@@ -5,7 +5,7 @@
 In this workshop we will explore Simple Regression in the context of the General Linear Model (GLM). You will also have the opportunity to build some regression models where you predict an outcome variable on the basis of one predictor. You will also learn how to run model diagnostics to ensure you are not violating any key assumptions of regression.
 
 ## Overview
-First off I'd like you to watch the following videos which start off by revising the basics of correlation, before examining how we build regressions models. 
+First off I'd like you to watch the following video which starts off by revising the basics of correlation, before examining how we build regressions models. 
 
 &nbsp;&nbsp;
 
@@ -19,30 +19,8 @@ First off I'd like you to watch the following videos which start off by revising
 
 &nbsp;&nbsp;
 
-<center>
-
-<iframe width="560" height="315" src="https://youtube.com/embed/jUTUBVWwwPI" data-external="1" frameborder="0" allowfullscreen></iframe>
-
-</center>
-
-&nbsp;&nbsp;
-
-
-
-&nbsp;&nbsp;
-
 ## Simple Linear Regression
-After having watched the videos above, I'd like you to work through the following simple linear regression example in R. Remember to create a new `.Rproj` file to keep things organised.
-
-&nbsp;&nbsp;
-
-<center>
-
-<iframe width="560" height="315" src="https://youtube.com/embed/wxCST9aeT9E" data-external="1" frameborder="0" allowfullscreen></iframe>
-
-</center>
-
-&nbsp;&nbsp;
+After having watched the video above, I'd like you to work through the following simple linear regression example in R. Remember to create a new `.Rproj` file to keep things organised.
 
 ### The Packages We Need
 
@@ -61,7 +39,7 @@ Import the dataset called `crime_dataset.csv` - this dataset contains population
 We can use the function `head()` to display the first few rows of our dataset called "crime".
 
 ```{r, message=FALSE}
-crime <- read_csv("https://raw.githubusercontent.com/ajstewartlang/09_glm_regression_pt1/master/data/crime_dataset.csv")
+crime <- read_csv("https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/reg_pt1.csv")
 head(crime)
 ```
 
@@ -173,7 +151,7 @@ Let's use the `check_model()` function from the performance package to check the
 check_model(model2, check = c("homogeneity","outliers","qq"))
 ```
 
-Our dataset is small and so some of our diagnostic plots don't look great. We'll come back to the influential outlier (case 29) later - but for now let's use the `anova()` function to see if our model with Population as the predictor is better than the one using just the mean.
+Our dataset is small and so some of our diagnostic plots don't look great. But for now let's use the `anova()` function to see if our model with Population as the predictor is better than the one using just the mean.
 
 ```{r}
 anova(model1, model2)
@@ -190,14 +168,6 @@ summary(model2)
 The intercept corresponds to where our regression line intercepts the y-axis, and the Population parameter corresponds to the slope of our line. We see that for every increase in population by 1 there is an extra 0.006963 increase in violent crime. 
 
 For a city with a population of about a million, there will be about 7907 Violent Crimes. We calculate this by multiplying the estimate of our predictor (0.006963) by 1,000,000 and then adding the intercept (944.3).  This gives us 7907.3 crimes - which tallys with what you see in our regression line above. We may have a few outliers - how would you figure out what those were? Try excluding any outliers you find and re-building your model.
-
-### Your Challenge (do this during the in-person session)
-
-You now have three tasks:<br>
-1. Check whether the same relationship holds for population size and robberies in 2015.<br>
-2. Are house prices predicted by the number of violent crimes in 2015?<br>
-3. Are house prices predicted by population size in 2015? 
-
 
 <center>
 **End of workshop 6 materials**
