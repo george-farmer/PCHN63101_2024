@@ -3,13 +3,13 @@
 In this workshop we will explore Multiple Regression in the context of the General Linear Model (GLM). Multiple Regression builds on Simple Regression, except that instead of having one predictor (as is the case with Simple Regression) we will be dealing with multiple predictors. Again, you will have the opportunity to build some regression models and use various methods to decide which one is ‘best’. You will also learn how to run model diagnostics for these models as you did in the case of Simple Regression.
 
 ## Overview
-First off I'd like you to watch the following video which builds on the first regression workshop. We explore how to build regression models with more than one predictor in R using the `lm()` function, test our model assumptions, and interpret the output. We look at different ways of building stepwise regression models with multiple predictors, before finishing by looking at mediation and moderation. 
+First off I'd like you to watch the following video which builds on the first regression workshop. We explore how to build regression models with more than one predictor in R using the `lm()` function, test our model assumptions, and interpret the output. We also look at different ways of building stepwise regression models with multiple predictors. 
 
 &nbsp;&nbsp;
 
 <center>
 
-<iframe width="560" height="315" src="https://youtube.com/embed/tircoVBi75A" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtube.com/embed/TYaXF_8ruIc" frameborder="0" allowfullscreen></iframe>
 
 </center>
 
@@ -18,7 +18,7 @@ First off I'd like you to watch the following video which builds on the first re
 
 ## Multiple Regression 
 
-In standard multiple regression all the independent variables (IVs) are entered into the equation and evaluated for their contribution at the same time. Let’s work through a specific example.
+In standard multiple regression all the independent variables (IVs) are entered into the equation and evaluated for their contribution at the same time. Let’s work through a specific example. As you read through the analysis below run the code on your machine.
 
 An educational psychologist conducted a study that investigated the psycholinguistic variables that contribute to spelling performance in primary school children aged between 7- and 9-years. The researcher presented children with 48 words that varied systematically according to certain features such as age of acquisition, word frequency, word length, and imageability. The psychologist wants to check whether performance on the test accurately reflected children’s spelling ability as estimated by a standardised spelling test. That is, the psychologist wants to check whether her test was appropriate.
 
