@@ -19,19 +19,7 @@ We will begin by exploring why we tend to use ANOVA (rather than multiple *t*-te
 
 ## Between Participants ANOVA
 
-In this second video, I will show you how to build a between participants ANOVA model in R using the `{afex}` package.
-
-&nbsp;&nbsp;
-
-<center>
-
-<iframe width="560" height="315" src="https://youtube.com/embed/iqIfjl18Kbo" frameborder="0" data-external="1" allowfullscreen></iframe>
-
-</center>
-
-&nbsp;&nbsp;
-
-After you've watched both of the videos above, it's your turn to build your first ANOVA in R for a between participants design. This is the same data (from the same study) that I covered in the second of the two videos above. Follow the instructions below to build that model.
+You will now build your first ANOVA in R for a between participants design.
 
 ### Loading our Packages
 
@@ -45,10 +33,10 @@ library(emmeans)
 
 ### Reading in our Data
 
-We have 45 participants in a between participants design where we are interested in the effect of beverage consumed on ability on a motor task. Our experimental factor (beverage type) has 3 levels. These are Water vs. Single Espresso vs. Double Espresso, and Ability is our DV measured on a continuous scale. Let's read in our data.
+We have 45 participants in a between participants design where we are interested in the effect of beverage consumed on ability on a motor task. Our experimental factor (beverage type) has three levels. These are Water vs. Single Espresso vs. Double Espresso, and Ability is our DV measured on a continuous scale. Let's read in our data.
 
 ```{r, message=FALSE}
-my_data <- read_csv("https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/cond.csv")
+my_data <- read_csv("https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/cond.csv")
 head(my_data)
 ```
 
@@ -88,10 +76,13 @@ We have built a visualisation where we have plotted the raw data points using th
 
 ### Building our ANOVA Model
 
-Let's now build our model using the `aov_4()` function in the `{afex}` package. The syntax for ANOVA models in `aov_4()` is: `aov_4(DV ~ IV + (1 | Participant), data = my_data_tidied)`. The `~` symbol means predicted by, the `(1 | Participant)` term corresponds to our random effect - we obviously can't test all the participants in the world so have taken just a random sample from this population. Finally, we need to specify what dataset we are using by making that clear in the `data = my_data_tidied` bit of the model. We are going to map the output of the `aov()` function onto a variable I'm calling `model`. This means that the ANOVA results will be stored in this variable and will allow us to access them later.
+Let's now build our model using the `aov_ez()` function in the `{afex}` package. We use `id` to specify which variable in our dataframe identifies participants. `dv` stands for dependent variable, and we use the `between` argument to identify the variable containing our between subjects conditions. Lastly we specify the dataframe that `aov_ez()` should use.  We are going to map the output of the `aov_ez()` function onto a variable I'm calling `model`. This means that the ANOVA results will be stored in this variable and will allow us to access them later.
 
 ```{r}
-model <- aov_4(Ability ~ Condition + (1 | Participant), data = my_data_tidied)
+model <- aov_ez(id = 'Participant',
+                dv = 'Ability',
+                between = 'Condition',
+                data = my_data_tidied)
 ```
 
 To get the output of the ANOVA, we can use the `summary()` function with our newly created `model`.
@@ -104,7 +95,7 @@ summary(model)
 
 The effect size (ges) is generalised eta squared and for designs with more than one factor it can be a useful indicator of how much variance in the dependent variable can be explained by each factor (plus any interactions between factors).
 
-So, we there is an effect in our model - the F-value is pretty big and the *p*-value pretty small) but we can't know what's driving the difference yet. We need to run some pairwise comparisons using the `emmeans()` function to tell us what mean(s) differ(s) from what other mean(s). 
+So, we know there is an effect in our model - the F-value is pretty big and the *p*-value pretty small) but we can't know what's driving the difference yet. We need to run some pairwise comparisons using the `emmeans()` function to tell us what mean(s) differ(s) from what other mean(s). 
 
 ```{r}
 emmeans(model, pairwise ~ Condition)
@@ -116,7 +107,7 @@ Note that the default adjustment for multiple comparisons is Tukey's. We can cha
 emmeans(model, pairwise ~ Condition, adjust = "bonferroni")
 ```
 
-We found a significant effect of Beverage type (F (2,42) = 297.05, *p* < .001, generalised η2 = .93). Tukey comparisons revealed that the Water group performed significantly worse than the Single Espresso Group (*p* < .001), that the Water group performed significantly worse than the Double Espresso Group (*p* < .001), and that the Single Espresso Group performed significantly worse than the Double Espresso Group (*p* < .001).
+We found a significant effect of Beverage type (*F* (2,42) = 297.05, *p* < .001, generalised η2 = .93). Tukey comparisons revealed that the Water group performed significantly worse than the Single Espresso Group (*p* < .001), that the Water group performed significantly worse than the Double Espresso Group (*p* < .001), and that the Single Espresso Group performed significantly worse than the Double Espresso Group (*p* < .001).
 
 In other words, drinking some coffee improves motor performance relative to drinking water, and drinking a lot of coffee improves motor performance even more.
 
@@ -124,23 +115,13 @@ In other words, drinking some coffee improves motor performance relative to drin
 
 ## Repeated Measures ANOVA
 
-&nbsp;&nbsp;
-
-<center>
-
-<iframe width="560" height="315" src="https://youtube.com/embed/Xc3vYaQAuS8" frameborder="0" data-external="1" allowfullscreen></iframe>
-
-</center>
-
-&nbsp;&nbsp;
-
-Now it's your chance to work with the data I examined in the video above. Let’s imagine we have an experiment where we asked 32 participants to learn how to pronounce words of differing levels of complexity - Very Easy, Easy, Hard, and Very Hard. They were presented with these words in an initial exposure phase. After a 30 minute break we tested participants by asking them to say the words out loud when they appeared on a computer screen. We recorded their times in seconds. We want to know whether there is a difference in their response times for each level of word complexity. 
+Let’s imagine we have an experiment where we asked 32 participants to learn how to pronounce words of differing levels of complexity - Very Easy, Easy, Hard, and Very Hard. They were presented with these words in an initial exposure phase. After a 30 minute break we tested participants by asking them to say the words out loud when they appeared on a computer screen. We recorded their times in seconds. We want to know whether there is a difference in their response times for each level of word complexity. 
 
 ### Reading in our Data
 
 First we read in the data.
 ```{r, message=FALSE}
-rm_data <- read_csv("https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/rm_data.csv")
+rm_data <- read_csv("https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/rm_data.csv")
 head(rm_data)
 ```
 
@@ -177,10 +158,13 @@ rm_data_tidied %>%
 
 ### Building our ANOVA Model
 
-We build our ANOVA model in a similar way as we did previously. Except in this case our random effect we define as `(1 + Condition | Participant)`. I order to capture the fact that our `Condition` is a repeated measures factor, we add it to the random effect term like this.
+We build our ANOVA model in a similar way to before. Except in this case we use the `within` argument rather than the `between` argument in order to capture the fact that `Condition` is a repeated measures factor.
 
 ```{r}
-rm_model <- aov_4(RT ~ Condition + (1 + Condition | Participant), data = rm_data_tidied)
+rm_model <- aov_ez(id = 'Participant',
+                   dv = 'RT',
+                   within = 'Condition',
+                   data = rm_data_tidied)
 ```
 
 ### Interpreting the Model Output
@@ -223,7 +207,7 @@ From the above we can see that all conditions differ from all other conditions, 
 ### Reading in our Data
 
 ```{r, message=FALSE}
-factorial_data <- read_csv("https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/factorial_data.csv")
+factorial_data <- read_csv("https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/factorial_data.csv")
 head(factorial_data)
 ```
 
@@ -284,12 +268,17 @@ factorial_data_tidied %>%
 
 ### Building our ANOVA Model
 
-We have our data in long format where every row is one observation. We haven't done any data aggregation. The `aov_4()` function will do this for us as ANOVA models need to be built over means (not raw data).  As the data haven't been aggregated, we could actually build two ANOVA models with the data in the current format. We could build one ANOVA where we treat Subjects as a random effect (also known as F1 ANOVA), and another where we treat Items as a random factor (also known as F2 ANOVA). In language research, it's commonplace to conduct both types of analysis. The by-items (F2) analysis allows us to ensure any effects we might find aren't limited to just a subset of experimental items. 
+We have our data in long format where every row is one observation. We haven't done any data aggregation. The `aov_ez()` function will do this for us as ANOVA models need to be built over means (not raw data).
 
-First we'll look at how to run a by-subjects ANOVA for our factorial design using `aov_4()`. The syntax is very similar to what we ran previously, although this time you'll see we have a new term `Context * Sentence`. This term corresponds to two main effects, plus the interaction between them. It's shorthand for `Context + Sentence + Context:Sentence`. We also specify this in the random effect By setting `na.rm` to be TRUE, we are telling the analysis to ignore individual trials where there might be missing data - effectively this calculates the condition means over the data that is present (and ignores trials where it is missing).
+The syntax is very similar to what we ran previously, although this time you'll see we are providing two terms to the `within` argument. We do this by combining them like this `c('Context','Sentence')`. This term corresponds to two main effects, `aov_ez` will also automatically calculate the interaction between them. By setting `na.rm` to be TRUE, we are telling the analysis to ignore individual trials where there might be missing data - effectively this calculates the condition means over the data that is present (and ignores trials where it is missing). The `fun_aggregate = mean` argument tells `aov_ez()` to use means when aggregating, this is the default behaviour anyway, but specifying it here avoids us getting a warning message about it.
 
 ```{r, message=FALSE}
-model_subjects <- aov_4(RT ~ Context * Sentence + (1 + Context * Sentence | Subject), data = factorial_data_tidied, na.rm = TRUE)
+model_subjects <- aov_ez(id='Subject',
+                         dv='RT',
+                         within = c('Context','Sentence'),
+                         na.rm = TRUE, 
+                         fun_aggregate = mean,
+                         data = factorial_data_tidied)
 ```
 
 We can generate the output using the `anova()` function as we did earlier.
@@ -298,19 +287,7 @@ We can generate the output using the `anova()` function as we did earlier.
 anova(model_subjects)
 ```
 
-If we want to generate the F2 ANOVA (by items), we simply change the random effect such that it is calculed by Items rather than by Subjects.
-
-```{r, message=FALSE}
-model_items <- aov_4(RT ~ Context * Sentence + (1 + Context * Sentence | Item), data = factorial_data_tidied, na.rm = TRUE)
-```
-
-```{r}
-anova(model_items)
-```
-
-You can see that the F1 and F2 analysis both produce similar results. 
-
-Let's now interpret our ANOVA where we had Subjects as our random effect. We will the error correction adjustment to equal `none` as only some of the comparisons actually make theoretical sense - these are the ones where we're comparing like with like - Sentences of the same type (Positive *or* Negative) preceded by one version of our Context factor vs. the other.
+Let's now interpret our ANOVA and we will set the error correction adjustment to equal `none` as only some of the comparisons actually make theoretical sense - these are the ones where we're comparing like with like - Sentences of the same type (Positive *or* Negative) preceded by one version of our Context factor vs. the other.
 
 ```{r}
 emmeans(model_subjects, pairwise ~ Context * Sentence, adjust = "none")
@@ -330,7 +307,7 @@ I would now like you to work on the following questions on your own.
 
 Our first data file is called ANOVA_data1.csv and can be found here:
 
-https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data1.csv
+https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/ANOVA_data1.csv
 
 24 participants responded to a word that was either common (i.e., high lexical frequency) or rare (i.e., low lexical frequency). This is our IV and is coded as 'high' vs. low'. Our DV is reaction time and is coded as 'RT'. Subject number is coded as 'Subject'. We want to know whether there is a difference between conditions (and if so, where that difference lies). Visualise the data, generate descriptives, and run the appropriate ANOVA to determine whether our independent variable (Condition) has an influence on our dependent variable (RT).
 
@@ -338,7 +315,7 @@ https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANO
 
 Our second data file is called ANOVA_data2.csv and can be found here:
 
-https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data2.csv
+https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/ANOVA_data2.csv
 
 These data are also from a reaction time experiment but with a slightly more complex design.48 participants responded to a word that differed in how frequent it was. This factor is between participants and we have four levels coded as 'very low', 'low', 'high', and 'very high'. Our DV is reaction time and is coded as 'RT'. Subject number is coded as 'Subject'. We want to know if there is a difference between our conditions (and if so, where that difference lies).
 
@@ -346,7 +323,7 @@ These data are also from a reaction time experiment but with a slightly more com
 
 Our third data file is called ANOVA_data3.csv and can be found here:
 
-https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data3.csv
+https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/ANOVA_data3.csv
 
 These data are from a 2 x 2 repeated measures reaction time experiment. We were interested in how quickly participants could respond to images that were Large vs. Small and in Colour vs. Black & White. We expect that Large Colour images will be responded to more quickly than Small B & W images. We're not sure about Small Colour images and Large B & W images. We measured the response times of 24 participants responding to an image in each of these four conditions. We want to determine if there is a difference between our conditions (and if so, where that difference lies).
 
@@ -354,7 +331,7 @@ These data are from a 2 x 2 repeated measures reaction time experiment. We were 
 
 Our fourth data file is called ANOVA_data4.csv and can be found here:
 
-https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data4.csv
+https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/ANOVA_data4.csv
 
 These data are from a 2 x 2 x 3 mixed design experiment where we measured people's response times to maths questions that were either Easy or Hard, and to which they had to respond either under Time Pressure or under No Time Pressure. These are our first two factors and are repeated measures (i.e., everyone saw all 4 conditions). Our third factor is between subjects and corresponds to whether our participants were in one of three groups. The groups were Psychology Students, Maths Students, and Arts Students.  We want to know where a participant's perfomance on the maths questions under time pressure vs. not under time pressure is influenced by which one of these three groups they belong to. Conduct the appropriate ANOVA to answer this question. Remember to start off with some data visualisation(s).
 
