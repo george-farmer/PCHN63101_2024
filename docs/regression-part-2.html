@@ -348,54 +348,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First we need to load the packages we need - the require function assumes they are already on your machine. If they are not, then you need to install.packages (“packagename”) first:</p>
 <div id="the-packages-we-need-1" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> The Packages We Need<a href="regression-part-2.html#the-packages-we-need-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="regression-part-2.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Load the tidyverse packages</span></span>
-<span id="cb1-2"><a href="regression-part-2.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(Hmisc) <span class="co"># Needed for correlation</span></span>
-<span id="cb1-3"><a href="regression-part-2.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(MASS) <span class="co"># Needed for maths functions</span></span>
-<span id="cb1-4"><a href="regression-part-2.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(car) <span class="co"># Needed for VIF calculation</span></span>
-<span id="cb1-5"><a href="regression-part-2.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(olsrr) <span class="co"># Needed for stepwise regression </span></span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="regression-part-2.html#cb137-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Load the tidyverse packages</span></span>
+<span id="cb137-2"><a href="regression-part-2.html#cb137-2" tabindex="-1"></a><span class="fu">library</span>(Hmisc) <span class="co"># Needed for correlation</span></span>
+<span id="cb137-3"><a href="regression-part-2.html#cb137-3" tabindex="-1"></a><span class="fu">library</span>(MASS) <span class="co"># Needed for maths functions</span></span>
+<span id="cb137-4"><a href="regression-part-2.html#cb137-4" tabindex="-1"></a><span class="fu">library</span>(car) <span class="co"># Needed for VIF calculation</span></span>
+<span id="cb137-5"><a href="regression-part-2.html#cb137-5" tabindex="-1"></a><span class="fu">library</span>(olsrr) <span class="co"># Needed for stepwise regression </span></span></code></pre></div>
 <pre><code>## Warning: package &#39;olsrr&#39; was built under R version 4.3.3</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="regression-part-2.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(performance) <span class="co"># Needed to check model assumptions</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="regression-part-2.html#cb139-1" tabindex="-1"></a><span class="fu">library</span>(performance) <span class="co"># Needed to check model assumptions</span></span></code></pre></div>
 </div>
 <div id="import-the-data-1" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Import the Data<a href="regression-part-2.html#import-the-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You now need to read in the data file.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="regression-part-2.html#cb4-1" tabindex="-1"></a>MRes_tut2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/10_glm_regression_pt2/master/data/MRes_tut2.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="regression-part-2.html#cb140-1" tabindex="-1"></a>MRes_tut2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/ajstewartlang/10_glm_regression_pt2/master/data/MRes_tut2.csv&quot;</span>)</span></code></pre></div>
 <div id="examining-possible-relationships" class="section level4 unnumbered hasAnchor">
 <h4>Examining Possible Relationships<a href="regression-part-2.html#examining-possible-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Before we start, let’s look at the relationships between our IVs (predictors) and our DV (outcome). We can plot graphs depicting the correlations. We’ll plot test performance against each of our four predictors in turn:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="regression-part-2.html#cb5-1" tabindex="-1"></a><span class="fu">ggplot</span>(MRes_tut2, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> corr_spell)) <span class="sc">+</span> </span>
-<span id="cb5-2"><a href="regression-part-2.html#cb5-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb5-3"><a href="regression-part-2.html#cb5-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="regression-part-2.html#cb5-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-5"><a href="regression-part-2.html#cb5-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="regression-part-2.html#cb6-1" tabindex="-1"></a><span class="fu">ggplot</span>(MRes_tut2, <span class="fu">aes</span>(<span class="at">x =</span> RA, <span class="at">y =</span> corr_spell)) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="regression-part-2.html#cb6-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="regression-part-2.html#cb6-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="regression-part-2.html#cb6-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-5"><a href="regression-part-2.html#cb6-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="regression-part-2.html#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(MRes_tut2, <span class="fu">aes</span>(<span class="at">x =</span> std_RA, <span class="at">y =</span> corr_spell)) <span class="sc">+</span> </span>
-<span id="cb7-2"><a href="regression-part-2.html#cb7-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb7-3"><a href="regression-part-2.html#cb7-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="regression-part-2.html#cb7-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb7-5"><a href="regression-part-2.html#cb7-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="regression-part-2.html#cb8-1" tabindex="-1"></a><span class="fu">ggplot</span>(MRes_tut2, <span class="fu">aes</span>(<span class="at">x =</span> std_SPELL, <span class="at">y =</span> corr_spell)) <span class="sc">+</span> </span>
-<span id="cb8-2"><a href="regression-part-2.html#cb8-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb8-3"><a href="regression-part-2.html#cb8-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="regression-part-2.html#cb8-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb8-5"><a href="regression-part-2.html#cb8-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-4.png" width="672" /></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="regression-part-2.html#cb141-1" tabindex="-1"></a><span class="fu">ggplot</span>(MRes_tut2, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> corr_spell)) <span class="sc">+</span> </span>
+<span id="cb141-2"><a href="regression-part-2.html#cb141-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb141-3"><a href="regression-part-2.html#cb141-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb141-4"><a href="regression-part-2.html#cb141-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb141-5"><a href="regression-part-2.html#cb141-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="regression-part-2.html#cb142-1" tabindex="-1"></a><span class="fu">ggplot</span>(MRes_tut2, <span class="fu">aes</span>(<span class="at">x =</span> RA, <span class="at">y =</span> corr_spell)) <span class="sc">+</span> </span>
+<span id="cb142-2"><a href="regression-part-2.html#cb142-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb142-3"><a href="regression-part-2.html#cb142-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb142-4"><a href="regression-part-2.html#cb142-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb142-5"><a href="regression-part-2.html#cb142-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-2.png" width="672" /></p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="regression-part-2.html#cb143-1" tabindex="-1"></a><span class="fu">ggplot</span>(MRes_tut2, <span class="fu">aes</span>(<span class="at">x =</span> std_RA, <span class="at">y =</span> corr_spell)) <span class="sc">+</span> </span>
+<span id="cb143-2"><a href="regression-part-2.html#cb143-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb143-3"><a href="regression-part-2.html#cb143-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb143-4"><a href="regression-part-2.html#cb143-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb143-5"><a href="regression-part-2.html#cb143-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-3.png" width="672" /></p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="regression-part-2.html#cb144-1" tabindex="-1"></a><span class="fu">ggplot</span>(MRes_tut2, <span class="fu">aes</span>(<span class="at">x =</span> std_SPELL, <span class="at">y =</span> corr_spell)) <span class="sc">+</span> </span>
+<span id="cb144-2"><a href="regression-part-2.html#cb144-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb144-3"><a href="regression-part-2.html#cb144-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb144-4"><a href="regression-part-2.html#cb144-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb144-5"><a href="regression-part-2.html#cb144-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-4.png" width="672" /></p>
 </div>
 </div>
 <div id="model-the-data-1" class="section level3 hasAnchor" number="7.2.3">
 <h3><span class="header-section-number">7.2.3</span> Model the Data<a href="regression-part-2.html#model-the-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We are going to do hierarchical regression first - we’ll build one model (which we’ll call <code>model0</code>) that is the mean of our outcome variable, and another model (<code>model1</code>) which contains all our predictors:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="regression-part-2.html#cb9-1" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> MRes_tut2)</span>
-<span id="cb9-2"><a href="regression-part-2.html#cb9-2" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> age <span class="sc">+</span> RA <span class="sc">+</span> std_RA <span class="sc">+</span> std_SPELL, <span class="at">data =</span> MRes_tut2)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="regression-part-2.html#cb145-1" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> MRes_tut2)</span>
+<span id="cb145-2"><a href="regression-part-2.html#cb145-2" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> age <span class="sc">+</span> RA <span class="sc">+</span> std_RA <span class="sc">+</span> std_SPELL, <span class="at">data =</span> MRes_tut2)</span></code></pre></div>
 <p>Let’s compare them to each other:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="regression-part-2.html#cb10-1" tabindex="-1"></a><span class="fu">anova</span>(model0, model1)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="regression-part-2.html#cb146-1" tabindex="-1"></a><span class="fu">anova</span>(model0, model1)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: corr_spell ~ 1
@@ -409,30 +409,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="checking-our-assumptions-1" class="section level4 unnumbered hasAnchor">
 <h4>Checking our Assumptions<a href="regression-part-2.html#checking-our-assumptions-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>OK, so they differ - now let’s plot information about our model assumptions - remember, we are particularly interested in Cook’s distance values for our case…</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="regression-part-2.html#cb12-1" tabindex="-1"></a><span class="fu">check_model</span>(model1, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>,<span class="st">&quot;vif&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="regression-part-2.html#cb148-1" tabindex="-1"></a><span class="fu">check_model</span>(model1, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>,<span class="st">&quot;vif&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
 <p>The errors looks fairly equally distributed along our fitted values (homogeneity of variance) - although a little worse for high fitted values - and from the Q-Q plot we can tell they look fairly normal (they should follow the diagonal). How about influential cases? So, Case 10 looks a bit dodgy - it has a high Cook’s Distance value (indicated by it falling outside of the dashed lines) - which suggests it is having a disproportionate effect on our model. Let’s exclude it using the <code>filter()</code> function - the symbol <code>!=</code> means ‘does not equal’ so we are selecting values other than Case 10.</p>
 </div>
 <div id="dropping-an-influential-case" class="section level4 unnumbered hasAnchor">
 <h4>Dropping an Influential Case<a href="regression-part-2.html#dropping-an-influential-case" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="regression-part-2.html#cb13-1" tabindex="-1"></a>MRes_tut2_drop10 <span class="ot">&lt;-</span> <span class="fu">filter</span>(MRes_tut2, case <span class="sc">!=</span> <span class="st">&quot;10&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="regression-part-2.html#cb149-1" tabindex="-1"></a>MRes_tut2_drop10 <span class="ot">&lt;-</span> <span class="fu">filter</span>(MRes_tut2, case <span class="sc">!=</span> <span class="st">&quot;10&quot;</span>)</span></code></pre></div>
 </div>
 <div id="remodel-the-data" class="section level4 unnumbered hasAnchor">
 <h4>Re(model) the Data<a href="regression-part-2.html#remodel-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We now create another model (<code>model2</code>) which doesn’t include Case 10.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="regression-part-2.html#cb14-1" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> age <span class="sc">+</span> RA <span class="sc">+</span> std_RA <span class="sc">+</span> std_SPELL, <span class="at">data =</span> MRes_tut2_drop10)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="regression-part-2.html#cb150-1" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> age <span class="sc">+</span> RA <span class="sc">+</span> std_RA <span class="sc">+</span> std_SPELL, <span class="at">data =</span> MRes_tut2_drop10)</span></code></pre></div>
 <p>Let’s check the model assumptions again using <code>check_model()</code>.</p>
 </div>
 <div id="checking-our-assumptions-2" class="section level4 unnumbered hasAnchor">
 <h4>Checking our Assumptions<a href="regression-part-2.html#checking-our-assumptions-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="regression-part-2.html#cb15-1" tabindex="-1"></a><span class="fu">check_model</span>(model2, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>,<span class="st">&quot;vif&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="regression-part-2.html#cb151-1" tabindex="-1"></a><span class="fu">check_model</span>(model2, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>,<span class="st">&quot;vif&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <p>Now, let’s look at the multicollinearity values measured by VIF:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="regression-part-2.html#cb16-1" tabindex="-1"></a><span class="fu">vif</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="regression-part-2.html#cb152-1" tabindex="-1"></a><span class="fu">vif</span>(model2)</span></code></pre></div>
 <pre><code>##       age        RA    std_RA std_SPELL 
 ##  3.843462 14.763168 14.672084  3.140457</code></pre>
 <p>It looks like RA and std_RA are problematic. We can look at the correlation between them using the <code>rcorr()</code> function:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="regression-part-2.html#cb18-1" tabindex="-1"></a><span class="fu">rcorr</span>(MRes_tut2_drop10<span class="sc">$</span>RA, MRes_tut2_drop10<span class="sc">$</span>std_RA)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="regression-part-2.html#cb154-1" tabindex="-1"></a><span class="fu">rcorr</span>(MRes_tut2_drop10<span class="sc">$</span>RA, MRes_tut2_drop10<span class="sc">$</span>std_RA)</span></code></pre></div>
 <pre><code>##      x    y
 ## x 1.00 0.88
 ## y 0.88 1.00
@@ -448,21 +448,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="remodel-the-data-1" class="section level4 unnumbered hasAnchor">
 <h4>Re(model) the Data<a href="regression-part-2.html#remodel-the-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The correlation is pretty high (0.88), so let’s exclude the predictor with the highest VIF value (which is RA) and build a new model:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="regression-part-2.html#cb20-1" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> age <span class="sc">+</span> std_RA <span class="sc">+</span> std_SPELL, <span class="at">data =</span> MRes_tut2_drop10)</span>
-<span id="cb20-2"><a href="regression-part-2.html#cb20-2" tabindex="-1"></a><span class="fu">vif</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="regression-part-2.html#cb156-1" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> age <span class="sc">+</span> std_RA <span class="sc">+</span> std_SPELL, <span class="at">data =</span> MRes_tut2_drop10)</span>
+<span id="cb156-2"><a href="regression-part-2.html#cb156-2" tabindex="-1"></a><span class="fu">vif</span>(model3)</span></code></pre></div>
 <pre><code>##       age    std_RA std_SPELL 
 ##  1.190827  2.636186  2.821235</code></pre>
 </div>
 <div id="checking-our-assumptions-3" class="section level4 unnumbered hasAnchor">
 <h4>Checking our Assumptions<a href="regression-part-2.html#checking-our-assumptions-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>These values look ok now. Let’s check the model assumptions again.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="regression-part-2.html#cb22-1" tabindex="-1"></a><span class="fu">check_model</span>(model3, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>,<span class="st">&quot;vif&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="regression-part-2.html#cb158-1" tabindex="-1"></a><span class="fu">check_model</span>(model3, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>,<span class="st">&quot;vif&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 </div>
 <div id="summary-of-our-model" class="section level4 unnumbered hasAnchor">
 <h4>Summary of our Model<a href="regression-part-2.html#summary-of-our-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Now let’s generate the coefficients as this looks like a sensible model.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="regression-part-2.html#cb23-1" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="regression-part-2.html#cb159-1" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = corr_spell ~ age + std_RA + std_SPELL, data = MRes_tut2_drop10)
@@ -483,8 +483,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 9.824 on 42 degrees of freedom
 ## Multiple R-squared:  0.8388, Adjusted R-squared:  0.8273 
 ## F-statistic: 72.87 on 3 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="regression-part-2.html#cb25-1" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> MRes_tut2_drop10)</span>
-<span id="cb25-2"><a href="regression-part-2.html#cb25-2" tabindex="-1"></a><span class="fu">anova</span>(model3, model0)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="regression-part-2.html#cb161-1" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> MRes_tut2_drop10)</span>
+<span id="cb161-2"><a href="regression-part-2.html#cb161-2" tabindex="-1"></a><span class="fu">anova</span>(model3, model0)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: corr_spell ~ age + std_RA + std_SPELL
@@ -504,10 +504,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can also do stepwise regression - forwards is when you start with the null model and predictors are added until they don’t explain any more variance, backwards is when you start with the full model and remove predictors until removal starts affecting your model’s predictive ability. Let’s keep case 10 dropped and also drop the high VIF predictor (RA). This is handy for models with lots of predictors where the order in sequential regression is not obvious.</p>
 <div id="model-the-data-2" class="section level3 hasAnchor" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Model the Data<a href="regression-part-2.html#model-the-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="regression-part-2.html#cb27-1" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> MRes_tut2_drop10)</span>
-<span id="cb27-2"><a href="regression-part-2.html#cb27-2" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> age <span class="sc">+</span> std_RA <span class="sc">+</span> std_SPELL, <span class="at">data =</span> MRes_tut2_drop10)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="regression-part-2.html#cb163-1" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> MRes_tut2_drop10)</span>
+<span id="cb163-2"><a href="regression-part-2.html#cb163-2" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(corr_spell <span class="sc">~</span> age <span class="sc">+</span> std_RA <span class="sc">+</span> std_SPELL, <span class="at">data =</span> MRes_tut2_drop10)</span></code></pre></div>
 <p>Let’s do stepwise forwards:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="regression-part-2.html#cb28-1" tabindex="-1"></a>steplimitsf <span class="ot">&lt;-</span> <span class="fu">step</span>(model0, <span class="at">scope =</span> <span class="fu">list</span> (<span class="at">lower =</span> model0, <span class="at">upper =</span> model1), <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="regression-part-2.html#cb164-1" tabindex="-1"></a>steplimitsf <span class="ot">&lt;-</span> <span class="fu">step</span>(model0, <span class="at">scope =</span> <span class="fu">list</span> (<span class="at">lower =</span> model0, <span class="at">upper =</span> model1), <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=291.98
 ## corr_spell ~ 1
 ## 
@@ -534,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Step:  AIC=214.02
 ## corr_spell ~ std_SPELL + age + std_RA</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="regression-part-2.html#cb30-1" tabindex="-1"></a><span class="fu">summary</span>(steplimitsf)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="regression-part-2.html#cb166-1" tabindex="-1"></a><span class="fu">summary</span>(steplimitsf)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = corr_spell ~ std_SPELL + age + std_RA, data = MRes_tut2_drop10)
@@ -556,7 +556,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.8388, Adjusted R-squared:  0.8273 
 ## F-statistic: 72.87 on 3 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Stepwise backwards:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="regression-part-2.html#cb32-1" tabindex="-1"></a>steplimitsb <span class="ot">&lt;-</span> <span class="fu">step</span>(model1, <span class="at">direction =</span> <span class="st">&quot;back&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="regression-part-2.html#cb168-1" tabindex="-1"></a>steplimitsb <span class="ot">&lt;-</span> <span class="fu">step</span>(model1, <span class="at">direction =</span> <span class="st">&quot;back&quot;</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=214.02
 ## corr_spell ~ age + std_RA + std_SPELL
 ## 
@@ -565,7 +565,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## - std_RA     1     728.1 4781.6 219.62
 ## - age        1    2581.2 6634.7 234.69
 ## - std_SPELL  1    5198.3 9251.8 249.98</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="regression-part-2.html#cb34-1" tabindex="-1"></a><span class="fu">summary</span>(steplimitsb)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="regression-part-2.html#cb170-1" tabindex="-1"></a><span class="fu">summary</span>(steplimitsb)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = corr_spell ~ age + std_RA + std_SPELL, data = MRes_tut2_drop10)
@@ -587,7 +587,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.8388, Adjusted R-squared:  0.8273 
 ## F-statistic: 72.87 on 3 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>And stepwise using both forwards and backwards procedures:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="regression-part-2.html#cb36-1" tabindex="-1"></a>steplimitsboth <span class="ot">&lt;-</span> <span class="fu">step</span>(model0, <span class="at">scope =</span> <span class="fu">list</span> (<span class="at">upper =</span> model1), <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="regression-part-2.html#cb172-1" tabindex="-1"></a>steplimitsboth <span class="ot">&lt;-</span> <span class="fu">step</span>(model0, <span class="at">scope =</span> <span class="fu">list</span> (<span class="at">upper =</span> model1), <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=291.98
 ## corr_spell ~ 1
 ## 
@@ -625,10 +625,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## - std_SPELL  1    5198.3 9251.8 249.98</code></pre>
 <div id="checking-our-assumptions-4" class="section level4 unnumbered hasAnchor">
 <h4>Checking our Assumptions<a href="regression-part-2.html#checking-our-assumptions-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="regression-part-2.html#cb38-1" tabindex="-1"></a><span class="fu">check_model</span>(steplimitsboth, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>,<span class="st">&quot;vif&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="regression-part-2.html#cb174-1" tabindex="-1"></a><span class="fu">check_model</span>(steplimitsboth, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;homogeneity&quot;</span>,<span class="st">&quot;outliers&quot;</span>,<span class="st">&quot;qq&quot;</span>,<span class="st">&quot;vif&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 <p>These look ok.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="regression-part-2.html#cb39-1" tabindex="-1"></a><span class="fu">summary</span>(steplimitsboth)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="regression-part-2.html#cb175-1" tabindex="-1"></a><span class="fu">summary</span>(steplimitsboth)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = corr_spell ~ std_SPELL + age + std_RA, data = MRes_tut2_drop10)
@@ -654,8 +654,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="entering-predictors-based-on-their-p-values" class="section level4 unnumbered hasAnchor">
 <h4>Entering predictors based on their <em>p</em>-values<a href="regression-part-2.html#entering-predictors-based-on-their-p-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can also use the <code>ols_step_forward_p()</code> function from the package <code>olsrr</code> - this works by finding the best model by entering the predictors based on their <em>p</em> values. There are other methods within the <code>olsrr</code> package. To see them, type <code>olsrr::</code> into the console window.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="regression-part-2.html#cb41-1" tabindex="-1"></a>pmodel <span class="ot">&lt;-</span> <span class="fu">ols_step_forward_p</span>(model1)</span>
-<span id="cb41-2"><a href="regression-part-2.html#cb41-2" tabindex="-1"></a>pmodel</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="regression-part-2.html#cb177-1" tabindex="-1"></a>pmodel <span class="ot">&lt;-</span> <span class="fu">ols_step_forward_p</span>(model1)</span>
+<span id="cb177-2"><a href="regression-part-2.html#cb177-2" tabindex="-1"></a>pmodel</span></code></pre></div>
 <pre><code>## 
 ## 
 ##                              Stepwise Summary                              
