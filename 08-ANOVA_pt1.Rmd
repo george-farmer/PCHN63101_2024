@@ -203,6 +203,9 @@ From the above we can see that all conditions differ from all other conditions, 
 
 &nbsp;&nbsp;
 
+Imagine the case where we're interested in the effect of positive vs negative contexts on how quickly (in milliseconds) people respond to positive vs negative sentences. We think there might be a priming effect (i.e., people are quicker to respond to positive sentences after positive contexts than they are after negative contexts, and vice versa).
+
+So we have two factors (context, sentence), each with two levels (positive, negative). This is what's know as a full factorial design where every participant takes part in every condition.
 
 ### Reading in our Data
 
