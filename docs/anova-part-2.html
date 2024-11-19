@@ -406,7 +406,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="building-our-anova-model-3" class="section level3 hasAnchor" number="9.2.5">
 <h3><span class="header-section-number">9.2.5</span> Building our ANOVA model<a href="anova-part-2.html#building-our-anova-model-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s first build an ANOVA model, and ignore the presence of the covariate in our dataset.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="anova-part-2.html#cb237-1" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span><span class="fu">aov_4</span>(Ability <span class="sc">~</span> Condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Participant), <span class="at">data =</span> my_data)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="anova-part-2.html#cb237-1" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span><span class="fu">aov_ez</span>(<span class="at">id =</span> <span class="st">&#39;Participant&#39;</span>,</span>
+<span id="cb237-2"><a href="anova-part-2.html#cb237-2" tabindex="-1"></a>                     <span class="at">dv =</span> <span class="st">&#39;Ability&#39;</span>,</span>
+<span id="cb237-3"><a href="anova-part-2.html#cb237-3" tabindex="-1"></a>                     <span class="at">between =</span>  <span class="st">&#39;Condition&#39;</span>,</span>
+<span id="cb237-4"><a href="anova-part-2.html#cb237-4" tabindex="-1"></a>                     <span class="at">data =</span> my_data)</span></code></pre></div>
 <pre><code>## Contrasts set to contr.sum for the following variables: Condition</code></pre>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="anova-part-2.html#cb239-1" tabindex="-1"></a><span class="fu">anova</span>(anova_model)</span></code></pre></div>
 <pre><code>## Anova Table (Type 3 tests)
@@ -434,8 +437,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
 <p>On the basis of this, we might conclude that we have an effect of Condition, and that each of our three groups differs significantly from the others. But would this be right? No, because we haven’t taken account of our covariate.</p>
-<p>We will build our ANCOVA model, adding our covariate before our experimental Condition manipulation. We set the <code>factorize</code> parameter to be <code>FALSE</code> so that it is treated as a continuous predictor, rather than an experimental factor in our model.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="anova-part-2.html#cb243-1" tabindex="-1"></a>model_ancova <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(Ability <span class="sc">~</span> Gaming <span class="sc">+</span> Condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Participant), <span class="at">data =</span> my_data, <span class="at">factorize =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Let’s build our ANCOVA model, adding our covariate. We set the <code>factorize</code> parameter to be <code>FALSE</code> so that it is treated as a continuous predictor, rather than an experimental factor in our model.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="anova-part-2.html#cb243-1" tabindex="-1"></a>model_ancova <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id=</span><span class="st">&#39;Participant&#39;</span>,</span>
+<span id="cb243-2"><a href="anova-part-2.html#cb243-2" tabindex="-1"></a>                       <span class="at">dv =</span> <span class="st">&#39;Ability&#39;</span>,</span>
+<span id="cb243-3"><a href="anova-part-2.html#cb243-3" tabindex="-1"></a>                       <span class="at">between =</span>  <span class="st">&#39;Condition&#39;</span>,</span>
+<span id="cb243-4"><a href="anova-part-2.html#cb243-4" tabindex="-1"></a>                       <span class="at">covariate =</span> <span class="st">&#39;Gaming&#39;</span>,</span>
+<span id="cb243-5"><a href="anova-part-2.html#cb243-5" tabindex="-1"></a>                       <span class="at">data =</span> my_data, <span class="at">factorize =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning: Numerical variables NOT centered on 0 (matters if variable in interaction):
 ##    Gaming</code></pre>
 <pre><code>## Contrasts set to contr.sum for the following variables: Condition</code></pre>
@@ -444,8 +451,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Response: Ability
 ##           num Df den Df     MSE       F     ges   Pr(&gt;F)    
-## Gaming         1     41 0.55171 53.5636 0.56643 5.87e-09 ***
 ## Condition      2     41 0.55171  0.8771 0.04103   0.4236    
+## Gaming         1     41 0.55171 53.5636 0.56643 5.87e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>On this basis of this output, we see that we no longer have an effect of Condition, but we <em>do</em> have an effect of our covariate.</p>
@@ -554,7 +561,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="centering-our-covariate" class="section level3 hasAnchor" number="9.3.5">
 <h3><span class="header-section-number">9.3.5</span> Centering our Covariate<a href="anova-part-2.html#centering-our-covariate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the video, I mention that we could also have scaled and centred our covariate. This standardises the variable (with the mean centred on zero) and removes the need to multiply the linear model coeffficient for the covariate by the covariate’s mean. Generally, it makes interpretation of the coefficients in our linear model easier.</p>
+<p>In the video, I mention that we could also have scaled and centred our covariate. This standardises the variable (with the mean centred on zero) and removes the need to multiply the linear model coefficient for the covariate by the covariate’s mean. Generally, it makes interpretation of the coefficients in our linear model easier.</p>
 <p>We can use the <code>scale()</code> function to create a new (scaled and centred) version of our covariate in our data frame.</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="anova-part-2.html#cb261-1" tabindex="-1"></a>my_scaled_data <span class="ot">&lt;-</span> my_data <span class="sc">%&gt;%</span></span>
 <span id="cb261-2"><a href="anova-part-2.html#cb261-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">centred_gaming =</span> <span class="fu">scale</span>(Gaming))</span></code></pre></div>
@@ -578,7 +585,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We see that the Intercept now corresponds to the adjusted mean for the Water group. We can calculate the adjusted mean for the Double Espresso group by subtracting 1.0085 from 7.3280, and we can calculate the adjusted mean for the Single Espresso group by subtracting 0.4563 from 7.3280. Hopefully you see that scaling and centering the covariate makes it’s a lot easier to then interpret the coefficients of our linear model.</p>
   
 <center>
-<strong>End of workshop 9 materials</strong>
+<p><strong>End of workshop 9 materials</strong></p>
+<strong>End of unit materials!</strong>
 </center>
 
 </div>

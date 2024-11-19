@@ -402,11 +402,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb186-7"><a href="anova-part-1.html#cb186-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb186-8"><a href="anova-part-1.html#cb186-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb186-9"><a href="anova-part-1.html#cb186-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
-<pre><code>## Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use &quot;none&quot; instead as of
-## ggplot2 3.3.4.
+<pre><code>## Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use &quot;none&quot; instead as of ggplot2 3.3.4.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <p>We have built a visualisation where we have plotted the raw data points using the <code>geom_jitter()</code> function, and the shape of the distribution for each condition using the <code>geom_violin()</code> function. We have also added some summary data in the form of the Mean and Confidence Intervals around the Mean using the <code>stat_summary()</code> function.</p>
 </div>

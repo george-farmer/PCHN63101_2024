@@ -77,7 +77,10 @@ We have built a visualisation where we have plotted the raw data points using th
 Let's first build an ANOVA model, and ignore the presence of the covariate in our dataset.
 
 ```{r}
-anova_model <-aov_4(Ability ~ Condition + (1 | Participant), data = my_data)
+anova_model <-aov_ez(id = 'Participant',
+                     dv = 'Ability',
+                     between =  'Condition',
+                     data = my_data)
 anova(anova_model)
 ```
 
@@ -89,10 +92,14 @@ emmeans(anova_model, pairwise ~ Condition)
 
 On the basis of this, we might conclude that we have an effect of Condition, and that each of our three groups differs significantly from the others. But would this be right? No, because we haven't taken account of our covariate. 
 
-We will build our ANCOVA model, adding our covariate before our experimental Condition manipulation. We set the `factorize` parameter to be `FALSE` so that it is treated as a continuous predictor, rather than an experimental factor in our model.
+Let's build our ANCOVA model, adding our covariate. We set the `factorize` parameter to be `FALSE` so that it is treated as a continuous predictor, rather than an experimental factor in our model.
 
 ```{r}
-model_ancova <- aov_4(Ability ~ Gaming + Condition + (1 | Participant), data = my_data, factorize = FALSE)
+model_ancova <- aov_ez(id='Participant',
+                       dv = 'Ability',
+                       between =  'Condition',
+                       covariate = 'Gaming',
+                       data = my_data, factorize = FALSE)
 anova(model_ancova)
 ```
 
@@ -201,7 +208,7 @@ Ability = 7.33
 
 ### Centering our Covariate
 
-In the video, I mention that we could also have scaled and centred our covariate. This standardises the variable (with the mean centred on zero) and removes the need to multiply the linear model coeffficient for the covariate by the covariate's mean. Generally, it makes interpretation of the coefficients in our linear model easier.
+In the video, I mention that we could also have scaled and centred our covariate. This standardises the variable (with the mean centred on zero) and removes the need to multiply the linear model coefficient for the covariate by the covariate's mean. Generally, it makes interpretation of the coefficients in our linear model easier.
 
 We can use the `scale()` function to create a new (scaled and centred) version of our covariate in our data frame.
 
@@ -233,4 +240,7 @@ We see that the Intercept now corresponds to the adjusted mean for the Water gro
 &nbsp;&nbsp;
 <center>
 **End of workshop 9 materials**
+
+
+**End of unit materials!**
 </center>
