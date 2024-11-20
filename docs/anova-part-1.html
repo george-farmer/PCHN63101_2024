@@ -398,29 +398,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb186-3"><a href="anova-part-1.html#cb186-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Condition, <span class="at">y =</span> Ability, <span class="at">colour =</span> Condition)) <span class="sc">+</span></span>
 <span id="cb186-4"><a href="anova-part-1.html#cb186-4" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
 <span id="cb186-5"><a href="anova-part-1.html#cb186-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb186-6"><a href="anova-part-1.html#cb186-6" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb186-6"><a href="anova-part-1.html#cb186-6" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
 <span id="cb186-7"><a href="anova-part-1.html#cb186-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb186-8"><a href="anova-part-1.html#cb186-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb186-9"><a href="anova-part-1.html#cb186-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) </span></code></pre></div>
-<pre><code>## Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use &quot;none&quot; instead as of ggplot2 3.3.4.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <p>We have built a visualisation where we have plotted the raw data points using the <code>geom_jitter()</code> function, and the shape of the distribution for each condition using the <code>geom_violin()</code> function. We have also added some summary data in the form of the Mean and Confidence Intervals around the Mean using the <code>stat_summary()</code> function.</p>
 </div>
 <div id="building-our-anova-model" class="section level3 hasAnchor" number="8.2.5">
 <h3><span class="header-section-number">8.2.5</span> Building our ANOVA Model<a href="anova-part-1.html#building-our-anova-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s now build our model using the <code>aov_ez()</code> function in the <code>{afex}</code> package. We use <code>id</code> to specify which variable in our dataframe identifies participants. <code>dv</code> stands for dependent variable, and we use the <code>between</code> argument to identify the variable containing our between subjects conditions. Lastly we specify the dataframe that <code>aov_ez()</code> should use. We are going to map the output of the <code>aov_ez()</code> function onto a variable I’m calling <code>model</code>. This means that the ANOVA results will be stored in this variable and will allow us to access them later.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="anova-part-1.html#cb188-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id =</span> <span class="st">&#39;Participant&#39;</span>,</span>
-<span id="cb188-2"><a href="anova-part-1.html#cb188-2" tabindex="-1"></a>                <span class="at">dv =</span> <span class="st">&#39;Ability&#39;</span>,</span>
-<span id="cb188-3"><a href="anova-part-1.html#cb188-3" tabindex="-1"></a>                <span class="at">between =</span> <span class="st">&#39;Condition&#39;</span>,</span>
-<span id="cb188-4"><a href="anova-part-1.html#cb188-4" tabindex="-1"></a>                <span class="at">data =</span> my_data_tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="anova-part-1.html#cb187-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id =</span> <span class="st">&#39;Participant&#39;</span>,</span>
+<span id="cb187-2"><a href="anova-part-1.html#cb187-2" tabindex="-1"></a>                <span class="at">dv =</span> <span class="st">&#39;Ability&#39;</span>,</span>
+<span id="cb187-3"><a href="anova-part-1.html#cb187-3" tabindex="-1"></a>                <span class="at">between =</span> <span class="st">&#39;Condition&#39;</span>,</span>
+<span id="cb187-4"><a href="anova-part-1.html#cb187-4" tabindex="-1"></a>                <span class="at">data =</span> my_data_tidied)</span></code></pre></div>
 <pre><code>## Contrasts set to contr.sum for the following variables: Condition</code></pre>
 <p>To get the output of the ANOVA, we can use the <code>summary()</code> function with our newly created <code>model</code>.</p>
 </div>
 <div id="interpreting-the-model-output" class="section level3 hasAnchor" number="8.2.6">
 <h3><span class="header-section-number">8.2.6</span> Interpreting the Model Output<a href="anova-part-1.html#interpreting-the-model-output" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="anova-part-1.html#cb190-1" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="anova-part-1.html#cb189-1" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: Ability
@@ -430,7 +427,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The effect size (ges) is generalised eta squared and for designs with more than one factor it can be a useful indicator of how much variance in the dependent variable can be explained by each factor (plus any interactions between factors).</p>
 <p>So, we know there is an effect in our model - the F-value is pretty big and the <em>p</em>-value pretty small) but we can’t know what’s driving the difference yet. We need to run some pairwise comparisons using the <code>emmeans()</code> function to tell us what mean(s) differ(s) from what other mean(s).</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="anova-part-1.html#cb192-1" tabindex="-1"></a><span class="fu">emmeans</span>(model, pairwise <span class="sc">~</span> Condition)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="anova-part-1.html#cb191-1" tabindex="-1"></a><span class="fu">emmeans</span>(model, pairwise <span class="sc">~</span> Condition)</span></code></pre></div>
 <pre><code>## $emmeans
 ##  Condition       emmean    SE df lower.CL upper.CL
 ##  Double Espresso   8.89 0.108 42     8.67     9.10
@@ -447,7 +444,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
 <p>Note that the default adjustment for multiple comparisons is Tukey’s. We can change that by adding an extra parameter to our model such as <code>adjust = "bonferonni")</code>. In this case, it doesn’t make any difference to our comparisons.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="anova-part-1.html#cb194-1" tabindex="-1"></a><span class="fu">emmeans</span>(model, pairwise <span class="sc">~</span> Condition, <span class="at">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="anova-part-1.html#cb193-1" tabindex="-1"></a><span class="fu">emmeans</span>(model, pairwise <span class="sc">~</span> Condition, <span class="at">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <pre><code>## $emmeans
 ##  Condition       emmean    SE df lower.CL upper.CL
 ##  Double Espresso   8.89 0.108 42     8.67     9.10
@@ -474,8 +471,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="reading-in-our-data-1" class="section level3 hasAnchor" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Reading in our Data<a href="anova-part-1.html#reading-in-our-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First we read in the data.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="anova-part-1.html#cb196-1" tabindex="-1"></a>rm_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/rm_data.csv&quot;</span>)</span>
-<span id="cb196-2"><a href="anova-part-1.html#cb196-2" tabindex="-1"></a><span class="fu">head</span>(rm_data)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="anova-part-1.html#cb195-1" tabindex="-1"></a>rm_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/rm_data.csv&quot;</span>)</span>
+<span id="cb195-2"><a href="anova-part-1.html#cb195-2" tabindex="-1"></a><span class="fu">head</span>(rm_data)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   Participant Condition    RT
 ##         &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
@@ -486,9 +483,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5           5 Very Easy  1.16
 ## 6           6 Very Easy  1.15</code></pre>
 <p>We can see from the <code>head()</code> function that Condition isn’t yet coded as a factor. Let’s fix that.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="anova-part-1.html#cb198-1" tabindex="-1"></a>rm_data_tidied <span class="ot">&lt;-</span> rm_data <span class="sc">%&gt;%</span></span>
-<span id="cb198-2"><a href="anova-part-1.html#cb198-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span>
-<span id="cb198-3"><a href="anova-part-1.html#cb198-3" tabindex="-1"></a><span class="fu">head</span>(rm_data_tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="anova-part-1.html#cb197-1" tabindex="-1"></a>rm_data_tidied <span class="ot">&lt;-</span> rm_data <span class="sc">%&gt;%</span></span>
+<span id="cb197-2"><a href="anova-part-1.html#cb197-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span>
+<span id="cb197-3"><a href="anova-part-1.html#cb197-3" tabindex="-1"></a><span class="fu">head</span>(rm_data_tidied)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   Participant Condition    RT
 ##         &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;
@@ -502,9 +499,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="summarising-our-data-1" class="section level3 hasAnchor" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Summarising our Data<a href="anova-part-1.html#summarising-our-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s generate the Mean and Standard Deviation for each of our four conditions.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="anova-part-1.html#cb200-1" tabindex="-1"></a>rm_data_tidied <span class="sc">%&gt;%</span></span>
-<span id="cb200-2"><a href="anova-part-1.html#cb200-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Condition) <span class="sc">%&gt;%</span></span>
-<span id="cb200-3"><a href="anova-part-1.html#cb200-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(RT), <span class="at">sd =</span> <span class="fu">sd</span> (RT))</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="anova-part-1.html#cb199-1" tabindex="-1"></a>rm_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb199-2"><a href="anova-part-1.html#cb199-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Condition) <span class="sc">%&gt;%</span></span>
+<span id="cb199-3"><a href="anova-part-1.html#cb199-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(RT), <span class="at">sd =</span> <span class="fu">sd</span> (RT))</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ##   Condition  mean     sd
 ##   &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt;
@@ -516,29 +513,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="visualising-our-data-1" class="section level3 hasAnchor" number="8.3.3">
 <h3><span class="header-section-number">8.3.3</span> Visualising our Data<a href="anova-part-1.html#visualising-our-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>And visualise the data - note here that I am using the <code>fct_reorder()</code> function to reorder the levels of our factor based on the RT. This can be useful to make our viusalisations more easily interpretable.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="anova-part-1.html#cb202-1" tabindex="-1"></a>rm_data_tidied <span class="sc">%&gt;%</span></span>
-<span id="cb202-2"><a href="anova-part-1.html#cb202-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(Condition, RT), <span class="at">y =</span> RT, <span class="at">colour =</span> Condition)) <span class="sc">+</span></span>
-<span id="cb202-3"><a href="anova-part-1.html#cb202-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb202-4"><a href="anova-part-1.html#cb202-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb202-5"><a href="anova-part-1.html#cb202-5" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb202-6"><a href="anova-part-1.html#cb202-6" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb202-7"><a href="anova-part-1.html#cb202-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb202-8"><a href="anova-part-1.html#cb202-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
-<span id="cb202-9"><a href="anova-part-1.html#cb202-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Condition&quot;</span>, <span class="at">y =</span> <span class="st">&quot;RT (s)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="anova-part-1.html#cb201-1" tabindex="-1"></a>rm_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb201-2"><a href="anova-part-1.html#cb201-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(Condition, RT), <span class="at">y =</span> RT, <span class="at">colour =</span> Condition)) <span class="sc">+</span></span>
+<span id="cb201-3"><a href="anova-part-1.html#cb201-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb201-4"><a href="anova-part-1.html#cb201-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb201-5"><a href="anova-part-1.html#cb201-5" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb201-6"><a href="anova-part-1.html#cb201-6" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb201-7"><a href="anova-part-1.html#cb201-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb201-8"><a href="anova-part-1.html#cb201-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
+<span id="cb201-9"><a href="anova-part-1.html#cb201-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Condition&quot;</span>, <span class="at">y =</span> <span class="st">&quot;RT (s)&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 </div>
 <div id="building-our-anova-model-1" class="section level3 hasAnchor" number="8.3.4">
 <h3><span class="header-section-number">8.3.4</span> Building our ANOVA Model<a href="anova-part-1.html#building-our-anova-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We build our ANOVA model in a similar way to before. Except in this case we use the <code>within</code> argument rather than the <code>between</code> argument in order to capture the fact that <code>Condition</code> is a repeated measures factor.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="anova-part-1.html#cb203-1" tabindex="-1"></a>rm_model <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id =</span> <span class="st">&#39;Participant&#39;</span>,</span>
-<span id="cb203-2"><a href="anova-part-1.html#cb203-2" tabindex="-1"></a>                   <span class="at">dv =</span> <span class="st">&#39;RT&#39;</span>,</span>
-<span id="cb203-3"><a href="anova-part-1.html#cb203-3" tabindex="-1"></a>                   <span class="at">within =</span> <span class="st">&#39;Condition&#39;</span>,</span>
-<span id="cb203-4"><a href="anova-part-1.html#cb203-4" tabindex="-1"></a>                   <span class="at">data =</span> rm_data_tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="anova-part-1.html#cb202-1" tabindex="-1"></a>rm_model <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id =</span> <span class="st">&#39;Participant&#39;</span>,</span>
+<span id="cb202-2"><a href="anova-part-1.html#cb202-2" tabindex="-1"></a>                   <span class="at">dv =</span> <span class="st">&#39;RT&#39;</span>,</span>
+<span id="cb202-3"><a href="anova-part-1.html#cb202-3" tabindex="-1"></a>                   <span class="at">within =</span> <span class="st">&#39;Condition&#39;</span>,</span>
+<span id="cb202-4"><a href="anova-part-1.html#cb202-4" tabindex="-1"></a>                   <span class="at">data =</span> rm_data_tidied)</span></code></pre></div>
 </div>
 <div id="interpreting-the-model-output-1" class="section level3 hasAnchor" number="8.3.5">
 <h3><span class="header-section-number">8.3.5</span> Interpreting the Model Output<a href="anova-part-1.html#interpreting-the-model-output-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We extract the summary of our model in the same way we did for the between participants ANOVA.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="anova-part-1.html#cb204-1" tabindex="-1"></a><span class="fu">summary</span>(rm_model)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="anova-part-1.html#cb203-1" tabindex="-1"></a><span class="fu">summary</span>(rm_model)</span></code></pre></div>
 <pre><code>## 
 ## Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
 ## 
@@ -566,7 +563,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##              HF eps   Pr(&gt;F[HF])
 ## Condition 0.7000534 3.359493e-31</code></pre>
 <p>With this option, we didn’t get the effect size measure in our measure. We can generate that though by asking for our model to be presented in anova format using the <code>anova()</code> function.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="anova-part-1.html#cb206-1" tabindex="-1"></a><span class="fu">anova</span>(rm_model)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="anova-part-1.html#cb205-1" tabindex="-1"></a><span class="fu">anova</span>(rm_model)</span></code></pre></div>
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: RT
@@ -576,7 +573,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The effect size is measured by ges and is the recommended effect size measure for repeated measures designs (Bakeman, 2005). Note the dfs in this output are always corrected as if there is a violation of sphericity (violated when the variances of the differences between all possible pairs of within-subject conditions (i.e., levels of the independent variable) are <strong>not</strong> equal) - to be conservative (and to avoid Type I errors) we might be better off to always choose these corrected dfs.</p>
 <p>From this, we can see we have effect of Condition. But we don’t know where the differences lie between the different levels of our factor. So we use the <code>emmeans()</code> function to find that out. Here we will be using the Bonferroni correction for multiple comparisons.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="anova-part-1.html#cb208-1" tabindex="-1"></a><span class="fu">emmeans</span>(rm_model, pairwise <span class="sc">~</span> Condition, <span class="at">adjust =</span> <span class="st">&quot;Bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="anova-part-1.html#cb207-1" tabindex="-1"></a><span class="fu">emmeans</span>(rm_model, pairwise <span class="sc">~</span> Condition, <span class="at">adjust =</span> <span class="st">&quot;Bonferroni&quot;</span>)</span></code></pre></div>
 <pre><code>## $emmeans
 ##  Condition emmean      SE df lower.CL upper.CL
 ##  Easy        1.23 0.01079 31     1.21     1.25
@@ -611,8 +608,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So we have two factors (context, sentence), each with two levels (positive, negative). This is what’s know as a full factorial design where every participant takes part in every condition.</p>
 <div id="reading-in-our-data-2" class="section level3 hasAnchor" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Reading in our Data<a href="anova-part-1.html#reading-in-our-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="anova-part-1.html#cb210-1" tabindex="-1"></a>factorial_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/factorial_data.csv&quot;</span>)</span>
-<span id="cb210-2"><a href="anova-part-1.html#cb210-2" tabindex="-1"></a><span class="fu">head</span>(factorial_data)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="anova-part-1.html#cb209-1" tabindex="-1"></a>factorial_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/george-farmer/PCHN63101/refs/heads/main/factorial_data.csv&quot;</span>)</span>
+<span id="cb209-2"><a href="anova-part-1.html#cb209-2" tabindex="-1"></a><span class="fu">head</span>(factorial_data)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   Subject  Item    RT Sentence Context 
 ##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   
@@ -623,9 +620,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5       1    19  1734 Positive Negative
 ## 6       1    23  1757 Positive Negative</code></pre>
 <p>Again we see that our two experimental factors are not coded as factors so let’s fix that.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="anova-part-1.html#cb212-1" tabindex="-1"></a>factorial_data_tidied <span class="ot">&lt;-</span> factorial_data <span class="sc">%&gt;%</span></span>
-<span id="cb212-2"><a href="anova-part-1.html#cb212-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sentence =</span> <span class="fu">factor</span>(Sentence), <span class="at">Context =</span> <span class="fu">factor</span>(Context))</span>
-<span id="cb212-3"><a href="anova-part-1.html#cb212-3" tabindex="-1"></a><span class="fu">head</span>(factorial_data_tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="anova-part-1.html#cb211-1" tabindex="-1"></a>factorial_data_tidied <span class="ot">&lt;-</span> factorial_data <span class="sc">%&gt;%</span></span>
+<span id="cb211-2"><a href="anova-part-1.html#cb211-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sentence =</span> <span class="fu">factor</span>(Sentence), <span class="at">Context =</span> <span class="fu">factor</span>(Context))</span>
+<span id="cb211-3"><a href="anova-part-1.html#cb211-3" tabindex="-1"></a><span class="fu">head</span>(factorial_data_tidied)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   Subject  Item    RT Sentence Context 
 ##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;    &lt;fct&gt;   
@@ -639,9 +636,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="summarising-our-data-2" class="section level3 hasAnchor" number="8.4.2">
 <h3><span class="header-section-number">8.4.2</span> Summarising our Data<a href="anova-part-1.html#summarising-our-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s generate some summary statistics - note, we specify our two grouping variables in the <code>group_by()</code> function call.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="anova-part-1.html#cb214-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
-<span id="cb214-2"><a href="anova-part-1.html#cb214-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Context, Sentence) <span class="sc">%&gt;%</span></span>
-<span id="cb214-3"><a href="anova-part-1.html#cb214-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_rt =</span> <span class="fu">mean</span>(RT), <span class="at">sd_rt =</span> <span class="fu">sd</span>(RT))</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="anova-part-1.html#cb213-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb213-2"><a href="anova-part-1.html#cb213-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Context, Sentence) <span class="sc">%&gt;%</span></span>
+<span id="cb213-3"><a href="anova-part-1.html#cb213-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_rt =</span> <span class="fu">mean</span>(RT), <span class="at">sd_rt =</span> <span class="fu">sd</span>(RT))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;Context&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 4 × 4
@@ -653,13 +650,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 Positive Negative     NA    NA 
 ## 4 Positive Positive   1579.  841.</code></pre>
 <p>We have <code>NA</code> for two conditions suggesting we have missing data somewhere in our dataset. We’re going to use a new package now, called <code>{visdat}</code>. It allows us to visualise our dataset using the <code>vis_dat()</code> function and to visualise missing data using the <code>vis_miss()</code> function.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="anova-part-1.html#cb217-1" tabindex="-1"></a><span class="fu">library</span>(visdat)</span></code></pre></div>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="anova-part-1.html#cb218-1" tabindex="-1"></a><span class="fu">vis_miss</span>(factorial_data_tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="anova-part-1.html#cb216-1" tabindex="-1"></a><span class="fu">library</span>(visdat)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="anova-part-1.html#cb217-1" tabindex="-1"></a><span class="fu">vis_miss</span>(factorial_data_tidied)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <p>We can see in the above visualisation that we do indeed have some missing data. We need to tell R what we want it to do with that. We can use the <code>na.rm = TRUE</code> parameter to tell it we want missing data to be ignored.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="anova-part-1.html#cb219-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
-<span id="cb219-2"><a href="anova-part-1.html#cb219-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Context, Sentence) <span class="sc">%&gt;%</span></span>
-<span id="cb219-3"><a href="anova-part-1.html#cb219-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_rt =</span> <span class="fu">mean</span>(RT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_rt =</span> <span class="fu">sd</span>(RT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="anova-part-1.html#cb218-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb218-2"><a href="anova-part-1.html#cb218-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Context, Sentence) <span class="sc">%&gt;%</span></span>
+<span id="cb218-3"><a href="anova-part-1.html#cb218-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_rt =</span> <span class="fu">mean</span>(RT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_rt =</span> <span class="fu">sd</span>(RT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;Context&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 4 × 4
@@ -675,30 +672,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="visualising-our-data-2" class="section level3 hasAnchor" number="8.4.3">
 <h3><span class="header-section-number">8.4.3</span> Visualising our Data<a href="anova-part-1.html#visualising-our-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can use a modification of the <code>ggplot()</code> code we’ve used above to generate our visualisation. Note, I am filtering our the missing data using the <code>filter()</code> function before we start our plot. I am also specifying that we’re wanting to plot a combination of our two factors in the <code>aes()</code> definition using <code>Context:Sentence</code>. There are further things we could modify to improve the look of this graph. Can you figure out ways in which the labelling of the two factors could be clearer?</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="anova-part-1.html#cb222-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
-<span id="cb222-2"><a href="anova-part-1.html#cb222-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(RT)) <span class="sc">%&gt;%</span></span>
-<span id="cb222-3"><a href="anova-part-1.html#cb222-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Context<span class="sc">:</span>Sentence, <span class="at">y =</span> RT, <span class="at">colour =</span> Context<span class="sc">:</span>Sentence)) <span class="sc">+</span></span>
-<span id="cb222-4"><a href="anova-part-1.html#cb222-4" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb222-5"><a href="anova-part-1.html#cb222-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
-<span id="cb222-6"><a href="anova-part-1.html#cb222-6" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb222-7"><a href="anova-part-1.html#cb222-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb222-8"><a href="anova-part-1.html#cb222-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb222-9"><a href="anova-part-1.html#cb222-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
-<span id="cb222-10"><a href="anova-part-1.html#cb222-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Context X Sentence&quot;</span>, <span class="at">y =</span> <span class="st">&quot;RT (ms)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="anova-part-1.html#cb221-1" tabindex="-1"></a>factorial_data_tidied <span class="sc">%&gt;%</span></span>
+<span id="cb221-2"><a href="anova-part-1.html#cb221-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(RT)) <span class="sc">%&gt;%</span></span>
+<span id="cb221-3"><a href="anova-part-1.html#cb221-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Context<span class="sc">:</span>Sentence, <span class="at">y =</span> RT, <span class="at">colour =</span> Context<span class="sc">:</span>Sentence)) <span class="sc">+</span></span>
+<span id="cb221-4"><a href="anova-part-1.html#cb221-4" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb221-5"><a href="anova-part-1.html#cb221-5" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb221-6"><a href="anova-part-1.html#cb221-6" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb221-7"><a href="anova-part-1.html#cb221-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb221-8"><a href="anova-part-1.html#cb221-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb221-9"><a href="anova-part-1.html#cb221-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)) <span class="sc">+</span></span>
+<span id="cb221-10"><a href="anova-part-1.html#cb221-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Context X Sentence&quot;</span>, <span class="at">y =</span> <span class="st">&quot;RT (ms)&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 </div>
 <div id="building-our-anova-model-2" class="section level3 hasAnchor" number="8.4.4">
 <h3><span class="header-section-number">8.4.4</span> Building our ANOVA Model<a href="anova-part-1.html#building-our-anova-model-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We have our data in long format where every row is one observation. We haven’t done any data aggregation. The <code>aov_ez()</code> function will do this for us as ANOVA models need to be built over means (not raw data).</p>
 <p>The syntax is very similar to what we ran previously, although this time you’ll see we are providing two terms to the <code>within</code> argument. We do this by combining them like this <code>c('Context','Sentence')</code>. This term corresponds to two main effects, <code>aov_ez</code> will also automatically calculate the interaction between them. By setting <code>na.rm</code> to be TRUE, we are telling the analysis to ignore individual trials where there might be missing data - effectively this calculates the condition means over the data that is present (and ignores trials where it is missing). The <code>fun_aggregate = mean</code> argument tells <code>aov_ez()</code> to use means when aggregating, this is the default behaviour anyway, but specifying it here avoids us getting a warning message about it.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="anova-part-1.html#cb223-1" tabindex="-1"></a>model_subjects <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id=</span><span class="st">&#39;Subject&#39;</span>,</span>
-<span id="cb223-2"><a href="anova-part-1.html#cb223-2" tabindex="-1"></a>                         <span class="at">dv=</span><span class="st">&#39;RT&#39;</span>,</span>
-<span id="cb223-3"><a href="anova-part-1.html#cb223-3" tabindex="-1"></a>                         <span class="at">within =</span> <span class="fu">c</span>(<span class="st">&#39;Context&#39;</span>,<span class="st">&#39;Sentence&#39;</span>),</span>
-<span id="cb223-4"><a href="anova-part-1.html#cb223-4" tabindex="-1"></a>                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb223-5"><a href="anova-part-1.html#cb223-5" tabindex="-1"></a>                         <span class="at">fun_aggregate =</span> mean,</span>
-<span id="cb223-6"><a href="anova-part-1.html#cb223-6" tabindex="-1"></a>                         <span class="at">data =</span> factorial_data_tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="anova-part-1.html#cb222-1" tabindex="-1"></a>model_subjects <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id=</span><span class="st">&#39;Subject&#39;</span>,</span>
+<span id="cb222-2"><a href="anova-part-1.html#cb222-2" tabindex="-1"></a>                         <span class="at">dv=</span><span class="st">&#39;RT&#39;</span>,</span>
+<span id="cb222-3"><a href="anova-part-1.html#cb222-3" tabindex="-1"></a>                         <span class="at">within =</span> <span class="fu">c</span>(<span class="st">&#39;Context&#39;</span>,<span class="st">&#39;Sentence&#39;</span>),</span>
+<span id="cb222-4"><a href="anova-part-1.html#cb222-4" tabindex="-1"></a>                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb222-5"><a href="anova-part-1.html#cb222-5" tabindex="-1"></a>                         <span class="at">fun_aggregate =</span> mean,</span>
+<span id="cb222-6"><a href="anova-part-1.html#cb222-6" tabindex="-1"></a>                         <span class="at">data =</span> factorial_data_tidied)</span></code></pre></div>
 <p>We can generate the output using the <code>anova()</code> function as we did earlier.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="anova-part-1.html#cb224-1" tabindex="-1"></a><span class="fu">anova</span>(model_subjects)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="anova-part-1.html#cb223-1" tabindex="-1"></a><span class="fu">anova</span>(model_subjects)</span></code></pre></div>
 <pre><code>## Anova Table (Type 3 tests)
 ## 
 ## Response: RT
@@ -709,7 +706,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Let’s now interpret our ANOVA and we will set the error correction adjustment to equal <code>none</code> as only some of the comparisons actually make theoretical sense - these are the ones where we’re comparing like with like - Sentences of the same type (Positive <em>or</em> Negative) preceded by one version of our Context factor vs. the other.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="anova-part-1.html#cb226-1" tabindex="-1"></a><span class="fu">emmeans</span>(model_subjects, pairwise <span class="sc">~</span> Context <span class="sc">*</span> Sentence, <span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="anova-part-1.html#cb225-1" tabindex="-1"></a><span class="fu">emmeans</span>(model_subjects, pairwise <span class="sc">~</span> Context <span class="sc">*</span> Sentence, <span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>## $emmeans
 ##  Context  Sentence emmean   SE df lower.CL upper.CL
 ##  Negative Negative   1474 51.1 59     1372     1576
@@ -776,7 +773,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="question-4-1" class="section level3 hasAnchor" number="8.6.4">
 <h3><span class="header-section-number">8.6.4</span> Question 4<a href="anova-part-1.html#question-4-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This question is slightly trickier than the ones we’ve looked at so far. After you’ve built your ANOVA (remember to add only your repeated measures factors to your random effect term), you’ll discover a significant 3-way interaction (F(2, 69) = 4.63). You’ll need to break this down further - one possible approach would be to look at the interaction between Difficulty and Time Pressure <em>separately</em> for each level of our between group factor. In other words, you’d build one 2 x 2 ANOVA model for each of your Student Groups. If you do this, you’ll see that the 2 x 2 interaction is not significant for the Arts group, nor the Maths group, but the interaction <em>is</em> significant for the Psychology group (F(1, 23) = 11.08)) - as too are the two main effects of Difficulty and Time Pressure. But as these two factors interact, the meaning in our data is in the interaction term (not just these two main effects).</p>
+<p>This question is slightly trickier than the ones we’ve looked at so far. After you’ve built your ANOVA, you’ll discover a significant 3-way interaction (F(2, 69) = 4.63). You’ll need to break this down further - one possible approach would be to look at the interaction between Difficulty and Time Pressure <em>separately</em> for each level of our between group factor. In other words, you’d build one 2 x 2 ANOVA model for each of your Student Groups. If you do this, you’ll see that the 2 x 2 interaction is not significant for the Arts group, nor the Maths group, but the interaction <em>is</em> significant for the Psychology group (F(1, 23) = 11.08)) - as too are the two main effects of Difficulty and Time Pressure. But as these two factors interact, the meaning in our data is in the interaction term (not just these two main effects).</p>
 <p>So, the 3-way interaction was telling us that the 2-way interaction differed for at least one of our Groups (relative to the other Groups). We need to examine this 2-way interaction further for our Psychology group by conducting pairwise comparisons, exactly as you’ve done above. This will reveal that for our Psychology group, each condition differs significantly from the other conditions. It means that for Psychology students, the Hard problems take long under Time Pressure vs. under No Time Pressure, and the Easy problems take longer under Time Pressure vs. under No Time Pressure (but neither of these are as long as for Hard problems).</p>
 <center>
 <strong>End of workshop 8 materials</strong>

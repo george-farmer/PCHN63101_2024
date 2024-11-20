@@ -66,7 +66,7 @@ my_data_tidied %>%
   ggplot(aes(x = Condition, y = Ability, colour = Condition)) +
   geom_violin() +
   geom_jitter(width = .1) +
-  guides(colour = FALSE) +
+  guides(colour = 'none') +
   stat_summary(fun.data = "mean_cl_boot", colour = "black") +
   theme_minimal() +
   theme(text = element_text(size = 13)) 
@@ -149,7 +149,7 @@ rm_data_tidied %>%
   ggplot(aes(x = fct_reorder(Condition, RT), y = RT, colour = Condition)) +
   geom_violin() +
   geom_jitter(width = .1) +
-  guides(colour = FALSE) +
+  guides(colour = 'none') +
   stat_summary(fun.data = "mean_cl_boot", colour = "black") +
   theme_minimal() +
   theme(text = element_text(size = 13)) +
@@ -262,7 +262,7 @@ factorial_data_tidied %>%
   ggplot(aes(x = Context:Sentence, y = RT, colour = Context:Sentence)) +
   geom_violin() +
   geom_jitter(width = .1, alpha = .25) +
-  guides(colour = FALSE) +
+  guides(colour = 'none') +
   stat_summary(fun.data = "mean_cl_boot", colour = "black") +
   theme_minimal() +
   theme(text = element_text(size = 13)) +
@@ -354,7 +354,7 @@ The ANOVA should reveal a main effect of Size (F(1, 23) = 198.97), a main effect
 
 ### Question 4
 
-This question is slightly trickier than the ones we've looked at so far. After you've built your ANOVA (remember to add only your repeated measures factors to your random effect term), you'll discover a significant 3-way interaction (F(2, 69) = 4.63). You'll need to break this down further - one possible approach would be to look at the interaction between Difficulty and Time Pressure *separately* for each level of our between group factor. In other words, you'd build one 2 x 2 ANOVA model for each of your Student Groups. If you do this, you'll see that the 2 x 2 interaction is not significant for the Arts group, nor the Maths group, but the interaction *is* significant for the Psychology group (F(1, 23) = 11.08)) - as too are the two main effects of Difficulty and Time Pressure. But as these two factors interact, the meaning in our data is in the interaction term (not just these two main effects). 
+This question is slightly trickier than the ones we've looked at so far. After you've built your ANOVA, you'll discover a significant 3-way interaction (F(2, 69) = 4.63). You'll need to break this down further - one possible approach would be to look at the interaction between Difficulty and Time Pressure *separately* for each level of our between group factor. In other words, you'd build one 2 x 2 ANOVA model for each of your Student Groups. If you do this, you'll see that the 2 x 2 interaction is not significant for the Arts group, nor the Maths group, but the interaction *is* significant for the Psychology group (F(1, 23) = 11.08)) - as too are the two main effects of Difficulty and Time Pressure. But as these two factors interact, the meaning in our data is in the interaction term (not just these two main effects). 
 
 So, the 3-way interaction was telling us that the 2-way interaction differed for at least one of our Groups (relative to the other Groups). We need to examine this 2-way interaction further for our Psychology group by conducting pairwise comparisons, exactly as you've done above. This will reveal that for our Psychology group, each condition differs significantly from the other conditions. It means that for Psychology students, the Hard problems take long under Time Pressure vs. under No Time Pressure, and the Easy problems take longer under Time Pressure vs. under No Time Pressure (but neither of these are as long as for Hard problems).
 
