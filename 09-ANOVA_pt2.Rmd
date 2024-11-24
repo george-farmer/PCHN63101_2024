@@ -8,15 +8,12 @@ In this workshop we will continue our examination of ANOVA. Specifically, we wil
 
 <center>
 
-<iframe width="560" height="315" src="https://youtube.com/embed/zGifY-McqsQ" frameborder="0" data-external="1" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtube.com/embed/DnHIOEk0COU" frameborder="0" data-external="1" allowfullscreen></iframe>
 
 </center>
 
 &nbsp;&nbsp;
 
-<center>
-[Lindeløv link](https://lindeloev.github.io/tests-as-linear/)
-</center>
 
 ## Building our ANCOVA
 ### Loading our Packages
